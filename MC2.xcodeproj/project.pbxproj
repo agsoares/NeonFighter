@@ -17,6 +17,7 @@
 		B93086501B210BBB00822E47 /* aSBgImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864D1B210BBB00822E47 /* aSBgImg.png */; };
 		B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864E1B210BBB00822E47 /* aSThumbImg.png */; };
 		B9451C5A1B24E68100B8978C /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9451C591B24E68100B8978C /* Rope.swift */; };
+		B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B95D031E1B28ECA200885F90 /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B930864D1B210BBB00822E47 /* aSBgImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSBgImg.png; sourceTree = "<group>"; };
 		B930864E1B210BBB00822E47 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
 		B9451C591B24E68100B8978C /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rope.swift; path = Classes/Rope.swift; sourceTree = "<group>"; };
+		B95D031E1B28ECA200885F90 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		B93086491B2104DC00822E47 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B95D031E1B28ECA200885F90 /* GameScene.sks */,
 				B93086291B2103D900822E47 /* GameScene.swift */,
 			);
 			path = Scenes;
@@ -187,6 +190,7 @@
 				B93086341B2103D900822E47 /* LaunchScreen.xib in Resources */,
 				B93086311B2103D900822E47 /* Images.xcassets in Resources */,
 				B930862F1B2103D900822E47 /* Main.storyboard in Resources */,
+				B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */,
 				B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
