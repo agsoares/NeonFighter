@@ -16,6 +16,7 @@
 		B930864F1B210BBB00822E47 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B930864C1B210BBB00822E47 /* AnalogStick.swift */; };
 		B93086501B210BBB00822E47 /* aSBgImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864D1B210BBB00822E47 /* aSBgImg.png */; };
 		B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864E1B210BBB00822E47 /* aSThumbImg.png */; };
+		B9451C5A1B24E68100B8978C /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9451C591B24E68100B8978C /* Rope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B930864C1B210BBB00822E47 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
 		B930864D1B210BBB00822E47 /* aSBgImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSBgImg.png; sourceTree = "<group>"; };
 		B930864E1B210BBB00822E47 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
+		B9451C591B24E68100B8978C /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rope.swift; path = Classes/Rope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,8 @@
 		B93086221B2103D900822E47 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
+				B9451C5B1B2525EC00B8978C /* Extension */,
+				B9451C581B24E39900B8978C /* Classes */,
 				B930864B1B210BBB00822E47 /* AnalogStick */,
 				B930864A1B21052C00822E47 /* Controllers */,
 				B93086491B2104DC00822E47 /* Scenes */,
@@ -106,6 +110,21 @@
 				B930864E1B210BBB00822E47 /* aSThumbImg.png */,
 			);
 			path = AnalogStick;
+			sourceTree = "<group>";
+		};
+		B9451C581B24E39900B8978C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B9451C591B24E68100B8978C /* Rope.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		B9451C5B1B2525EC00B8978C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +202,7 @@
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
+				B9451C5A1B24E68100B8978C /* Rope.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

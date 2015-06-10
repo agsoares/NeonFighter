@@ -11,10 +11,14 @@ import SpriteKit
 class GameScene: SKScene, AnalogStickProtocol {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
-    let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+    
+    let player = SKSpriteNode(imageNamed: "Ball")
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
+
+        
         
         let bgDiametr: CGFloat = 120
         let thumbDiametr: CGFloat = 60
@@ -26,11 +30,33 @@ class GameScene: SKScene, AnalogStickProtocol {
         moveAnalogStick.position = CGPointMake(-100, -100)
         self.addChild(moveAnalogStick)
         
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        player.size = CGSizeMake(50, 50)
+        player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
+        player.physicsBody?.affectedByGravity = false
         
-        self.addChild(myLabel)
+        
+
+        
+        self.addChild(player)
+        
+        
+        var ball = SKSpriteNode(imageNamed: "Ball")
+        ball.size = CGSizeMake(50, 50)
+
+        
+        var rope = Rope()
+        self.addChild(rope)
+        
+        rope.setAttachmentPoint(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), toNode: player)
+        rope.attachObject(ball)
+        rope.setRopeLenght(50, withImageNamed: "rope_ring")
+
+
+        player.physicsBody?.mass = 300
+        player.physicsBody?.allowsRotation = false
+        ball.physicsBody?.mass = 1
+        
     }
     
     
@@ -64,7 +90,11 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
+        player.physicsBody?.applyForce(CGVectorMake(velocity.x*1000, velocity.y*1000))
         
+        //player.position.x += velocity.x*0.1
+        //player.position.y += velocity.y*0.1
+
     }
     
     
