@@ -52,7 +52,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         
         rope.setAttachmentPoint(player.position, toNode: player)
         rope.attachObject(ball)
-        rope.setRopeLenght(10, withImageNamed: "rope_ring")
+        rope.setRopeLenght(25, withImageNamed: "rope_ring")
 
 
         player.physicsBody?.mass = 300
