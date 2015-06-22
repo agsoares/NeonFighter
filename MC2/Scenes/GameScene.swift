@@ -41,8 +41,16 @@ class GameScene: SKScene, AnalogStickProtocol {
         self.addChild(player)
         
         
-        var ball = SKSpriteNode(imageNamed: "Ball")
+        var ball = SKSpriteNode(imageNamed: "001")
         ball.size = CGSizeMake(50, 50)
+        ball.color = UIColor.redColor()
+        ball.colorBlendFactor = 1
+
+        /*
+        let fragShader = SKShader(fileNamed: "blur")
+        ball.shader = fragShader
+        ball.blendMode = SKBlendMode.Add
+        */
 
         
         var rope = Rope()

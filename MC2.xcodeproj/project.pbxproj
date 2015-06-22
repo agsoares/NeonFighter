@@ -18,6 +18,7 @@
 		B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864E1B210BBB00822E47 /* aSThumbImg.png */; };
 		B9451C5A1B24E68100B8978C /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9451C591B24E68100B8978C /* Rope.swift */; };
 		B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B95D031E1B28ECA200885F90 /* GameScene.sks */; };
+		B98988AE1B38918C007CD469 /* blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* blur.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B930864E1B210BBB00822E47 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
 		B9451C591B24E68100B8978C /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rope.swift; path = Classes/Rope.swift; sourceTree = "<group>"; };
 		B95D031E1B28ECA200885F90 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		B98988AD1B38918C007CD469 /* blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = blur.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		B93086231B2103D900822E47 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B98988AD1B38918C007CD469 /* blur.fsh */,
 				B930862D1B2103D900822E47 /* Main.storyboard */,
 				B93086321B2103D900822E47 /* LaunchScreen.xib */,
 				B93086251B2103D900822E47 /* AppDelegate.swift */,
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B93086501B210BBB00822E47 /* aSBgImg.png in Resources */,
+				B98988AE1B38918C007CD469 /* blur.fsh in Resources */,
 				B93086341B2103D900822E47 /* LaunchScreen.xib in Resources */,
 				B93086311B2103D900822E47 /* Images.xcassets in Resources */,
 				B930862F1B2103D900822E47 /* Main.storyboard in Resources */,
