@@ -90,7 +90,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        player.physicsBody?.applyForce(CGVectorMake(velocity.x*1000, velocity.y*1000))
+        player.physicsBody?.applyForce(CGVectorMake(velocity.x*2000, velocity.y*2000))
         
         //player.position.x += velocity.x*0.1
         //player.position.y += velocity.y*0.1

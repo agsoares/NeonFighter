@@ -70,6 +70,7 @@ class Rope: SKNode {
         var joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody, bodyB:nodeB.physicsBody,
             anchor:positionOnStartNode)
         joint.shouldEnableLimits = true
+        joint.shouldEnableLimits = true;
         self.scene?.physicsWorld.addJoint(joint)
         
         
@@ -79,7 +80,7 @@ class Rope: SKNode {
         
             var joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody, bodyB:nodeB.physicsBody,
                 anchor:CGPointMake(CGRectGetMidX(nodeA.frame), CGRectGetMinY(nodeA.frame)))
-            
+            joint.shouldEnableLimits = true;
             self.scene?.physicsWorld.addJoint(joint)
         }
         
