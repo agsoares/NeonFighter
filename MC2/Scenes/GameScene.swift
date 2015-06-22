@@ -48,9 +48,11 @@ class GameScene: SKScene, AnalogStickProtocol {
         var rope = Rope()
         self.addChild(rope)
         
-        rope.setAttachmentPoint(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), toNode: player)
+        //CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        
+        rope.setAttachmentPoint(player.position, toNode: player)
         rope.attachObject(ball)
-        rope.setRopeLenght(50, withImageNamed: "rope_ring")
+        rope.setRopeLenght(10, withImageNamed: "rope_ring")
 
 
         player.physicsBody?.mass = 300
