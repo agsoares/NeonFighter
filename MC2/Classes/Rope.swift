@@ -38,7 +38,7 @@ class Rope: SKNode {
         
         for i in 1..<lenght {
             var ropePart = SKSpriteNode(imageNamed: ropeImage)
-            var ropeHeight = firstPart.position.x-CGFloat(i-1)*ropePart.size.height
+            var ropeHeight = firstPart.position.y-CGFloat(i-1)*ropePart.size.height
             
             ropePart.position = CGPointMake(firstPart.position.x, ropeHeight);
             ropePart.physicsBody = SKPhysicsBody(circleOfRadius: ropePart.size.width)
