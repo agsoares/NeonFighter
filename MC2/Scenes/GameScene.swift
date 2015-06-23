@@ -99,6 +99,18 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
         player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
+        if( player.position.x > self.frame.maxX - 50){
+            camera.position.x = camera.position.x - 10
+        }
+        if(self.player.position.x < self.frame.minX + 50){
+            camera.position.x = camera.position.x + 10
+        }
+        if(self.player.position.y > self.frame.maxY - 50){
+            camera.position.y = camera.position.y - 10
+        }
+        if(self.player.position.y < self.frame.minY + 50){
+            camera.position.y = camera.position.y + 10
+        }
         //player.position.x += velocity.x*0.1
         //player.position.y += velocity.y*0.1
 
