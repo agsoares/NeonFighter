@@ -12,10 +12,15 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
+    let camera = SKNode();
+    
     let player = SKSpriteNode(imageNamed: "Ball")
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        self.addChild(camera);
+        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
 
         
@@ -28,7 +33,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         moveAnalogStick.hidden = true
         moveAnalogStick.alpha = 0.25
         moveAnalogStick.position = CGPointMake(-100, -100)
-        self.addChild(moveAnalogStick)
+        camera.addChild(moveAnalogStick)
         
         player.size = CGSizeMake(50, 50)
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
@@ -39,7 +44,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         player.zPosition = 0.1
 
         
-        self.addChild(player)
+        camera.addChild(player)
         
         
         var ball = SKSpriteNode(imageNamed: "001")
@@ -49,7 +54,7 @@ class GameScene: SKScene, AnalogStickProtocol {
 
         
         var rope = Rope()
-        self.addChild(rope)
+        camera.addChild(rope)
         
         //CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
@@ -63,8 +68,6 @@ class GameScene: SKScene, AnalogStickProtocol {
         ball.physicsBody?.mass = 300
         
     }
-    
-    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
