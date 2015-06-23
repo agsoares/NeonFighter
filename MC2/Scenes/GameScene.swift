@@ -34,6 +34,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
         player.physicsBody?.affectedByGravity = false
+        player.physicsBody?.allowsRotation = true
         
         player.zPosition = 0.1
 
@@ -52,14 +53,14 @@ class GameScene: SKScene, AnalogStickProtocol {
         
         //CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
-        rope.setAttachmentPoint(player.position, toNode: player)
+        rope.setAttachmentPoint(CGPointMake(player.position.x, player.frame.midY), toNode: player)
         rope.attachObject(ball)
         rope.setRopeLenght(25, withImageNamed: "corrente2")
 
 
         player.physicsBody?.mass = 300
-        player.physicsBody?.allowsRotation = false
-        ball.physicsBody?.mass = 1
+        player.physicsBody?.angularDamping = 0;
+        ball.physicsBody?.mass = 300
         
     }
     
@@ -94,8 +95,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        player.physicsBody?.applyForce(CGVectorMake(velocity.x*2000, velocity.y*2000))
-        
+        player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
         //player.position.x += velocity.x*0.1
         //player.position.y += velocity.y*0.1
 

@@ -32,7 +32,7 @@ class Rope: SKNode {
         firstPart.position = positionOnStartNode;
         firstPart.physicsBody = SKPhysicsBody(circleOfRadius: firstPart.size.width)
         firstPart.physicsBody?.allowsRotation = true
-        firstPart.physicsBody?.mass = CGFloat(0.025);
+        firstPart.physicsBody?.mass = CGFloat(0.005);
         firstPart.physicsBody?.affectedByGravity = false;
         firstPart.physicsBody?.collisionBitMask = 0;
         
@@ -44,11 +44,11 @@ class Rope: SKNode {
             var ropeHeight = firstPart.position.y-CGFloat(i-1)*ropePart.size.height
             
             ropePart.position = CGPointMake(firstPart.position.x, ropeHeight);
-            ropePart.physicsBody = SKPhysicsBody(circleOfRadius: ropePart.size.width)
+            ropePart.physicsBody = SKPhysicsBody(circleOfRadius: ropePart.size.height*0.75)
             ropePart.physicsBody?.allowsRotation = true;
-            ropePart.physicsBody?.mass = CGFloat(0.025);
+            ropePart.physicsBody?.mass = CGFloat(0.005);
             ropePart.physicsBody?.affectedByGravity = false;
-            ropePart.physicsBody?.collisionBitMask = 0;
+            //ropePart.physicsBody?.collisionBitMask = 0;
             ropeParts.append(ropePart)
             self.scene?.addChild(ropePart)
         }
@@ -92,5 +92,9 @@ class Rope: SKNode {
             self.scene?.physicsWorld.addJoint(joint)
         }
         
+        var anchorB = ropeParts.last!.position
+        var limit = SKPhysicsJointLimit.jointWithBodyA(startNode.physicsBody, bodyB: ropeParts.last!.physicsBody, anchorA: positionOnStartNode, anchorB: anchorB);
+        limit.maxLength = startNode.frame.maxY - ropeParts.last!.frame.minY
+        self.scene?.physicsWorld.addJoint(limit)
     }
 }
