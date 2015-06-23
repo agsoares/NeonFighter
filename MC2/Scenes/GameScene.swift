@@ -40,7 +40,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
         player.physicsBody?.affectedByGravity = false
         
-        
+        player.zPosition = 0.1
 
         
         camera.addChild(player)
@@ -51,12 +51,6 @@ class GameScene: SKScene, AnalogStickProtocol {
         ball.color = UIColor.redColor()
         ball.colorBlendFactor = 1
 
-        /*
-        let fragShader = SKShader(fileNamed: "blur")
-        ball.shader = fragShader
-        ball.blendMode = SKBlendMode.Add
-        */
-
         
         var rope = Rope()
         camera.addChild(rope)
@@ -65,7 +59,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         
         rope.setAttachmentPoint(player.position, toNode: player)
         rope.attachObject(ball)
-        rope.setRopeLenght(25, withImageNamed: "rope_ring")
+        rope.setRopeLenght(25, withImageNamed: "corrente2")
 
 
         player.physicsBody?.mass = 300
