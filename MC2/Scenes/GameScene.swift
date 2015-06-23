@@ -12,10 +12,15 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
+    let camera = SKNode();
+    
     let player = SKSpriteNode(imageNamed: "Ball")
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        self.addChild(camera);
+        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
 
         
@@ -28,7 +33,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         moveAnalogStick.hidden = true
         moveAnalogStick.alpha = 0.25
         moveAnalogStick.position = CGPointMake(-100, -100)
-        self.addChild(moveAnalogStick)
+        camera.addChild(moveAnalogStick)
         
         player.size = CGSizeMake(50, 50)
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
@@ -38,7 +43,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         
 
         
-        self.addChild(player)
+        camera.addChild(player)
         
         
         var ball = SKSpriteNode(imageNamed: "001")
@@ -54,7 +59,7 @@ class GameScene: SKScene, AnalogStickProtocol {
 
         
         var rope = Rope()
-        self.addChild(rope)
+        camera.addChild(rope)
         
         //CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
@@ -68,8 +73,6 @@ class GameScene: SKScene, AnalogStickProtocol {
         ball.physicsBody?.mass = 1
         
     }
-    
-    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
@@ -101,7 +104,18 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
         player.physicsBody?.applyForce(CGVectorMake(velocity.x*2000, velocity.y*2000))
-        
+        if( player.position.x > self.frame.maxX - 50){
+            camera.position.x = camera.position.x - 10
+        }
+        if(self.player.position.x < self.frame.minX + 50){
+            camera.position.x = camera.position.x + 10
+        }
+        if(self.player.position.y > self.frame.maxY - 50){
+            camera.position.y = camera.position.y - 10
+        }
+        if(self.player.position.y < self.frame.minY + 50){
+            camera.position.y = camera.position.y + 10
+        }
         //player.position.x += velocity.x*0.1
         //player.position.y += velocity.y*0.1
 
