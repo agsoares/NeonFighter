@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
             skView.showsFPS = true
             skView.showsNodeCount = true
             
-            scene.backgroundColor = UIColor.blackColor()
+            scene.backgroundColor = UIColor.blueColor()
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
