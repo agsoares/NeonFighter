@@ -15,6 +15,8 @@ class Rope: SKNode {
     private var startNode: SKNode!
     private var positionOnStartNode: CGPoint!
     
+    var physicsWorld: SKPhysicsWorld?
+    
     func setAttachmentPoint(point: CGPoint, toNode node: SKNode) {
         startNode = node
         positionOnStartNode = point
@@ -78,7 +80,7 @@ class Rope: SKNode {
             anchor:positionOnStartNode)
         joint.upperAngleLimit = CGFloat(M_PI/4);
         joint.shouldEnableLimits = true;
-        self.scene?.physicsWorld.addJoint(joint)
+        startNode.scene?.physicsWorld.addJoint(joint)
         
         
         for i in 1..<ropeLength() {
@@ -89,12 +91,12 @@ class Rope: SKNode {
                 anchor:CGPointMake(CGRectGetMidX(nodeA.frame), CGRectGetMinY(nodeA.frame)))
             joint.upperAngleLimit = CGFloat(M_PI/4);
             joint.shouldEnableLimits = true;
-            self.scene?.physicsWorld.addJoint(joint)
+            startNode.scene?.physicsWorld.addJoint(joint)
         }
         
         var anchorB = ropeParts.last!.position
         var limit = SKPhysicsJointLimit.jointWithBodyA(startNode.physicsBody, bodyB: ropeParts.last!.physicsBody, anchorA: positionOnStartNode, anchorB: anchorB);
         limit.maxLength = startNode.frame.maxY - ropeParts.last!.frame.minY - 10
-        self.scene?.physicsWorld.addJoint(limit)
+        startNode.scene?.physicsWorld.addJoint(limit)
     }
 }

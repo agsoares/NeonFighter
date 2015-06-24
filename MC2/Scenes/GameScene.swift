@@ -60,6 +60,7 @@ class GameScene: SKScene, AnalogStickProtocol {
 
         
         var rope = Rope()
+        rope.physicsWorld = self.physicsWorld
         world.addChild(rope)
         
         rope.setAttachmentPoint(CGPointMake(player.position.x, player.frame.midY), toNode: player)
@@ -69,7 +70,11 @@ class GameScene: SKScene, AnalogStickProtocol {
 
         player.physicsBody?.mass = 300
         player.physicsBody?.angularDamping = 0;
+        self.camera.runAction(SKAction.moveTo(CGPointMake(100, 50), duration: 2.5))
+
         ball.physicsBody?.mass = 300
+        
+        self.anchorPoint = CGPointMake(0.5, 0.5);
         
     }
     
@@ -101,34 +106,19 @@ class GameScene: SKScene, AnalogStickProtocol {
         moveAnalogStick.hidden = true
     }
     
-    override func didFinishUpdate() {
+    override func didSimulatePhysics() {
+        println("teste")
         centerOnNode(player);
     }
     
-    func centerOnNode(node :SKNode){
+    func centerOnNode(node: SKNode) {
+        let cameraPositionInScene: CGPoint = node.scene!.convertPoint(node.position, fromNode: node.parent!)
         
-        var cameraPositionInScene = node.convertPoint(node.position, fromNode: node.parent!);
-        node.parent?.position = CGPointMake(node.parent!.position.x - cameraPositionInScene.x, node.parent!.position.y - cameraPositionInScene.y)
+        node.parent!.position = CGPoint(x:node.parent!.position.x - cameraPositionInScene.x, y: node.parent!.position.y - cameraPositionInScene.y)
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
         player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
-        
-        //centerOnNode(player);
-        
-//        if( player.position.x > camera.frame.maxX - 50 ){//self.frame.maxX - 50){
-//            camera.position.x = camera.position.x + 10
-//        }
-//        if(self.player.position.x < camera.frame.minX + 50){ //self.frame.minX + 50){
-//            camera.position.x = camera.position.x - 10
-//        }
-//        if(self.player.position.y > camera.frame.maxY - 50 ){ //self.frame.maxY - 50){
-//            camera.position.y = camera.position.y + 10
-//        }
-//        if(self.player.position.y < camera.frame.minY + 50){//self.frame.minY + 50){
-//            camera.position.y = camera.position.y - 10
-//        }
-
     }
     
     
