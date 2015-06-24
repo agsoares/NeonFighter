@@ -21,6 +21,8 @@ class GameScene: SKScene, AnalogStickProtocol {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
+        physicsBody = worldBorder;
         
         //self.anchorPoint = CGPointMake(0.5, 0.5);
         self.addChild(world);
@@ -74,7 +76,7 @@ class GameScene: SKScene, AnalogStickProtocol {
 
         ball.physicsBody?.mass = 300
         
-        self.anchorPoint = CGPointMake(0.5, 0.5);
+        //self.anchorPoint = CGPointMake(0.5, 0.5);
         
     }
     
@@ -107,7 +109,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     override func didSimulatePhysics() {
-        centerOnNode(player);
+        //centerOnNode(player);
     }
     
     func centerOnNode(node: SKNode) {
