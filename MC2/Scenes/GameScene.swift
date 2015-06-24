@@ -14,7 +14,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     let camera = SKNode();
     
-    let player = SKSpriteNode(imageNamed: "Ball")
+    let player = SKSpriteNode(imageNamed: "player")
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -47,7 +47,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         camera.addChild(player)
         
         
-        var ball = SKSpriteNode(imageNamed: "001")
+        var ball = SKSpriteNode(imageNamed: "ball")
         ball.size = CGSizeMake(50, 50)
         ball.color = UIColor.redColor()
         ball.colorBlendFactor = 1
@@ -60,7 +60,7 @@ class GameScene: SKScene, AnalogStickProtocol {
         
         rope.setAttachmentPoint(CGPointMake(player.position.x, player.frame.midY), toNode: player)
         rope.attachObject(ball)
-        rope.setRopeLenght(25, withImageNamed: "corrente2")
+        rope.setRopeLenght(25, withImageNamed: "rope_ring")
 
 
         player.physicsBody?.mass = 300
