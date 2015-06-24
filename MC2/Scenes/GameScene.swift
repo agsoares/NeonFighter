@@ -22,8 +22,9 @@ class GameScene: SKScene, AnalogStickProtocol {
         /* Setup your scene here */
         
         
-        self.anchorPoint = CGPointMake(0.5, 0.5);
+        //self.anchorPoint = CGPointMake(0.5, 0.5);
         self.addChild(world);
+        self.addChild(hud)
         world.addChild(camera);
         
         
@@ -37,7 +38,8 @@ class GameScene: SKScene, AnalogStickProtocol {
         moveAnalogStick.hidden = true
         moveAnalogStick.alpha = 0.25
         moveAnalogStick.position = CGPointMake(-100, -100)
-        world.addChild(moveAnalogStick)
+        hud.addChild(moveAnalogStick)
+        
         
         player.size = CGSizeMake(50, 50)
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
@@ -59,8 +61,6 @@ class GameScene: SKScene, AnalogStickProtocol {
         
         var rope = Rope()
         world.addChild(rope)
-        
-        //CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
         rope.setAttachmentPoint(CGPointMake(player.position.x, player.frame.midY), toNode: player)
         rope.attachObject(ball)
@@ -102,7 +102,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     override func didFinishUpdate() {
-        centerOnNode(camera);
+        centerOnNode(player);
     }
     
     func centerOnNode(node :SKNode){
@@ -114,7 +114,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
         player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
         
-        centerOnNode(player);
+        //centerOnNode(player);
         
 //        if( player.position.x > camera.frame.maxX - 50 ){//self.frame.maxX - 50){
 //            camera.position.x = camera.position.x + 10
