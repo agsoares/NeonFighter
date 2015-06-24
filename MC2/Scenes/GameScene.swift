@@ -73,6 +73,9 @@ class GameScene: SKScene, AnalogStickProtocol {
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
     
         
+        var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
+        physicsBody = worldBorder;
+        
         //self.anchorPoint = CGPointMake(0.5, 0.5);
         self.addChild(world);
         self.addChild(hud)
@@ -109,7 +112,7 @@ class GameScene: SKScene, AnalogStickProtocol {
             ])
         ))
         
-        var ball = SKSpriteNode(imageNamed: "ball")
+        var ball = SKSpriteNode(imageNamed: "Ball")
         ball.size = CGSizeMake(50, 50)
         ball.color = UIColor.redColor()
         ball.colorBlendFactor = 1
@@ -135,12 +138,13 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     func addEnemy() {
         // Create sprite
-        let enemy = SKSpriteNode(imageNamed: "inimigo")
+        let enemy = SKSpriteNode(imageNamed: "enemy")
         enemy.size = CGSizeMake(50, 50)
         enemy.color = UIColor.greenColor()
         enemy.colorBlendFactor = 1
         enemy.physicsBody = SKPhysicsBody(rectangleOfSize: enemy.size)
         enemy.physicsBody?.dynamic = true
+        enemy.physicsBody?.affectedByGravity = false
         enemy.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         enemy.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile
         enemy.physicsBody?.collisionBitMask = PhysicsCategory.None
@@ -157,14 +161,18 @@ class GameScene: SKScene, AnalogStickProtocol {
         
         // Determine speed of the enemy
         let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
-        
         // Create the actions
-        let actionMove = SKAction.moveTo(CGPoint(x: -enemy.size.width/2, y: actualY), duration: NSTimeInterval(actualDuration))
-        let actionMoveDone = SKAction.removeFromParent()
+//        let actionMove = SKAction.moveTo(CGPoint(x: -enemy.size.width/2, y: actualY), duration: NSTimeInterval(actualDuration))
+//        let actionMoveDone = SKAction.removeFromParent()
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([
-                    SKAction.runBlock({ self.shotFrom(enemy)}),
+                    SKAction.runBlock({
+                        self.shotFrom(enemy)
+                        if(self.scene!.frame.contains(enemy.position) == true){
+                            enemy.physicsBody?.collisionBitMask = PhysicsCategory.All
+                        }
+                        enemy.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))}),
                     SKAction.waitForDuration(0.5)
                 ])
         ))
@@ -173,7 +181,8 @@ class GameScene: SKScene, AnalogStickProtocol {
             //            let gameOverScene = GameOverScene(size: self.size, won: false)
             //            self.view?.presentScene(gameOverScene, transition: reveal)
         }
-        enemy.runAction(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
+//        enemy.runAction(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
+//        SKAction.runBlock({ enemy.physicsBody?.applyForce(CGVector(dx: -10000, dy: 0))})
     }
     
     func shotFrom(from: SKSpriteNode){
@@ -243,7 +252,15 @@ class GameScene: SKScene, AnalogStickProtocol {
         
     }
     
+    override func didSimulatePhysics() {
+        //centerOnNode(player);
+    }
     
+    func centerOnNode(node: SKNode) {
+        let cameraPositionInScene: CGPoint = node.scene!.convertPoint(node.position, fromNode: node.parent!)
+        
+        node.parent!.position = CGPoint(x:node.parent!.position.x - cameraPositionInScene.x, y: node.parent!.position.y - cameraPositionInScene.y)
+    }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
         player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
