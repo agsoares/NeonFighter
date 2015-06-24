@@ -107,7 +107,6 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     override func didSimulatePhysics() {
-        println("teste")
         centerOnNode(player);
     }
     
