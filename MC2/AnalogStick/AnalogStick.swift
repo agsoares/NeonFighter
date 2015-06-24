@@ -106,7 +106,7 @@ class AnalogStick: SKNode {
             let location = touch.locationInNode(self);
             let xDistance: Float = Float(location.x - self.thumbNode.position.x)
             let yDistance: Float = Float(location.y - self.thumbNode.position.y)
-            if self.isTracking == true && sqrtf(powf(xDistance, 2) + powf(yDistance, 2)) <= Float(self.bgNodeDiametr * 2) {
+            if self.isTracking == true || sqrtf(powf(xDistance, 2) + powf(yDistance, 2)) <= Float(self.bgNodeDiametr * 2) {
                 let xAnchorDistance: CGFloat = (location.x - self.anchorPointInPoints.x)
                 let yAnchorDistance: CGFloat = (location.y - self.anchorPointInPoints.y)
                 if sqrt(pow(xAnchorDistance, 2) + pow(yAnchorDistance, 2)) <= self.thumbNode.size.width {

@@ -61,6 +61,10 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
+    let camera = SKNode();
+    let hud = SKNode();
+    let world = SKNode();
+    
     let player = SKSpriteNode(imageNamed: "Ball")
     
     
@@ -68,6 +72,13 @@ class GameScene: SKScene, AnalogStickProtocol {
         /* Setup your scene here */
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
     
+        
+        self.anchorPoint = CGPointMake(0.5, 0.5);
+        self.addChild(world);
+        world.addChild(camera);
+        
+        
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
         
         let bgDiametr: CGFloat = 120
         let thumbDiametr: CGFloat = 60
@@ -77,12 +88,13 @@ class GameScene: SKScene, AnalogStickProtocol {
         moveAnalogStick.hidden = true
         moveAnalogStick.alpha = 0.25
         moveAnalogStick.position = CGPointMake(-100, -100)
-        self.addChild(moveAnalogStick)
+        world.addChild(moveAnalogStick)
         
         player.size = CGSizeMake(50, 50)
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
         player.physicsBody?.affectedByGravity = false
+        player.physicsBody?.allowsRotation = true
         
         
         
@@ -100,26 +112,20 @@ class GameScene: SKScene, AnalogStickProtocol {
         ball.color = UIColor.redColor()
         ball.colorBlendFactor = 1
 
-        /*
-        let fragShader = SKShader(fileNamed: "blur")
-        ball.shader = fragShader
-        ball.blendMode = SKBlendMode.Add
-        */
-
         
         var rope = Rope()
-        self.addChild(rope)
+        world.addChild(rope)
         
         //CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
-        rope.setAttachmentPoint(player.position, toNode: player)
+        rope.setAttachmentPoint(CGPointMake(player.position.x, player.frame.midY), toNode: player)
         rope.attachObject(ball)
-        rope.setRopeLenght(25, withImageNamed: "rope_ring")
+        rope.setRopeLenght(25, withImageNamed: "corrente2")
 
 
         player.physicsBody?.mass = 300
-        player.physicsBody?.allowsRotation = false
-        ball.physicsBody?.mass = 1
+        player.physicsBody?.angularDamping = 0;
+        ball.physicsBody?.mass = 300
         
     }
     func addEnemy() {
@@ -235,10 +241,22 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        player.physicsBody?.applyForce(CGVectorMake(velocity.x*2000, velocity.y*2000))
+        player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
         
-        //player.position.x += velocity.x*0.1
-        //player.position.y += velocity.y*0.1
+        centerOnNode(player);
+        
+//        if( player.position.x > camera.frame.maxX - 50 ){//self.frame.maxX - 50){
+//            camera.position.x = camera.position.x + 10
+//        }
+//        if(self.player.position.x < camera.frame.minX + 50){ //self.frame.minX + 50){
+//            camera.position.x = camera.position.x - 10
+//        }
+//        if(self.player.position.y > camera.frame.maxY - 50 ){ //self.frame.maxY - 50){
+//            camera.position.y = camera.position.y + 10
+//        }
+//        if(self.player.position.y < camera.frame.minY + 50){//self.frame.minY + 50){
+//            camera.position.y = camera.position.y - 10
+//        }
 
     }
     
