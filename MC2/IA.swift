@@ -36,7 +36,7 @@ class IA {
     
     func getVectorToPlayer(enemy : SKNode) -> CGVector{
         //println(" <\(enemy.position.x - player.position.x)  , \(enemy.position.x - player.position.y)>")
-        return CGVector(dx: player.position.x - enemy.position.x , dy: player.position.y - enemy.position.x );
+        return CGVector(dx: player.position.x - enemy.position.x , dy: player.position.y - enemy.position.y );
     }
     
     
