@@ -16,6 +16,8 @@ class Rope: SKNode {
     private var positionOnStartNode: CGPoint!
     
     var physicsWorld: SKPhysicsWorld?
+
+    
     
     func setAttachmentPoint(point: CGPoint, toNode node: SKNode) {
         startNode = node

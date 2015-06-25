@@ -8,6 +8,17 @@
 
 import SpriteKit
 
-class Enemy: SKSpriteNode {
 
+
+class Enemy: SKSpriteNode {
+    var gameManager = GameManager.sharedInstance;
+    
+    init(imageNamed: String) {
+        let texture = SKTexture(imageNamed: imageNamed)
+        super.init(texture: texture, color: UIColor.whiteColor(), size: texture.size())
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
