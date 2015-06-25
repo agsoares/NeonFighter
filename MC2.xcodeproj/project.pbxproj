@@ -25,6 +25,7 @@
 		B9451C5A1B24E68100B8978C /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9451C591B24E68100B8978C /* Rope.swift */; };
 		B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B95D031E1B28ECA200885F90 /* GameScene.sks */; };
 		B98988AE1B38918C007CD469 /* blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* blur.fsh */; };
+		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		B9451C591B24E68100B8978C /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rope.swift; path = Classes/Rope.swift; sourceTree = "<group>"; };
 		B95D031E1B28ECA200885F90 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		B98988AD1B38918C007CD469 /* blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = blur.fsh; sourceTree = "<group>"; };
+		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				B9451C591B24E68100B8978C /* Rope.swift */,
 				B91160AF1B3C664000187052 /* Enemy.swift */,
 				B91160B81B3C6BEB00187052 /* Player.swift */,
+				DBF0A1C71B3C6EC5002C2D76 /* IA.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				B91160B21B3C678D00187052 /* GameManager.swift in Sources */,
 				B930864F1B210BBB00822E47 /* AnalogStick.swift in Sources */,
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
+				DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
 				B91160AC1B39E61100187052 /* UIColor+Extension.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
