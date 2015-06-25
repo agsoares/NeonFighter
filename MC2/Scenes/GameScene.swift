@@ -172,7 +172,7 @@ class GameScene: SKScene, AnalogStickProtocol {
                         if(self.scene!.frame.contains(enemy.position) == true){
                             enemy.physicsBody?.collisionBitMask = PhysicsCategory.All
                         }
-                        enemy.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))}),
+                        enemy.physicsBody?.applyForce(IA(player :self.player).getVectorToPlayer(enemy))}),
                     SKAction.waitForDuration(0.5)
                 ])
         ))
