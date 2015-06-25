@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		B91160AC1B39E61100187052 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AB1B39E61100187052 /* UIColor+Extension.swift */; };
 		B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91160AD1B3B2C9400187052 /* Images.xcassets */; };
+		B91160B01B3C664000187052 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AF1B3C664000187052 /* Enemy.swift */; };
+		B91160B21B3C678D00187052 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B11B3C678D00187052 /* GameManager.swift */; };
+		B91160B41B3C67E700187052 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B31B3C67E700187052 /* SoundManager.swift */; };
+		B91160B71B3C6A0D00187052 /* TriangleShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B61B3C6A0D00187052 /* TriangleShip.swift */; };
+		B91160B91B3C6BEB00187052 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B81B3C6BEB00187052 /* Player.swift */; };
 		B93086261B2103D900822E47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93086251B2103D900822E47 /* AppDelegate.swift */; };
 		B930862A1B2103D900822E47 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93086291B2103D900822E47 /* GameScene.swift */; };
 		B930862C1B2103D900822E47 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B930862B1B2103D900822E47 /* GameViewController.swift */; };
@@ -25,6 +30,11 @@
 /* Begin PBXFileReference section */
 		B91160AB1B39E61100187052 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "Extensions/UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B91160AD1B3B2C9400187052 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B91160AF1B3C664000187052 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enemy.swift; path = Classes/Enemy.swift; sourceTree = "<group>"; };
+		B91160B11B3C678D00187052 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		B91160B31B3C67E700187052 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		B91160B61B3C6A0D00187052 /* TriangleShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TriangleShip.swift; path = Classes/Enemies/TriangleShip.swift; sourceTree = "<group>"; };
+		B91160B81B3C6BEB00187052 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
 		B93086201B2103D900822E47 /* MC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93086241B2103D900822E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93086251B2103D900822E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B91160B51B3C699700187052 /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				B91160B61B3C6A0D00187052 /* TriangleShip.swift */,
+			);
+			name = Enemies;
+			sourceTree = "<group>";
+		};
 		B93086171B2103D900822E47 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +94,8 @@
 				B930864A1B21052C00822E47 /* Controllers */,
 				B93086491B2104DC00822E47 /* Scenes */,
 				B93086231B2103D900822E47 /* Supporting Files */,
+				B91160B11B3C678D00187052 /* GameManager.swift */,
+				B91160B31B3C67E700187052 /* SoundManager.swift */,
 			);
 			path = MC2;
 			sourceTree = "<group>";
@@ -123,7 +143,10 @@
 		B9451C581B24E39900B8978C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B91160B51B3C699700187052 /* Enemies */,
 				B9451C591B24E68100B8978C /* Rope.swift */,
+				B91160AF1B3C664000187052 /* Enemy.swift */,
+				B91160B81B3C6BEB00187052 /* Player.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -209,12 +232,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
+				B91160B01B3C664000187052 /* Enemy.swift in Sources */,
+				B91160B21B3C678D00187052 /* GameManager.swift in Sources */,
 				B930864F1B210BBB00822E47 /* AnalogStick.swift in Sources */,
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
 				B91160AC1B39E61100187052 /* UIColor+Extension.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
+				B91160B71B3C6A0D00187052 /* TriangleShip.swift in Sources */,
 				B9451C5A1B24E68100B8978C /* Rope.swift in Sources */,
+				B91160B41B3C67E700187052 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

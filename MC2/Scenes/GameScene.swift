@@ -112,7 +112,7 @@ class GameScene: SKScene, AnalogStickProtocol {
             ])
         ))
         
-        var ball = SKSpriteNode(imageNamed: "Ball")
+        var ball = SKSpriteNode(imageNamed: "ball")
         ball.size = CGSizeMake(50, 50)
         ball.color = UIColor.redColor()
         ball.colorBlendFactor = 1
