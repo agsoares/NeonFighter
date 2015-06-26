@@ -11,11 +11,11 @@ import CoreGraphics
 import SpriteKit
 
 class IA {
+    var gm = GameManager.sharedInstance;
+    var player : SKNode;
     
-    var player = SKNode();
-    
-    init(player : SKNode){
-        self.player = player;
+    init(){
+        self.player = gm.player!
     }
     
     func getPathToPlayer(enemy : SKNode) -> CGMutablePathRef{
@@ -35,9 +35,29 @@ class IA {
     }
     
     func getVectorToPlayer(enemy : SKNode) -> CGVector{
-        //println(" <\(enemy.position.x - player.position.x)  , \(enemy.position.x - player.position.y)>")
         return CGVector(dx: player.position.x - enemy.position.x , dy: player.position.y - enemy.position.y );
     }
     
+    func getNormalizedVectorToPlayer(enemy : SKNode) -> CGVector{
+        return getNormalizedVector(CGVector(dx: player.position.x - enemy.position.x , dy: player.position.y - enemy.position.y ));
+    }
+    
+    func getVectorNormal(vector : CGVector) -> CGFloat{
+        var a = pow(vector.dx, 2.0);
+        var b = pow(vector.dx, 2.0);
+        return sqrt(a + b);
+    }
+    
+    func getNormalizedVector(vector : CGVector) -> CGVector{
+        var normal = getVectorNormal(vector);
+        return CGVector(dx: vector.dx/normal, dy: vector.dy/normal);
+    }
+    
+    func getAngleToPlayer(enemy : SKNode) -> CGFloat{
+        var radians = atan2(enemy.position.x, enemy.position.y);
+        var degrees = radians * CGFloat(180.0 / M_PI)
+        //println(degrees);
+        return degrees;
+    }
     
 }
