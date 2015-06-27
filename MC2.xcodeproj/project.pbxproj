@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B91160AC1B39E61100187052 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AB1B39E61100187052 /* UIColor+Extension.swift */; };
+		B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AB1B39E61100187052 /* UIColor+Flat.swift */; };
 		B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91160AD1B3B2C9400187052 /* Images.xcassets */; };
 		B91160B01B3C664000187052 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AF1B3C664000187052 /* Enemy.swift */; };
 		B91160B21B3C678D00187052 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B11B3C678D00187052 /* GameManager.swift */; };
 		B91160B41B3C67E700187052 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B31B3C67E700187052 /* SoundManager.swift */; };
 		B91160B71B3C6A0D00187052 /* TriangleShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B61B3C6A0D00187052 /* TriangleShip.swift */; };
 		B91160B91B3C6BEB00187052 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160B81B3C6BEB00187052 /* Player.swift */; };
+		B91160C11B3F407400187052 /* TestMP3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B91160C01B3F407400187052 /* TestMP3.mp3 */; };
+		B91160C31B3F4F4600187052 /* SKNode+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160C21B3F4F4600187052 /* SKNode+Utils.swift */; };
 		B93086261B2103D900822E47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93086251B2103D900822E47 /* AppDelegate.swift */; };
 		B930862A1B2103D900822E47 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93086291B2103D900822E47 /* GameScene.swift */; };
 		B930862C1B2103D900822E47 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B930862B1B2103D900822E47 /* GameViewController.swift */; };
@@ -24,18 +26,20 @@
 		B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864E1B210BBB00822E47 /* aSThumbImg.png */; };
 		B9451C5A1B24E68100B8978C /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9451C591B24E68100B8978C /* Rope.swift */; };
 		B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B95D031E1B28ECA200885F90 /* GameScene.sks */; };
-		B98988AE1B38918C007CD469 /* blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* blur.fsh */; };
+		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B91160AB1B39E61100187052 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "Extensions/UIColor+Extension.swift"; sourceTree = "<group>"; };
+		B91160AB1B39E61100187052 /* UIColor+Flat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Flat.swift"; path = "Extensions/UIColor+Flat.swift"; sourceTree = "<group>"; };
 		B91160AD1B3B2C9400187052 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B91160AF1B3C664000187052 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enemy.swift; path = Classes/Enemy.swift; sourceTree = "<group>"; };
 		B91160B11B3C678D00187052 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		B91160B31B3C67E700187052 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		B91160B61B3C6A0D00187052 /* TriangleShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TriangleShip.swift; path = Classes/Enemies/TriangleShip.swift; sourceTree = "<group>"; };
 		B91160B81B3C6BEB00187052 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
+		B91160C01B3F407400187052 /* TestMP3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TestMP3.mp3; sourceTree = "<group>"; };
+		B91160C21B3F4F4600187052 /* SKNode+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SKNode+Utils.swift"; path = "Extensions/SKNode+Utils.swift"; sourceTree = "<group>"; };
 		B93086201B2103D900822E47 /* MC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93086241B2103D900822E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93086251B2103D900822E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +52,7 @@
 		B930864E1B210BBB00822E47 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
 		B9451C591B24E68100B8978C /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rope.swift; path = Classes/Rope.swift; sourceTree = "<group>"; };
 		B95D031E1B28ECA200885F90 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		B98988AD1B38918C007CD469 /* blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = blur.fsh; sourceTree = "<group>"; };
+		B98988AD1B38918C007CD469 /* scanline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = scanline.fsh; sourceTree = "<group>"; };
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,12 +109,13 @@
 		B93086231B2103D900822E47 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B98988AD1B38918C007CD469 /* blur.fsh */,
+				B98988AD1B38918C007CD469 /* scanline.fsh */,
 				B930862D1B2103D900822E47 /* Main.storyboard */,
 				B93086321B2103D900822E47 /* LaunchScreen.xib */,
 				B93086251B2103D900822E47 /* AppDelegate.swift */,
 				B93086241B2103D900822E47 /* Info.plist */,
 				B91160AD1B3B2C9400187052 /* Images.xcassets */,
+				B91160C01B3F407400187052 /* TestMP3.mp3 */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -157,7 +162,8 @@
 		B9451C5B1B2525EC00B8978C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B91160AB1B39E61100187052 /* UIColor+Extension.swift */,
+				B91160AB1B39E61100187052 /* UIColor+Flat.swift */,
+				B91160C21B3F4F4600187052 /* SKNode+Utils.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -219,8 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B93086501B210BBB00822E47 /* aSBgImg.png in Resources */,
+				B91160C11B3F407400187052 /* TestMP3.mp3 in Resources */,
 				B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */,
-				B98988AE1B38918C007CD469 /* blur.fsh in Resources */,
+				B98988AE1B38918C007CD469 /* scanline.fsh in Resources */,
 				B93086341B2103D900822E47 /* LaunchScreen.xib in Resources */,
 				B930862F1B2103D900822E47 /* Main.storyboard in Resources */,
 				B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */,
@@ -235,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91160C31B3F4F4600187052 /* SKNode+Utils.swift in Sources */,
 				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
 				B91160B01B3C664000187052 /* Enemy.swift in Sources */,
 				B91160B21B3C678D00187052 /* GameManager.swift in Sources */,
@@ -242,7 +250,7 @@
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
-				B91160AC1B39E61100187052 /* UIColor+Extension.swift in Sources */,
+				B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
 				B91160B71B3C6A0D00187052 /* TriangleShip.swift in Sources */,
 				B9451C5A1B24E68100B8978C /* Rope.swift in Sources */,

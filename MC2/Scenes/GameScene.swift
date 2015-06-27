@@ -50,7 +50,7 @@ extension CGPoint {
 
 
 
-class GameScene: SKScene, AnalogStickProtocol {
+class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
@@ -60,39 +60,64 @@ class GameScene: SKScene, AnalogStickProtocol {
     
     let player = Player();
     var gameManager = GameManager.sharedInstance;
+    var soundManager = SoundManager.sharedInstance;
     
     override func didMoveToView(view: SKView) {
+        self.addChild(world);
         player.size = CGSizeMake(50, 50)
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        self.addChild(player)
+        world.addChild(player)
         player.setupPhysics()
         
         
-        self.addChild(world);
+
         self.addChild(hud)
-        world.addChild(camera);
         
         setupJoystick();
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.98)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.1)
+        self.physicsWorld.contactDelegate = self;
         
         var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
         physicsBody = worldBorder;
     
         runAction(SKAction.repeatActionForever(
         SKAction.sequence([
-            SKAction.runBlock(spawnEnemy),
-            SKAction.waitForDuration(1.0)
+            SKAction.waitForDuration(5.0),
+            SKAction.runBlock(spawnEnemy)
             ])
         ))
                 
         self.camera.runAction(SKAction.moveTo(CGPointMake(100, 50), duration: 2.5))
 
+        /*
+        self.shader = SKShader(fileNamed: "test")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
+        self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
+        self.shouldEnableEffects = true;
+        */
         
-        //self.anchorPoint = CGPointMake(0.5, 0.5);
+        soundManager.playMusic("TestMP3", looped: true);
+        
+        
         
     }
     
+    
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        var nodeA = contact.bodyA.node;
+        var nodeB = contact.bodyB.node;
+
+        if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
+            println("eita")
+        }
+        
+        if(contact.bodyA.categoryBitMask == PhysicsCategory.Enemy && contact.bodyB.categoryBitMask == PhysicsCategory.Player) {
+            //println(contact.collisionImpulse);
+            
+        }
+        
+    }
     func setupJoystick() {
         let bgDiametr: CGFloat = 120
         let thumbDiametr: CGFloat = 60
@@ -115,8 +140,9 @@ class GameScene: SKScene, AnalogStickProtocol {
         // and along a random position along the Y axis as calculated above
         enemy.position = CGPoint(x: size.width + enemy.size.width/2, y: actualY)
         
-        addChild(enemy)
+        world.addChild(enemy)
     
+        world.shakeCamera(1.0)
     }
  
     
@@ -157,7 +183,7 @@ class GameScene: SKScene, AnalogStickProtocol {
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        player.physicsBody?.applyForce(CGVectorMake(velocity.x*5000, velocity.y*5000))
+        player.physicsBody?.applyForce(CGVectorMake(velocity.x*700, velocity.y*700))
     }
     
     
