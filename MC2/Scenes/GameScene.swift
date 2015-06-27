@@ -142,7 +142,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         world.addChild(enemy)
     
-        world.shakeCamera(1.0)
+        world.shake(1.0)
     }
  
     
