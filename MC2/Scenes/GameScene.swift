@@ -108,8 +108,42 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         var nodeA = contact.bodyA.node;
         var nodeB = contact.bodyB.node;
 
+
+
         if(contact.collisionImpulse >= 2000) {
             world.shake(1.0, force: Float(contact.collisionImpulse/1000.0));
+            
+            var sparkles = SKTexture(imageNamed: "rope_ring") //reusing the bird texture for now
+            
+            if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
+                var emitter = SKEmitterNode()
+                emitter.particleTexture = sparkles
+                emitter.position = contact.contactPoint
+                emitter.particleBirthRate = 450
+                emitter.numParticlesToEmit = 50
+                emitter.emissionAngleRange = 360
+                emitter.particleLifetime = 1
+                emitter.particleSpeed = 50.0
+                emitter.particleSpeedRange = 50;
+                emitter.xAcceleration = 0
+                emitter.yAcceleration = -40
+                if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy || contact.bodyB.categoryBitMask == PhysicsCategory.Enemy ) {
+                    emitter.particleColorBlendFactor = 1
+
+                    if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
+                        emitter.particleColor = (contact.bodyA.node as! SKSpriteNode).color
+                    } else {
+                        emitter.particleColor = (contact.bodyB.node as! SKSpriteNode).color
+                    }
+                } else if (contact.bodyA.categoryBitMask == PhysicsCategory.Weapon || contact.bodyB.categoryBitMask == PhysicsCategory.Weapon ) {
+                    emitter.particleColorBlendFactor = 1
+                    emitter.particleColor = player.ball.color
+                
+                
+                }
+                
+                world.addChild(emitter);
+            }
         }
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {

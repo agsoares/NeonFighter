@@ -10,7 +10,7 @@ import SpriteKit
 
 class Player: SKSpriteNode {
     var gameManager = GameManager.sharedInstance;
-    
+    var ball: SKSpriteNode!
     
     init() {
         let texture = SKTexture(imageNamed: "player")
@@ -28,7 +28,7 @@ class Player: SKSpriteNode {
         self.physicsBody?.contactTestBitMask = PhysicsCategory.All
 
         
-        var ball = SKSpriteNode(imageNamed: "ball")
+        ball = SKSpriteNode(imageNamed: "ball")
         ball.size = CGSizeMake(50, 50)
         ball.color = UIColor.redColor();
         ball.colorBlendFactor = 1

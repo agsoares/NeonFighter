@@ -14,7 +14,9 @@ struct PhysicsCategory {
     static let Weapon    : UInt32 = 0b1 << 1
     static let Enemy     : UInt32 = 0b1 << 2
     static let Projectile: UInt32 = 0b1 << 3
-    static let Wall      : UInt32 = 0b1 << 4
+    static let Chain     : UInt32 = 0b1 << 4
+    static let Wall      : UInt32 = 0b1 << 5
+    
     static let All       : UInt32 = UInt32.max
 
     

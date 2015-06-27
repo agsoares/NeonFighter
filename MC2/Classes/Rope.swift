@@ -39,6 +39,8 @@ class Rope: SKNode {
         firstPart.physicsBody?.mass = CGFloat(0.005);
         firstPart.physicsBody?.affectedByGravity = false;
         firstPart.physicsBody?.collisionBitMask = 0;
+        firstPart.physicsBody?.categoryBitMask = PhysicsCategory.Chain
+
         
         ropeParts.append(firstPart)
         startNode.parent?.addChild(firstPart)
@@ -52,6 +54,8 @@ class Rope: SKNode {
             ropePart.physicsBody?.allowsRotation = true;
             ropePart.physicsBody?.mass = CGFloat(0.005);
             ropePart.physicsBody?.affectedByGravity = false;
+            ropePart.physicsBody?.categoryBitMask = PhysicsCategory.Chain
+
             //ropePart.physicsBody?.collisionBitMask = 0;
             ropeParts.append(ropePart)
             startNode.parent?.addChild(ropePart)
