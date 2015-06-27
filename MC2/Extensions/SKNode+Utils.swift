@@ -10,9 +10,9 @@ import SpriteKit
 
 extension SKNode {
     
-    func shake(duration:Float) {
-        let amplitudeX:Float = 50;
-        let amplitudeY:Float = 30;
+    func shake(duration:Float, force: Float) {
+        let amplitudeX:Float = 1*force;
+        let amplitudeY:Float = 1*force;
         let numberOfShakes = duration / 0.04;
         var actionsArray:[SKAction] = [];
         for index in 1...Int(numberOfShakes) {
