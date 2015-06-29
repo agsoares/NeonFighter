@@ -27,6 +27,7 @@ class GameManager {
     var score = 0;
     var difficult = 1;
     
+    var scaleFactor: CGFloat = 1.0;
     
     static let sharedInstance = GameManager()
 }

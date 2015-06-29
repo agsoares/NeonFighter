@@ -25,12 +25,22 @@ extension SKNode {
     }
 }
 
-class GameViewController: UIViewController {
 
+
+class GameViewController: UIViewController {
+    var gameManager = GameManager.sharedInstance;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        var xScaleFactor = 1024.0/self.view.frame.size.width
+        var yScaleFactor = 768.0/self.view.frame.size.height
+        gameManager.scaleFactor = (xScaleFactor <= yScaleFactor) ? xScaleFactor : yScaleFactor;
+        
         let scene = GameScene(size: self.view.frame.size)
+        
+        
+
+        
         // Configure the view.
         let skView = self.view as! SKView
         skView.showsFPS = true

@@ -14,7 +14,10 @@ class Player: SKSpriteNode {
     
     init() {
         let texture = SKTexture(imageNamed: "player")
-        super.init(texture: texture, color: UIColor.whiteColor(), size: CGSizeMake(50, 50))
+        super.init(texture: texture, color: UIColor.whiteColor(),
+            size: texture.size())
+        self.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
+
         gameManager.player = self;
 
     }
@@ -29,7 +32,7 @@ class Player: SKSpriteNode {
 
         
         ball = SKSpriteNode(imageNamed: "ball")
-        ball.size = CGSizeMake(50, 50)
+        ball.size = CGSizeMake(50/gameManager.scaleFactor , 50/gameManager.scaleFactor )
         ball.color = UIColor.redColor();
         ball.colorBlendFactor = 1
         
@@ -45,7 +48,7 @@ class Player: SKSpriteNode {
         self.physicsBody?.mass = 30
         self.physicsBody?.angularDamping = 0;
         
-        ball.physicsBody?.mass = 50
+        ball.physicsBody?.mass = 30
         ball.physicsBody?.categoryBitMask = PhysicsCategory.Weapon
         ball.physicsBody?.collisionBitMask = PhysicsCategory.All
     
