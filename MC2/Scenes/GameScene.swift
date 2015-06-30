@@ -62,19 +62,20 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode(fontNamed: "Icklips")
 
     
-    let player = Player();
+    var player: Player!;
     var gameManager = GameManager.sharedInstance;
     var soundManager = SoundManager.sharedInstance;
     
+    var menuView: UIView!
+    
     override func didMoveToView(view: SKView) {
+        self.menuView = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
+        
         self.addChild(world);
-        var grid = SKSpriteNode(imageNamed: "grid");
-        grid.zPosition = -0.1
-        grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        grid.blendMode = SKBlendMode.MultiplyX2;
-        player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        world.addChild(player)
-        player.setupPhysics()
+
         
         self.addChild(hud)
         hud.zPosition = 1.0;
@@ -84,25 +85,15 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         hud.addChild(scoreLabel)
         
         
-        world.addChild(grid);
-        
         setupJoystick();
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.1)
         self.physicsWorld.contactDelegate = self;
         
-        var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
-        //worldBorder.usesPreciseCollisionDetection = true;
-        world.physicsBody = worldBorder;
+
     
-        runAction(SKAction.repeatActionForever(
-        SKAction.sequence([
-            SKAction.waitForDuration(5.0),
-            SKAction.runBlock(spawnEnemy)
-            ])
-        ))
-                
-        self.camera.runAction(SKAction.moveTo(CGPointMake(100, 50), duration: 2.5))
+        
+        startScene();
 
         
         //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
@@ -111,12 +102,66 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         
         soundManager.playMusic("TestMP3", looped: true);
-        
-        
-        
     }
     
     
+    func presentRetryMenu() {
+        self.view?.paused = true;
+        var retryButton = UIButton(frame: CGRectMake(0 , 0, 50, 50))
+        retryButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        retryButton.backgroundColor = UIColor.redColor()
+        menuView.addSubview(retryButton);
+        self.view?.addSubview(menuView);
+    }
+    
+    
+    func touchButton(button : UIButton!) {
+        restartScene();
+        menuView.removeFromSuperview();
+    }
+    
+    func restartScene() {
+        gameManager.score = 0;
+        world.removeAllChildren();
+        self.physicsWorld.removeAllJoints();
+        self.removeAllActions();
+        world.removeAllActions();
+        
+        view?.paused = false;
+        
+        
+        startScene();
+    }
+    
+    func startScene() {
+        player = Player();
+        var grid = SKSpriteNode(imageNamed: "grid");
+        grid.zPosition = -0.1
+        grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        grid.blendMode = SKBlendMode.MultiplyX2;
+        player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        world.position = CGPoint(x: 0, y: 0);
+        world.addChild(player)
+        player.setupPhysics()
+    
+        var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
+        worldBorder.categoryBitMask = PhysicsCategory.Wall;
+        worldBorder.collisionBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain
+        worldBorder.contactTestBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain
+
+        world.physicsBody = worldBorder;
+        
+        world.addChild(grid);
+        
+        runAction(SKAction.repeatActionForever(
+            SKAction.sequence([
+                SKAction.waitForDuration(5.0),
+                SKAction.runBlock(spawnEnemy)
+                ])
+            ))
+    }
     
     func didBeginContact(contact: SKPhysicsContact) {
         var nodeA = contact.bodyA.node;
@@ -153,6 +198,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     emitter.particleColor = player.ball.color
                 
                 
+                } else {
+                
+                
                 }
                 
                 world.addChild(emitter);
@@ -177,6 +225,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     node.removeFromParent();
                     if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
                         gameManager.score++;
+                    } else {
+                        presentRetryMenu();
+                        return;
                     }
                 }
 
@@ -188,9 +239,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     node.removeFromParent();
                     if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
                         gameManager.score++;
+                    } else {
+                        presentRetryMenu();
+                        return;
                     }
                 }
-
+                runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
             }
             
             
@@ -233,7 +287,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
         //world.shake(1.0)
     }
- 
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
