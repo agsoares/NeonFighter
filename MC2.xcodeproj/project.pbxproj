@@ -26,9 +26,14 @@
 		B93086501B210BBB00822E47 /* aSBgImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864D1B210BBB00822E47 /* aSBgImg.png */; };
 		B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = B930864E1B210BBB00822E47 /* aSThumbImg.png */; };
 		B9451C5A1B24E68100B8978C /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9451C591B24E68100B8978C /* Rope.swift */; };
+		B94B3EB31B43249E00D72FF8 /* DestroyableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B3EB21B43249E00D72FF8 /* DestroyableNode.swift */; };
+		B95313DF1B41BB7300131A53 /* Icklips_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B95313DE1B41B77800131A53 /* Icklips_.ttf */; };
 		B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B95D031E1B28ECA200885F90 /* GameScene.sks */; };
+		B95D81D51B43001100091F87 /* impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = B95D81D41B43001100091F87 /* impact.wav */; };
 		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
+		DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */; };
+		DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF5FEC11B430FE1003D9391 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,9 +58,14 @@
 		B930864D1B210BBB00822E47 /* aSBgImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSBgImg.png; sourceTree = "<group>"; };
 		B930864E1B210BBB00822E47 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
 		B9451C591B24E68100B8978C /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rope.swift; path = Classes/Rope.swift; sourceTree = "<group>"; };
+		B94B3EB21B43249E00D72FF8 /* DestroyableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DestroyableNode.swift; path = Classes/DestroyableNode.swift; sourceTree = "<group>"; };
+		B95313DE1B41B77800131A53 /* Icklips_.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Icklips_.ttf; sourceTree = "<group>"; };
 		B95D031E1B28ECA200885F90 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		B95D81D41B43001100091F87 /* impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = impact.wav; sourceTree = "<group>"; };
 		B98988AD1B38918C007CD469 /* scanline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = scanline.fsh; sourceTree = "<group>"; };
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
+		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
+		DBF5FEC11B430FE1003D9391 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +91,7 @@
 		B93086171B2103D900822E47 = {
 			isa = PBXGroup;
 			children = (
+				DBF5FEC11B430FE1003D9391 /* GameKit.framework */,
 				B93086221B2103D900822E47 /* MC2 */,
 				B93086211B2103D900822E47 /* Products */,
 			);
@@ -118,6 +130,8 @@
 				B93086241B2103D900822E47 /* Info.plist */,
 				B91160AD1B3B2C9400187052 /* Images.xcassets */,
 				B91160C01B3F407400187052 /* TestMP3.mp3 */,
+				B95D81D41B43001100091F87 /* impact.wav */,
+				B95313DE1B41B77800131A53 /* Icklips_.ttf */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -158,6 +172,8 @@
 				B91160AF1B3C664000187052 /* Enemy.swift */,
 				B91160B81B3C6BEB00187052 /* Player.swift */,
 				DBF0A1C71B3C6EC5002C2D76 /* IA.swift */,
+				DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */,
+				B94B3EB21B43249E00D72FF8 /* DestroyableNode.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -201,6 +217,12 @@
 				TargetAttributes = {
 					B930861F1B2103D900822E47 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = DVXNNDG4U4;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -227,8 +249,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B95D81D51B43001100091F87 /* impact.wav in Resources */,
 				B93086501B210BBB00822E47 /* aSBgImg.png in Resources */,
 				B91160C11B3F407400187052 /* TestMP3.mp3 in Resources */,
+				B95313DF1B41BB7300131A53 /* Icklips_.ttf in Resources */,
 				B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */,
 				B98988AE1B38918C007CD469 /* scanline.fsh in Resources */,
 				B93086341B2103D900822E47 /* LaunchScreen.xib in Resources */,
@@ -246,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91160C31B3F4F4600187052 /* SKNode+Utils.swift in Sources */,
+				B94B3EB31B43249E00D72FF8 /* DestroyableNode.swift in Sources */,
 				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
 				B91160B01B3C664000187052 /* Enemy.swift in Sources */,
 				B91160B21B3C678D00187052 /* GameManager.swift in Sources */,
@@ -253,6 +278,7 @@
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
+				DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */,
 				B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */,
 				35046C1F1B41ADB500FFD05C /* MainMenu.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
@@ -373,9 +399,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -383,9 +412,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
