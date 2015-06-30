@@ -95,9 +95,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
         self.shouldEnableEffects = true;
         */
-        
-        soundManager.playMusic("TestMP3", looped: true);
-        
+        if(GameManager.sharedInstance.userDidEnableSound){
+            soundManager.playMusic("TestMP3", looped: true);
+        }
         
         
     }

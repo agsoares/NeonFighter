@@ -26,7 +26,8 @@ class GameManager {
     var player: Player?
     var score = 0;
     var difficult = 1;
-    
+    var userDidEnableSound = true;
+    var userDidEnableSoundFX = true;
     
     static let sharedInstance = GameManager()
 }
