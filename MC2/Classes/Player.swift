@@ -54,7 +54,6 @@ class Player: DestroyableNode {
         
         ball.physicsBody?.mass = 30
         ball.physicsBody?.categoryBitMask = PhysicsCategory.Weapon
-        ball.physicsBody?.collisionBitMask = PhysicsCategory.All
     
     }
     
