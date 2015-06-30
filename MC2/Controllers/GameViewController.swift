@@ -28,6 +28,9 @@ extension SKNode {
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {
+        
+        GameCenterManager.gcManager.authenticateLocalPlayer(self);
+        
         super.viewDidLoad()
 
         let scene = GameScene(size: self.view.frame.size)

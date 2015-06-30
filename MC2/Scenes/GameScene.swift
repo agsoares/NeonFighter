@@ -52,6 +52,7 @@ extension CGPoint {
 
 class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
+    
     let moveAnalogStick: AnalogStick = AnalogStick()
     
     let camera = SKNode();
