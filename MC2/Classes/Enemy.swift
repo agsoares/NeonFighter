@@ -10,15 +10,13 @@ import SpriteKit
 
 
 
-class Enemy: SKSpriteNode {
+class Enemy: DestroyableNode {
     var gameManager = GameManager.sharedInstance;
-    var resistance = 0;
-    var life = 0;
-    var mass = 0;
+    var ia = IA();
     
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
-        super.init(texture: texture, color: UIColor.whiteColor(), size: texture.size())
+        super.init(texture: texture, color: UIColor.randColor(), size: texture.size())
     }
     
     func update() {

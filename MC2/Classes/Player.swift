@@ -8,16 +8,19 @@
 
 import SpriteKit
 
-class Player: SKSpriteNode {
+class Player: DestroyableNode {
     var gameManager = GameManager.sharedInstance;
     var ball: SKSpriteNode!
     
     init() {
         let texture = SKTexture(imageNamed: "player")
-        super.init(texture: texture, color: UIColor.whiteColor(),
+        super.init(texture: texture, color: UIColor.greenSeaColor(),
             size: texture.size())
         self.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
-
+        maxLife *= 4;
+        life *= 4;
+        self.zPosition = 0.5
+        
         gameManager.player = self;
 
     }
@@ -37,6 +40,7 @@ class Player: SKSpriteNode {
         ball.colorBlendFactor = 1
         
         var rope = Rope()
+        rope.zPosition = 0.1;
         //rope.physicsWorld = self.physicsWorld
         self.addChild(rope)
         

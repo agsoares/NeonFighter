@@ -155,21 +155,46 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                 }
                 
                 world.addChild(emitter);
+            
+            
+                
+                if ((contact.bodyA.categoryBitMask & (PhysicsCategory.Enemy | PhysicsCategory.Player)) != 0b0) {
+                    println("LOL")
+                    
+                }
+            
             }
+            
+            
         }
         
-        if (contact.collisionImpulse >= 20000) {
-            if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
-                (contact.bodyA.node as! SKSpriteNode).removeFromParent();
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                gameManager.score++;
+        if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
+            if (nodeA!.respondsToSelector("applyDamage:")) {
+                var node = (nodeA as! DestroyableNode);
+                node.applyDamage(contact.collisionImpulse)
+                if(node.life < 0.0) {
+                    node.removeFromParent();
+                    if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
+                        gameManager.score++;
+                    }
+                }
+
             }
-            if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
-                (contact.bodyB.node as! SKSpriteNode).removeFromParent();
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                gameManager.score++;
+            if (nodeB!.respondsToSelector("applyDamage:")) {
+                var node = (nodeB as! DestroyableNode);
+                node.applyDamage(contact.collisionImpulse)
+                if(node.life < 0.0) {
+                    node.removeFromParent();
+                    if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
+                        gameManager.score++;
+                    }
+                }
+
             }
+            
+            
         }
+        
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
             println("eita")
