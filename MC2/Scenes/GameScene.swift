@@ -104,6 +104,41 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             soundManager.playMusic("TestMP3", looped: true);
         }
         
+        //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
+        //self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
+        //self.shouldEnableEffects = true;
+        
+        
+        soundManager.playMusic("TestMP3", looped: true);
+    }
+    
+    
+    func presentRetryMenu() {
+        self.view?.paused = true;
+        var retryButton = UIButton(frame: CGRectMake(0 , 0, 50, 50))
+        retryButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        retryButton.backgroundColor = UIColor.redColor()
+        menuView.addSubview(retryButton);
+        self.view?.addSubview(menuView);
+    }
+    
+    
+    func touchButton(button : UIButton!) {
+        restartScene();
+        menuView.removeFromSuperview();
+    }
+    
+    func restartScene() {
+        gameManager.score = 0;
+        world.removeAllChildren();
+        self.physicsWorld.removeAllJoints();
+        self.removeAllActions();
+        world.removeAllActions();
+        
+        view?.paused = false;
+        
         
         startScene();
     }

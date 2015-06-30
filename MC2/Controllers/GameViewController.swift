@@ -40,6 +40,9 @@ class GameViewController: UIViewController {
         gameManager.scaleFactor = (xScaleFactor <= yScaleFactor) ? xScaleFactor : yScaleFactor;
         
         let scene = GameScene(size: self.view.frame.size)
+        
+        
+
         let menu = MainMenu(size: self.view.frame.size)
         // Configure the view.
         let skView = self.view as! SKView

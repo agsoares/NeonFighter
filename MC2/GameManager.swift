@@ -29,5 +29,7 @@ class GameManager {
     var userDidEnableSound = true;
     var userDidEnableSoundFX = true;
     
+    var scaleFactor: CGFloat = 1.0;
+    
     static let sharedInstance = GameManager()
 }
