@@ -131,6 +131,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func restartScene() {
+        GameCenterManager.gcManager.reportScore(gameManager.score);
         gameManager.score = 0;
         world.removeAllChildren();
         self.physicsWorld.removeAllJoints();
