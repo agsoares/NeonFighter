@@ -44,7 +44,7 @@ class IA {
     
     func getVectorNormal(vector : CGVector) -> CGFloat{
         var a = pow(vector.dx, 2.0);
-        var b = pow(vector.dx, 2.0);
+        var b = pow(vector.dy, 2.0);
         return sqrt(a + b);
     }
     
@@ -57,7 +57,7 @@ class IA {
         var radians = atan2(enemy.position.x, enemy.position.y);
         var degrees = radians * CGFloat(180.0 / M_PI)
         //println(degrees);
-        return degrees;
+        return degrees%360;
     }
     
 }

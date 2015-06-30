@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AudioToolbox
 
 #if !(arch(x86_64) || arch(arm64))
     func sqrt(a: CGFloat) -> CGFloat {
@@ -58,6 +59,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     let camera = SKNode();
     let hud = SKNode();
     let world = SKNode();
+    var scoreLabel = SKLabelNode(fontNamed: "Icklips")
+
     
     let player = Player();
     var gameManager = GameManager.sharedInstance;
@@ -65,14 +68,23 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         self.addChild(world);
-        player.size = CGSizeMake(50, 50)
+        var grid = SKSpriteNode(imageNamed: "grid");
+        grid.zPosition = -0.1
+        grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        grid.blendMode = SKBlendMode.MultiplyX2;
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         world.addChild(player)
         player.setupPhysics()
         
-        
-
         self.addChild(hud)
+        hud.zPosition = 1.0;
+        scoreLabel.text = gameManager.score.description
+        scoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMaxY(self.frame)-10);
+        scoreLabel.verticalAlignmentMode = .Top
+        hud.addChild(scoreLabel)
+        
+        
+        world.addChild(grid);
         
         setupJoystick();
         
@@ -80,7 +92,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self;
         
         var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
-        physicsBody = worldBorder;
+        //worldBorder.usesPreciseCollisionDetection = true;
+        world.physicsBody = worldBorder;
     
         runAction(SKAction.repeatActionForever(
         SKAction.sequence([
@@ -91,11 +104,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                 
         self.camera.runAction(SKAction.moveTo(CGPointMake(100, 50), duration: 2.5))
 
-        /*
-        self.shader = SKShader(fileNamed: "test")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
-        self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
-        self.shouldEnableEffects = true;
-        */
+        
+        //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
+        //self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
+        //self.shouldEnableEffects = true;
+        
         
         soundManager.playMusic("TestMP3", looped: true);
         
@@ -112,10 +125,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
 
 
         if(contact.collisionImpulse >= 2000) {
-            world.shake(1.0, force: Float(contact.collisionImpulse/1000.0));
+            world.shake(0.1*Float(contact.collisionImpulse/2000.0), force: Float(contact.collisionImpulse/2000.0));
             
             var sparkles = SKTexture(imageNamed: "rope_ring") //reusing the bird texture for now
-            
             if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
                 var emitter = SKEmitterNode()
                 emitter.particleTexture = sparkles
@@ -144,8 +156,46 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                 }
                 
                 world.addChild(emitter);
+            
+            
+                
+                if ((contact.bodyA.categoryBitMask & (PhysicsCategory.Enemy | PhysicsCategory.Player)) != 0b0) {
+                    println("LOL")
+                    
+                }
+            
             }
+            
+            
         }
+        
+        if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
+            if (nodeA!.respondsToSelector("applyDamage:")) {
+                var node = (nodeA as! DestroyableNode);
+                node.applyDamage(contact.collisionImpulse)
+                if(node.life < 0.0) {
+                    node.removeFromParent();
+                    if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
+                        gameManager.score++;
+                    }
+                }
+
+            }
+            if (nodeB!.respondsToSelector("applyDamage:")) {
+                var node = (nodeB as! DestroyableNode);
+                node.applyDamage(contact.collisionImpulse)
+                if(node.life < 0.0) {
+                    node.removeFromParent();
+                    if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
+                        gameManager.score++;
+                    }
+                }
+
+            }
+            
+            
+        }
+        
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
             println("eita")
@@ -227,6 +277,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     
     override func update(currentTime: CFTimeInterval) {
+        scoreLabel.text = gameManager.score.description;
         /* Called before each frame is rendered */
     }
 }
