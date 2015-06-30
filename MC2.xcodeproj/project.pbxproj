@@ -166,6 +166,7 @@
 				B91160AF1B3C664000187052 /* Enemy.swift */,
 				B91160B81B3C6BEB00187052 /* Player.swift */,
 				DBF0A1C71B3C6EC5002C2D76 /* IA.swift */,
+				B99FDFD61B41D1A600884124 /* DestroyableNode.swift */,
 				DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */,
 			);
 			name = Classes;
@@ -269,6 +270,7 @@
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
+				B99FDFD71B41D1A600884124 /* DestroyableNode.swift in Sources */,
 				DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */,
 				B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
