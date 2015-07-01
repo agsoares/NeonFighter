@@ -33,7 +33,45 @@
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 		DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */; };
 		DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF5FEC11B430FE1003D9391 /* GameKit.framework */; };
+		DBF5FECC1B445122003D9391 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FECB1B445122003D9391 /* InterfaceController.swift */; };
+		DBF5FECE1B445122003D9391 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FECD1B445122003D9391 /* GlanceController.swift */; };
+		DBF5FED01B445122003D9391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FECF1B445122003D9391 /* Images.xcassets */; };
+		DBF5FED41B445122003D9391 /* MC2 WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */; };
+		DBF5FEDC1B445122003D9391 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FEDA1B445122003D9391 /* Interface.storyboard */; };
+		DBF5FEDE1B445122003D9391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FEDD1B445122003D9391 /* Images.xcassets */; };
+		DBF5FEE11B445122003D9391 /* MC2 WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBF5FED51B445122003D9391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B93086181B2103D900822E47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBF5FED21B445122003D9391;
+			remoteInfo = "MC2 WatchKit App";
+		};
+		DBF5FEDF1B445122003D9391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B93086181B2103D900822E47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBF5FEC61B445122003D9391;
+			remoteInfo = "MC2 WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DBF5FEE81B445122003D9391 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DBF5FEE11B445122003D9391 /* MC2 WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B91160AB1B39E61100187052 /* UIColor+Flat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Flat.swift"; path = "Extensions/UIColor+Flat.swift"; sourceTree = "<group>"; };
@@ -64,6 +102,15 @@
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		DBF5FEC11B430FE1003D9391 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MC2 WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBF5FECA1B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBF5FECB1B445122003D9391 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		DBF5FECD1B445122003D9391 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		DBF5FECF1B445122003D9391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC2 WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBF5FED91B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBF5FEDB1B445122003D9391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		DBF5FEDD1B445122003D9391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +119,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBF5FEC41B445122003D9391 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +145,8 @@
 			children = (
 				DBF5FEC11B430FE1003D9391 /* GameKit.framework */,
 				B93086221B2103D900822E47 /* MC2 */,
+				DBF5FEC81B445122003D9391 /* MC2 WatchKit Extension */,
+				DBF5FED71B445122003D9391 /* MC2 WatchKit App */,
 				B93086211B2103D900822E47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				B93086201B2103D900822E47 /* MC2.app */,
+				DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */,
+				DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,7 +227,6 @@
 				B91160AF1B3C664000187052 /* Enemy.swift */,
 				B91160B81B3C6BEB00187052 /* Player.swift */,
 				DBF0A1C71B3C6EC5002C2D76 /* IA.swift */,
-				B99FDFD61B41D1A600884124 /* DestroyableNode.swift */,
 				DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */,
 				B94B3EB21B43249E00D72FF8 /* DestroyableNode.swift */,
 			);
@@ -185,6 +242,43 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
+		DBF5FEC81B445122003D9391 /* MC2 WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DBF5FECB1B445122003D9391 /* InterfaceController.swift */,
+				DBF5FECD1B445122003D9391 /* GlanceController.swift */,
+				DBF5FECF1B445122003D9391 /* Images.xcassets */,
+				DBF5FEC91B445122003D9391 /* Supporting Files */,
+			);
+			path = "MC2 WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		DBF5FEC91B445122003D9391 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DBF5FECA1B445122003D9391 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DBF5FED71B445122003D9391 /* MC2 WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				DBF5FEDA1B445122003D9391 /* Interface.storyboard */,
+				DBF5FEDD1B445122003D9391 /* Images.xcassets */,
+				DBF5FED81B445122003D9391 /* Supporting Files */,
+			);
+			path = "MC2 WatchKit App";
+			sourceTree = "<group>";
+		};
+		DBF5FED81B445122003D9391 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DBF5FED91B445122003D9391 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -195,15 +289,50 @@
 				B930861C1B2103D900822E47 /* Sources */,
 				B930861D1B2103D900822E47 /* Frameworks */,
 				B930861E1B2103D900822E47 /* Resources */,
+				DBF5FEE81B445122003D9391 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DBF5FEE01B445122003D9391 /* PBXTargetDependency */,
 			);
 			name = MC2;
 			productName = MC2;
 			productReference = B93086201B2103D900822E47 /* MC2.app */;
 			productType = "com.apple.product-type.application";
+		};
+		DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBF5FEE71B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit Extension" */;
+			buildPhases = (
+				DBF5FEC31B445122003D9391 /* Sources */,
+				DBF5FEC41B445122003D9391 /* Frameworks */,
+				DBF5FEC51B445122003D9391 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBF5FED61B445122003D9391 /* PBXTargetDependency */,
+			);
+			name = "MC2 WatchKit Extension";
+			productName = "MC2 WatchKit Extension";
+			productReference = DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		DBF5FED21B445122003D9391 /* MC2 WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBF5FEE61B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit App" */;
+			buildPhases = (
+				DBF5FED11B445122003D9391 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MC2 WatchKit App";
+			productName = "MC2 WatchKit App";
+			productReference = DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
 		};
 /* End PBXNativeTarget section */
 
@@ -222,6 +351,13 @@
 							};
 						};
 					};
+					DBF5FEC61B445122003D9391 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = DVXNNDG4U4;
+					};
+					DBF5FED21B445122003D9391 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
 				};
 			};
 			buildConfigurationList = B930861B1B2103D900822E47 /* Build configuration list for PBXProject "MC2" */;
@@ -238,6 +374,8 @@
 			projectRoot = "";
 			targets = (
 				B930861F1B2103D900822E47 /* MC2 */,
+				DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */,
+				DBF5FED21B445122003D9391 /* MC2 WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -260,6 +398,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBF5FEC51B445122003D9391 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF5FED01B445122003D9391 /* Images.xcassets in Resources */,
+				DBF5FED41B445122003D9391 /* MC2 WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBF5FED11B445122003D9391 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF5FEDC1B445122003D9391 /* Interface.storyboard in Resources */,
+				DBF5FEDE1B445122003D9391 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -276,7 +432,6 @@
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */,
 				B930862C1B2103D900822E47 /* GameViewController.swift in Sources */,
-				B99FDFD71B41D1A600884124 /* DestroyableNode.swift in Sources */,
 				DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */,
 				B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */,
 				B93086261B2103D900822E47 /* AppDelegate.swift in Sources */,
@@ -286,7 +441,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBF5FEC31B445122003D9391 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF5FECC1B445122003D9391 /* InterfaceController.swift in Sources */,
+				DBF5FECE1B445122003D9391 /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DBF5FED61B445122003D9391 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBF5FED21B445122003D9391 /* MC2 WatchKit App */;
+			targetProxy = DBF5FED51B445122003D9391 /* PBXContainerItemProxy */;
+		};
+		DBF5FEE01B445122003D9391 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */;
+			targetProxy = DBF5FEDF1B445122003D9391 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B930862D1B2103D900822E47 /* Main.storyboard */ = {
@@ -305,6 +482,14 @@
 			);
 			name = LaunchScreen.xib;
 			path = .;
+			sourceTree = "<group>";
+		};
+		DBF5FEDA1B445122003D9391 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBF5FEDB1B445122003D9391 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -419,6 +604,68 @@
 			};
 			name = Release;
 		};
+		DBF5FEE21B445122003D9391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MC2 WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DBF5FEE31B445122003D9391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "MC2 WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DBF5FEE41B445122003D9391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = MC2_WatchKit_Extension;
+				INFOPLIST_FILE = "MC2 WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		DBF5FEE51B445122003D9391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = MC2_WatchKit_Extension;
+				INFOPLIST_FILE = "MC2 WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -439,6 +686,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		DBF5FEE61B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBF5FEE41B445122003D9391 /* Debug */,
+				DBF5FEE51B445122003D9391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DBF5FEE71B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBF5FEE21B445122003D9391 /* Debug */,
+				DBF5FEE31B445122003D9391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
