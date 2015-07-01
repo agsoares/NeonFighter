@@ -95,13 +95,21 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         startScene();
 
+        /*
+        self.shader = SKShader(fileNamed: "test")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
+        self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
+        self.shouldEnableEffects = true;
+        */
+        if(GameManager.sharedInstance.userDidEnableSound){
+            soundManager.playMusic("TestMP3", looped: true);
+        }
         
         //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
         //self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
         //self.shouldEnableEffects = true;
         
         
-        soundManager.playMusic("TestMP3", looped: true);
+//        soundManager.playMusic("TestMP3", looped: true);
     }
     
     
@@ -118,8 +126,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     
     func touchButton(button : UIButton!) {
-        restartScene();
+//        restartScene();
         menuView.removeFromSuperview();
+        soundManager.stopMusic();
+        let scene = MainMenu(size: self.view!.frame.size)
+        let skView = self.view as SKView?
+        skView!.presentScene(scene)
     }
     
     func restartScene() {
@@ -138,6 +150,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func startScene() {
+        view?.paused = false;
         player = Player();
         var grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
@@ -147,11 +160,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         world.position = CGPoint(x: 0, y: 0);
         world.addChild(player)
         player.setupPhysics()
-    
         var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
         worldBorder.categoryBitMask = PhysicsCategory.Wall;
-        worldBorder.collisionBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain
-        worldBorder.contactTestBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain
 
         world.physicsBody = worldBorder;
         
@@ -246,7 +256,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                         return;
                     }
                 }
-                runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
+                if(GameManager.sharedInstance.userDidEnableSoundFX){
+                    runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
+                }
             }
             
             

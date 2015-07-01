@@ -26,6 +26,8 @@ class GameManager {
     var player: Player?
     var score = 0;
     var difficult = 1;
+    var userDidEnableSound = true;
+    var userDidEnableSoundFX = true;
     
     var scaleFactor: CGFloat = 1.0;
     

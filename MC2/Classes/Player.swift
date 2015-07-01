@@ -46,7 +46,7 @@ class Player: DestroyableNode {
         
         rope.setAttachmentPoint(CGPointMake(self.position.x, self.frame.midY), toNode: self)
         rope.attachObject(ball)
-        rope.setRopeLenght(20, withImageNamed: "rope_ring")
+        rope.setRopeLenght(Int(floor(20/gameManager.scaleFactor)), withImageNamed: "rope_ring")
         
         
         self.physicsBody?.mass = 30

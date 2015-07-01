@@ -17,7 +17,7 @@ class Rope: SKNode {
     
     var physicsWorld: SKPhysicsWorld?
 
-    
+    var gameManager = GameManager.sharedInstance
     
     func setAttachmentPoint(point: CGPoint, toNode node: SKNode) {
         startNode = node
