@@ -51,6 +51,8 @@ extension CGPoint {
 
 
 
+
+
 class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     
@@ -67,12 +69,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     var soundManager = SoundManager.sharedInstance;
     
     var menuView: UIView!
+    var retryMenu: UIView!
+    var pauseMenu: UIView!
     
     override func didMoveToView(view: SKView) {
-        self.menuView = UIView(frame: CGRectMake(self.frame.width*0.20,
-            self.frame.height*0.20,
-            self.frame.width*0.60,
-            self.frame.height*0.60))
+        createPauseMenu()
+        createRetryMenu()
         
         self.addChild(world);
 
@@ -84,6 +86,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         scoreLabel.verticalAlignmentMode = .Top
         hud.addChild(scoreLabel)
         
+        self.backgroundColor = UIColor.wetAsfaltColor()
         
         setupJoystick();
         
@@ -95,11 +98,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         startScene();
 
-        /*
-        self.shader = SKShader(fileNamed: "test")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
-        self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
-        self.shouldEnableEffects = true;
-        */
         if(GameManager.sharedInstance.userDidEnableSound){
             soundManager.playMusic("TestMP3", looped: true);
         }
@@ -108,35 +106,70 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         //self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
         //self.shouldEnableEffects = true;
         
-        
-//        soundManager.playMusic("TestMP3", looped: true);
     }
+    
+    
     
     
     func presentRetryMenu() {
         self.view?.paused = true;
-        var retryButton = UIButton(frame: CGRectMake(0 , 0, 50, 50))
+        self.view?.addSubview(retryMenu);
+    }
+    
+    func createPauseMenu() {
+        var menu = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
+        
+        self.pauseMenu = menu;
+        
+        var retryButton = UIButton(frame: CGRectMake(0 , 0, 100, 100))
+        var retryImage = UIImage(named: "btPlayAgain");
+        retryButton.contentMode = UIViewContentMode.ScaleAspectFit
+        retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
         retryButton.addTarget(self,
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside);
-        retryButton.backgroundColor = UIColor.redColor()
-        menuView.addSubview(retryButton);
-        self.view?.addSubview(menuView);
+        menu.addSubview(retryButton);
+        
+    
     }
     
+    func createRetryMenu() {
+        var menu = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
+        
+        self.retryMenu = menu;
+        
+        var retryButton = UIButton(frame: CGRectMake(0 , 0, 100, 100))
+        var retryImage = UIImage(named: "btPlayAgain");
+        retryButton.contentMode = UIViewContentMode.ScaleAspectFit
+        retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
+        retryButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        menu.addSubview(retryButton);
+    
+    }
     
     func touchButton(button : UIButton!) {
-//        restartScene();
+        restartScene();
+        /*
         menuView.removeFromSuperview();
         soundManager.stopMusic();
         let scene = MainMenu(size: self.view!.frame.size)
         let skView = self.view as SKView?
         skView!.presentScene(scene)
+        */
     }
     
     func restartScene() {
         GameCenterManager.gcManager.reportScore(gameManager.score);
-        gameManager.score = 0;
+        retryMenu.removeFromSuperview();
+        pauseMenu.removeFromSuperview();
         world.removeAllChildren();
         self.physicsWorld.removeAllJoints();
         self.removeAllActions();
@@ -144,15 +177,16 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         view?.paused = false;
         
-        
         startScene();
     }
     
     func startScene() {
         view?.paused = false;
+        gameManager.score = 0;
         player = Player();
         var grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
+        grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
         grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         grid.blendMode = SKBlendMode.MultiplyX2;
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));

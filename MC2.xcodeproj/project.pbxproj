@@ -31,6 +31,7 @@
 		B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B95D031E1B28ECA200885F90 /* GameScene.sks */; };
 		B95D81D51B43001100091F87 /* impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = B95D81D41B43001100091F87 /* impact.wav */; };
 		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
+		B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */; };
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 		DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */; };
 		DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF5FEC11B430FE1003D9391 /* GameKit.framework */; };
@@ -101,6 +102,7 @@
 		B95D031E1B28ECA200885F90 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		B95D81D41B43001100091F87 /* impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = impact.wav; sourceTree = "<group>"; };
 		B98988AD1B38918C007CD469 /* scanline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = scanline.fsh; sourceTree = "<group>"; };
+		B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageColor.swift"; sourceTree = "<group>"; };
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		DBF5FEC11B430FE1003D9391 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -239,6 +241,7 @@
 		B9451C5B1B2525EC00B8978C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */,
 				B91160AB1B39E61100187052 /* UIColor+Flat.swift */,
 				B91160C21B3F4F4600187052 /* SKNode+Utils.swift */,
 			);
@@ -431,6 +434,7 @@
 				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
 				B91160B01B3C664000187052 /* Enemy.swift in Sources */,
 				B91160B21B3C678D00187052 /* GameManager.swift in Sources */,
+				B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */,
 				B930864F1B210BBB00822E47 /* AnalogStick.swift in Sources */,
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,
 				DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */,
@@ -698,6 +702,7 @@
 				DBF5FEE51B445122003D9391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBF5FEE71B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit Extension" */ = {
 			isa = XCConfigurationList;
@@ -706,6 +711,7 @@
 				DBF5FEE31B445122003D9391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
