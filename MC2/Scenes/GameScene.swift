@@ -124,6 +124,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func restartScene() {
         GameCenterManager.gcManager.reportScore(gameManager.score);
+        NSUserDefaults.standardUserDefaults().setInteger(gameManager.score, forKey: "BestScore");
         gameManager.score = 0;
         world.removeAllChildren();
         self.physicsWorld.removeAllJoints();
@@ -209,7 +210,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             
                 
                 if ((contact.bodyA.categoryBitMask & (PhysicsCategory.Enemy | PhysicsCategory.Player)) != 0b0) {
-                    println("LOL")
+                    //println("LOL")
                     
                 }
             
@@ -253,7 +254,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
-            println("eita")
+            //println("eita")
         }
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Enemy && contact.bodyB.categoryBitMask == PhysicsCategory.Player) {

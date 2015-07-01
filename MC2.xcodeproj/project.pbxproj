@@ -227,8 +227,8 @@
 				B91160AF1B3C664000187052 /* Enemy.swift */,
 				B91160B81B3C6BEB00187052 /* Player.swift */,
 				DBF0A1C71B3C6EC5002C2D76 /* IA.swift */,
-				DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */,
 				B94B3EB21B43249E00D72FF8 /* DestroyableNode.swift */,
+				DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -694,6 +694,7 @@
 				DBF5FEE51B445122003D9391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBF5FEE71B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit Extension" */ = {
 			isa = XCConfigurationList;
@@ -702,6 +703,7 @@
 				DBF5FEE31B445122003D9391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
