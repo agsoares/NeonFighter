@@ -109,7 +109,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         //self.shouldEnableEffects = true;
         
         
-        soundManager.playMusic("TestMP3", looped: true);
+//        soundManager.playMusic("TestMP3", looped: true);
     }
     
     
@@ -253,7 +253,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                         return;
                     }
                 }
-                runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
+                if(GameManager.sharedInstance.userDidEnableSoundFX){
+                    runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
+                }
             }
             
             
