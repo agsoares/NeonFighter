@@ -148,8 +148,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
         var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
         worldBorder.categoryBitMask = PhysicsCategory.Wall;
-        worldBorder.collisionBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain
-        worldBorder.contactTestBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain
 
         world.physicsBody = worldBorder;
         
