@@ -126,8 +126,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     
     func touchButton(button : UIButton!) {
-        restartScene();
+//        restartScene();
         menuView.removeFromSuperview();
+        soundManager.stopMusic();
+        let scene = MainMenu(size: self.view!.frame.size)
+        let skView = self.view as SKView?
+        skView!.presentScene(scene)
     }
     
     func restartScene() {
@@ -145,6 +149,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func startScene() {
+        view?.paused = false;
         player = Player();
         var grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
@@ -154,7 +159,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         world.position = CGPoint(x: 0, y: 0);
         world.addChild(player)
         player.setupPhysics()
-    
         var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
         worldBorder.categoryBitMask = PhysicsCategory.Wall;
         worldBorder.collisionBitMask = PhysicsCategory.All & ~PhysicsCategory.Chain

@@ -29,6 +29,12 @@ class MainMenu: SKScene {
     
     
     override func didMoveToView(view: SKView) {
+        GameManager.sharedInstance.userDidEnableSoundFX = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSoundFX")
+        GameManager.sharedInstance.userDidEnableSound = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSound")
+        
+        
+        println("\(GameManager.sharedInstance.userDidEnableSoundFX)")
+        println("\(GameManager.sharedInstance.userDidEnableSound)")
         let viewSize = self.view?.frame.size
         
         let playButton = createButtonWithImageNamed("btPlayGame")
@@ -49,7 +55,7 @@ class MainMenu: SKScene {
         if(!GameManager.sharedInstance.userDidEnableSound){
             muteButton.alpha = 0.5
         }
-        if(!GameManager.sharedInstance.userDidEnableSound){
+        if(!GameManager.sharedInstance.userDidEnableSoundFX){
             muteFXButton.alpha = 0.5
         }
         
@@ -73,7 +79,6 @@ class MainMenu: SKScene {
             skView!.presentScene(scene)
             break
         case 2:
-            
             if(GameManager.sharedInstance.userDidEnableSound){
                 sender.alpha = 0.5
                 GameManager.sharedInstance.userDidEnableSound = false
@@ -96,6 +101,8 @@ class MainMenu: SKScene {
         default:
             break
         }
+        NSUserDefaults.standardUserDefaults().setBool(GameManager.sharedInstance.userDidEnableSound , forKey: "userDidEnableSound")
+        NSUserDefaults.standardUserDefaults().setBool(GameManager.sharedInstance.userDidEnableSoundFX , forKey: "userDidEnableSoundFX")
     }
     
     
