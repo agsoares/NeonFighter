@@ -25,9 +25,9 @@ class MainMenu: SKScene {
         return button
     }
     
-    func createButtonWithTwoStatesAndImageNamed(enableImageName: String, disabledImageName: String) -> UIButton{
+    func createButtonWithTwoStatesAndImageNamed(enableImageName: String, selectedImageName: String) -> UIButton{
         let button = createButtonWithImageNamed(enableImageName)
-        button.setImage(UIImage(named: disabledImageName), forState: UIControlState.Selected)
+        button.setImage(UIImage(named: selectedImageName), forState: UIControlState.Selected)
         return button
     }
     
@@ -43,8 +43,8 @@ class MainMenu: SKScene {
         
         let playButton = createButtonWithImageNamed("btPlayGame")
 //        let muteButton = createButtonWithImageNamed("btVolume3")
-        let muteFXButton = createButtonWithImageNamed("")
-        let muteButton = createButtonWithTwoStatesAndImageNamed("btSomOn", disabledImageName: "btSomOff")
+        let muteFXButton = createButtonWithTwoStatesAndImageNamed("btSomOn", selectedImageName: "btSomOff")
+        let muteButton = createButtonWithTwoStatesAndImageNamed("btSomOn", selectedImageName: "btSomOff")
         
         
         playButton.tag = 1
@@ -58,12 +58,8 @@ class MainMenu: SKScene {
         
         muteFXButton.frame.origin = CGPointMake(muteButton.frame.size.width, 0)
         
-        if(!GameManager.sharedInstance.userDidEnableSound){
-            muteButton.selected = false
-        }
-        if(!GameManager.sharedInstance.userDidEnableSoundFX){
-            muteFXButton.selected = false
-        }
+        muteFXButton.selected = !GameManager.sharedInstance.userDidEnableSoundFX
+        muteButton.selected = !GameManager.sharedInstance.userDidEnableSound
         
         self.view?.addSubview(playButton);
         self.view?.addSubview(muteButton);
@@ -76,6 +72,7 @@ class MainMenu: SKScene {
             let scene = GameScene(size: self.view!.frame.size)
             let skView = self.view as SKView?
             scene.scaleMode = .AspectFill
+            
             //Remove all UIBUttons from self.view
             for subview in self.view?.subviews as! [UIView]{
                 if let button = subview as? UIButton{
@@ -85,23 +82,12 @@ class MainMenu: SKScene {
             skView!.presentScene(scene)
             break
         case 2:
-            if(GameManager.sharedInstance.userDidEnableSound){
-                sender.selected = false
-                GameManager.sharedInstance.userDidEnableSound = false
-            }else{
-                sender.selected = true
-                GameManager.sharedInstance.userDidEnableSound = true
-            }
-            
+            sender.selected = !sender.selected
+            GameManager.sharedInstance.userDidEnableSound = !sender.selected
             break
         case 3:
-            if(GameManager.sharedInstance.userDidEnableSoundFX){
-                sender.selected = false
-                GameManager.sharedInstance.userDidEnableSoundFX = false
-            }else{
-                sender.selected = true
-                GameManager.sharedInstance.userDidEnableSoundFX = true
-            }
+            sender.selected = !sender.selected
+            GameManager.sharedInstance.userDidEnableSoundFX = !sender.selected
         default:
             break
         }

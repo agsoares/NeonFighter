@@ -74,7 +74,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         startScene();
 
         if(GameManager.sharedInstance.userDidEnableSound){
-            soundManager.playMusic("TestMP3", looped: true);
+            soundManager.playMusic("loop", looped: true);
         }
         
         //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
