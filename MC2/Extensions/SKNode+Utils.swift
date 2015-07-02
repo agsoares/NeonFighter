@@ -9,7 +9,6 @@
 import SpriteKit
 
 extension SKNode {
-    
     func shake(duration:Float, force: Float) {
         let amplitudeX:Float = 1*force;
         let amplitudeY:Float = 1*force;

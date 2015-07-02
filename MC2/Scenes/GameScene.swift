@@ -15,30 +15,6 @@ import AudioToolbox
     }
 #endif
 
-func + (left: CGPoint, right: CGPoint) -> CGPoint {
-    return CGPoint(x: left.x + right.x, y: left.y + right.y)
-}
-
-func - (left: CGPoint, right: CGPoint) -> CGPoint {
-    return CGPoint(x: left.x - right.x, y: left.y - right.y)
-}
-
-func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
-    return CGPoint(x: point.x * scalar, y: point.y * scalar)
-}
-
-func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
-    return CGPoint(x: point.x / scalar, y: point.y / scalar)
-}
-
-func random() -> CGFloat {
-    return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-}
-
-func random(#min: CGFloat, #max: CGFloat) -> CGFloat {
-    return random() * (max - min) + min
-}
-
 extension CGPoint {
     func length() -> CGFloat {
         return sqrt(x*x + y*y)
@@ -48,10 +24,6 @@ extension CGPoint {
         return self / length()
     }
 }
-
-
-
-
 
 class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
