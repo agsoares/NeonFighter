@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "btSomOn.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "btSomOn@2x.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

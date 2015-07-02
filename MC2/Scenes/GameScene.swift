@@ -97,7 +97,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func presentMainMenu() {
         self.view?.paused = true;
-        pauseMenu.removeFromSuperview()
+        if(pauseMenu != nil){
+            pauseMenu.removeFromSuperview()
+        }
+        if(retryMenu != nil){
+            retryMenu.removeFromSuperview()
+        }
         soundManager.stopMusic();
         hudView.removeFromSuperview()
         let scene = MainMenu(size: self.view!.frame.size)
@@ -195,7 +200,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     presentPauseMenu()
                 }
             case 1:
-                restartScene();
+                restartScene()
             case 2:
                 presentMainMenu()
             case 3:
@@ -352,6 +357,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             //println(contact.collisionImpulse);
             
         }
+        let f = player.life/160000
+        player.color = UIColor(red: 0.6, green: f, blue: 0.8, alpha: 1.0)
         
     }
     func setupJoystick() {
