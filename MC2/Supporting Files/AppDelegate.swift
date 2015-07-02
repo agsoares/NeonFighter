@@ -41,7 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
         
         if(((userInfo as? NSDictionary)!.valueForKey("action") as! String) == "getBestScores"){
-            reply(["score" : NSUserDefaults.standardUserDefaults().integerForKey("BestScore")]);
+            reply(["bestScore" : NSUserDefaults.standardUserDefaults().integerForKey("BestScore")]);
+        }else{
+            reply(["bestScore" : 0]);
         }
         
     }

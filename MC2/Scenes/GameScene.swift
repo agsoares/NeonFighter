@@ -219,7 +219,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func restartScene() {
         GameCenterManager.gcManager.reportScore(gameManager.score);
-        NSUserDefaults.standardUserDefaults().setInteger(gameManager.score, forKey: "BestScore");
+        retryMenu.removeFromSuperview();
+        pauseMenu.removeFromSuperview();
+        if(NSUserDefaults.standardUserDefaults().integerForKey("BestScore") > gameManager.score){
+            NSUserDefaults.standardUserDefaults().setInteger(gameManager.score, forKey: "BestScore");
+        }
         gameManager.score = 0;
         world.removeAllChildren();
         self.physicsWorld.removeAllJoints();

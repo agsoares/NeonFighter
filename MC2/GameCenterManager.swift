@@ -9,12 +9,23 @@
 import Foundation
 import GameKit
 
-class GameCenterManager {
+class GameCenterManager : NSObject, GKGameCenterControllerDelegate{
 
     static let gcManager = GameCenterManager()
     var gameCenterEnabled = false
     var leaderBoardIdentifier = "com.bepid.MC2.NeonFighterLeaderBoard"
     var localPlayer = GKLocalPlayer()
+    
+    func showLeaderBoards(view : UIViewController){
+        var gc = GKGameCenterViewController()
+        gc.gameCenterDelegate = GameCenterManager.gcManager
+        view.presentViewController(gc, animated: true, completion: nil)
+    }
+    
+    @objc func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)
+    {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func authenticateLocalPlayer(view : UIViewController){
         self.localPlayer = GKLocalPlayer.localPlayer();

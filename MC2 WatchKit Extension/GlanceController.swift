@@ -13,6 +13,8 @@ import Foundation
 class GlanceController: WKInterfaceController {
     @IBOutlet weak var lblBestScore: WKInterfaceLabel!
 
+    var score = 0;
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
@@ -22,11 +24,12 @@ class GlanceController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         var dict = NSDictionary(dictionary: ["action" : "getBestScores"])
-        WKInterfaceController.openParentApplication(["action" : "getBestScores"]) { (reply, error) -> Void in
-            println((reply as? NSDictionary)!.valueForKey("bestScore"));
-        }
-        
-        self.lblBestScore.setText("Your Best Score is \n10\nPoints")
+        WKInterfaceController.openParentApplication(["action" : "getBestScores"], reply: { (obj: [NSObject : AnyObject]!, error: NSError!) -> Void in
+            if let dic = obj as NSDictionary!{
+                self.score = (dic.valueForKey("bestScore")) as! Int;
+                self.lblBestScore.setText("Your Best Score is \(self.score)")
+            }
+        })
     }
 
     override func didDeactivate() {

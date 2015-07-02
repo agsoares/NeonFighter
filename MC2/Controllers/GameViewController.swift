@@ -30,8 +30,17 @@ extension SKNode {
 class GameViewController: UIViewController {
     var gameManager = GameManager.sharedInstance;
     
+    func callGameCenter(sender: NSNotification?) {
+        GameCenterManager.gcManager.showLeaderBoards(self);
+    }
+    
     override func viewDidLoad() {
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "callGameCenter:",
+            name: "callGameCenterLeaderBoard",
+            object: nil);
         
         super.viewDidLoad()
         var xScaleFactor = 1024.0/self.view.frame.size.width
