@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		35046C1F1B41ADB500FFD05C /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35046C1E1B41ADB500FFD05C /* MainMenu.swift */; };
 		3522C3E61B45038C0055BAF3 /* loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3522C3E51B45038C0055BAF3 /* loop.mp3 */; };
+		352A505B1B457A6C001DC746 /* UIButton+BothStateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A505A1B457A6C001DC746 /* UIButton+BothStateImage.swift */; };
 		35D060471B4481AF00AD3E99 /* Overloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D060461B4481AF00AD3E99 /* Overloading.swift */; };
 		B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AB1B39E61100187052 /* UIColor+Flat.swift */; };
 		B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91160AD1B3B2C9400187052 /* Images.xcassets */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		35046C1E1B41ADB500FFD05C /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		3522C3E51B45038C0055BAF3 /* loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loop.mp3; sourceTree = "<group>"; };
+		352A505A1B457A6C001DC746 /* UIButton+BothStateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+BothStateImage.swift"; sourceTree = "<group>"; };
 		35D060461B4481AF00AD3E99 /* Overloading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Overloading.swift; sourceTree = "<group>"; };
 		B91160AB1B39E61100187052 /* UIColor+Flat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Flat.swift"; path = "Extensions/UIColor+Flat.swift"; sourceTree = "<group>"; };
 		B91160AD1B3B2C9400187052 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */,
+				352A505A1B457A6C001DC746 /* UIButton+BothStateImage.swift */,
 				B91160AB1B39E61100187052 /* UIColor+Flat.swift */,
 				B91160C21B3F4F4600187052 /* SKNode+Utils.swift */,
 			);
@@ -450,6 +453,7 @@
 				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
 				B91160B01B3C664000187052 /* Enemy.swift in Sources */,
 				B91160B21B3C678D00187052 /* GameManager.swift in Sources */,
+				352A505B1B457A6C001DC746 /* UIButton+BothStateImage.swift in Sources */,
 				B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */,
 				B930864F1B210BBB00822E47 /* AnalogStick.swift in Sources */,
 				B930862A1B2103D900822E47 /* GameScene.swift in Sources */,

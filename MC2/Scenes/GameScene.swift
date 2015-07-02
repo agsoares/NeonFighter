@@ -42,13 +42,14 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     var hudView: UIView!
     
-    var menuView: UIView!
+    var mainMenu: UIView!
     var retryMenu: UIView!
     var pauseMenu: UIView!
     
     override func didMoveToView(view: SKView) {
         createPauseMenu()
         createRetryMenu()
+        createMainMenu()
         createHudView()
         
         
@@ -94,41 +95,64 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         self.view?.addSubview(retryMenu);
     }
     
+    func presentMainMenu() {
+        self.view?.paused = true;
+        pauseMenu.removeFromSuperview()
+        soundManager.stopMusic();
+        hudView.removeFromSuperview()
+        let scene = MainMenu(size: self.view!.frame.size)
+        let skView = self.view as SKView?
+        skView!.presentScene(scene)
+    }
+    
     func createHudView() {
         hudView = UIView(frame: self.view!.frame)
-        var pauseButton = UIButton(frame: CGRectMake(0 , 0, 50, 50))
         var pauseImage = UIImage(named: "btPause")!.imageWithColor(UIColor.pomegranateColor())
-        pauseButton.setBackgroundImage(pauseImage, forState: .Normal)
-        pauseButton.contentMode = .ScaleAspectFit
+        let pauseButton = UIButton(image: pauseImage)
+        
+//        let pauseButton = UIButton(imageNamed: "btPaused")
         pauseButton.addTarget(self,
             action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside);
-        pauseButton.center.x = CGRectGetMaxX(hudView.frame)-CGRectGetMidX(pauseButton.frame)
+            forControlEvents: .TouchUpInside)
         pauseButton.tag = 0;
+        pauseButton.center.x = CGRectGetMaxX(hudView.frame)-CGRectGetMidX(pauseButton.frame)
         hudView.addSubview(pauseButton);
         
         self.view?.addSubview(hudView);
-    
     }
     
     func createPauseMenu() {
-        var menu = UIView(frame: CGRectMake(self.frame.width*0.20,
+        let menu = UIView(frame: CGRectMake(self.frame.width*0.20,
             self.frame.height*0.20,
             self.frame.width*0.60,
             self.frame.height*0.60))
         
         self.pauseMenu = menu;
         
-        var retryButton = UIButton(frame: CGRectMake(0 , 0, 100, 100))
-        var retryImage = UIImage(named: "btPlayAgain");
-        retryButton.contentMode = UIViewContentMode.ScaleAspectFit
-        retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
+        let retryButton = UIButton(imageNamed: "btPlayAgain")
         retryButton.tag = 1;
+        retryButton.frame.origin = CGPointMake(menu.frame.width - retryButton.frame.size.width, 0)
         retryButton.addTarget(self,
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside);
-        menu.addSubview(retryButton);
         
+        let backButton = UIButton(imageNamed: "")
+        backButton.tag = 2;
+        backButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        
+        let continueButton = UIButton(imageNamed: "btPause")
+        continueButton.tag = 3;
+        continueButton.frame.origin = CGPointMake(menu.frame.width/2 - continueButton.frame.size.width/2, menu.frame.height/2 - continueButton.frame.size.height/2)
+        continueButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        menu.backgroundColor = UIColor.greenSeaColor()
+        
+        menu.addSubview(retryButton);
+        menu.addSubview(backButton);
+        menu.addSubview(continueButton)
     
     }
     
@@ -140,8 +164,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         self.retryMenu = menu;
         
-        var retryButton = UIButton(frame: CGRectMake(0 , 0, 100, 100))
-        var retryImage = UIImage(named: "btPlayAgain");
+//        var retryButton = UIButton(frame: CGRectMake(0 , 0, 100, 100))
+        let retryImage = UIImage(named: "btPlayAgain");
+        let retryButton = UIButton(image: retryImage!)
+        
+        
         retryButton.contentMode = UIViewContentMode.ScaleAspectFit
         retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
         retryButton.tag = 1;
@@ -150,6 +177,13 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             forControlEvents: .TouchUpInside);
         menu.addSubview(retryButton);
     
+    }
+    
+    func createMainMenu(){
+        self.mainMenu = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
     }
     
     func touchButton(button : UIButton!) {
@@ -163,6 +197,14 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                 }
             case 1:
                 restartScene();
+            case 2:
+                presentMainMenu()
+            case 3:
+                pauseMenu.removeFromSuperview()
+                view?.paused = false;
+            
+            
+            
             default:
                 return;
         }

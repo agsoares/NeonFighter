@@ -8,28 +8,28 @@
 import SpriteKit
 
 class MainMenu: SKScene {
-    func createButtonWithImageNamed(imageName: String) -> UIButton{
-        let button = UIButton()
-        
-        if let image = UIImage(named: imageName){
-            button.frame.size = image.size / GameManager.sharedInstance.scaleFactor
-            button.frame.origin = CGPointMake(0, 0)
-            button.setImage(image, forState: .Normal)
-        }else{
-            button.frame = CGRectMake(0, 0, 80, 80)
-            button.backgroundColor = .redColor()
-        }
-        button.addTarget(self,
-            action: "buttonPressed:",
-            forControlEvents: .TouchUpInside)
-        return button
-    }
-    
-    func createButtonWithTwoStatesAndImageNamed(enableImageName: String, selectedImageName: String) -> UIButton{
-        let button = createButtonWithImageNamed(enableImageName)
-        button.setImage(UIImage(named: selectedImageName), forState: UIControlState.Selected)
-        return button
-    }
+//    func createButtonWithImageNamed(imageName: String) -> UIButton{
+//        let button = UIButton()
+//        
+//        if let image = UIImage(named: imageName){
+//            button.frame.size = image.size / GameManager.sharedInstance.scaleFactor
+//            button.frame.origin = CGPointMake(0, 0)
+//            button.setImage(image, forState: .Normal)
+//        }else{
+//            button.frame = CGRectMake(0, 0, 80, 80)
+//            button.backgroundColor = .redColor()
+//        }
+//        button.addTarget(self,
+//            action: "buttonPressed:",
+//            forControlEvents: .TouchUpInside)
+//        return button
+//    }
+//    
+//    func createButtonWithTwoStatesAndImageNamed(enableImageName: String, selectedImageName: String) -> UIButton{
+//        let button = createButtonWithImageNamed(enableImageName)
+//        button.setImage(UIImage(named: selectedImageName), forState: UIControlState.Selected)
+//        return button
+//    }
     
     
     override func didMoveToView(view: SKView) {
@@ -41,16 +41,28 @@ class MainMenu: SKScene {
         println("\(GameManager.sharedInstance.userDidEnableSound)")
         let viewSize = self.view?.frame.size
         
-        let playButton = createButtonWithImageNamed("btPlayGame")
-//        let muteButton = createButtonWithImageNamed("btVolume3")
-        let muteFXButton = createButtonWithTwoStatesAndImageNamed("btSomOn", selectedImageName: "btSomOff")
-        let muteButton = createButtonWithTwoStatesAndImageNamed("btSomOn", selectedImageName: "btSomOff")
+        let playButton = UIButton(imageNamed: "btPlayGame")
         
+        let muteFXButton = UIButton(enableImageName: "btSomOn", selectedImageName: "btSomOff")
+        let muteButton =  UIButton(enableImageName: "btSomOn", selectedImageName: "btSomOff")
+//        let muteButton = createButtonWithImageNamed("btVolume3")
+        
+        playButton.addTarget(self,
+            action: "buttonPressed:",
+            forControlEvents: .TouchUpInside)
+        muteFXButton.addTarget(self,
+            action: "buttonPressed:",
+            forControlEvents: .TouchUpInside)
+        muteButton.addTarget(self,
+            action: "buttonPressed:",
+            forControlEvents: .TouchUpInside)
         
         playButton.tag = 1
         muteButton.tag = 2
         muteFXButton.tag = 3
 //        bt.tag = 4
+        
+        
         
         playButton.frame.origin = CGPointMake(
             (viewSize?.width)!/2 - playButton.frame.size.width/2,
