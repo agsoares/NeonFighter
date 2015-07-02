@@ -58,11 +58,15 @@ class MainMenu: SKScene {
         gameCenterButton.addTarget(self,
             action: "buttonPressed:",
             forControlEvents: .TouchUpInside)
+        let bg = UIImage(named: "fundoSemi")?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
         
+        let bgView = UIImageView(image: bg!)
+        bgView.frame = self.view!.frame
         playButton.tag = 1
         muteButton.tag = 2
         muteFXButton.tag = 3
         gameCenterButton.tag = 4
+//        self.view?.addSubview(bgView)
         
         
         
@@ -81,6 +85,7 @@ class MainMenu: SKScene {
         self.view?.addSubview(muteButton);
         self.view?.addSubview(muteFXButton);
         self.view?.addSubview(gameCenterButton);
+        self.view?.addSubview(bgView)
     }
     
     func buttonPressed(sender: UIButton){
