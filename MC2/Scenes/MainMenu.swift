@@ -7,14 +7,12 @@
 //
 import SpriteKit
 
-
-
 class MainMenu: SKScene {
     func createButtonWithImageNamed(imageName: String) -> UIButton{
         let button = UIButton()
         
         if let image = UIImage(named: imageName){
-            button.frame.size = image.size
+            button.frame.size = image.size / GameManager.sharedInstance.scaleFactor
             button.frame.origin = CGPointMake(0, 0)
             button.setImage(image, forState: .Normal)
         }else{
@@ -24,6 +22,12 @@ class MainMenu: SKScene {
         button.addTarget(self,
             action: "buttonPressed:",
             forControlEvents: .TouchUpInside)
+        return button
+    }
+    
+    func createButtonWithTwoStatesAndImageNamed(enableImageName: String, disabledImageName: String) -> UIButton{
+        let button = createButtonWithImageNamed(enableImageName)
+        button.setImage(UIImage(named: disabledImageName), forState: UIControlState.Selected)
         return button
     }
     
@@ -38,13 +42,15 @@ class MainMenu: SKScene {
         let viewSize = self.view?.frame.size
         
         let playButton = createButtonWithImageNamed("btPlayGame")
-        let muteButton = createButtonWithImageNamed("btVolume3")
+//        let muteButton = createButtonWithImageNamed("btVolume3")
         let muteFXButton = createButtonWithImageNamed("")
+        let muteButton = createButtonWithTwoStatesAndImageNamed("btSomOn", disabledImageName: "btSomOff")
         
         
         playButton.tag = 1
         muteButton.tag = 2
         muteFXButton.tag = 3
+//        bt.tag = 4
         
         playButton.frame.origin = CGPointMake(
             (viewSize?.width)!/2 - playButton.frame.size.width/2,
@@ -53,10 +59,10 @@ class MainMenu: SKScene {
         muteFXButton.frame.origin = CGPointMake(muteButton.frame.size.width, 0)
         
         if(!GameManager.sharedInstance.userDidEnableSound){
-            muteButton.alpha = 0.5
+            muteButton.selected = false
         }
         if(!GameManager.sharedInstance.userDidEnableSoundFX){
-            muteFXButton.alpha = 0.5
+            muteFXButton.selected = false
         }
         
         self.view?.addSubview(playButton);
@@ -80,24 +86,22 @@ class MainMenu: SKScene {
             break
         case 2:
             if(GameManager.sharedInstance.userDidEnableSound){
-                sender.alpha = 0.5
+                sender.selected = false
                 GameManager.sharedInstance.userDidEnableSound = false
             }else{
-                sender.alpha = 1
+                sender.selected = true
                 GameManager.sharedInstance.userDidEnableSound = true
             }
             
             break
         case 3:
             if(GameManager.sharedInstance.userDidEnableSoundFX){
-                sender.alpha = 0.5
+                sender.selected = false
                 GameManager.sharedInstance.userDidEnableSoundFX = false
             }else{
-                sender.alpha = 1
+                sender.selected = true
                 GameManager.sharedInstance.userDidEnableSoundFX = true
             }
-            
-            break
         default:
             break
         }

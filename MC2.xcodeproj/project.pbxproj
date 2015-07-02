@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35046C1F1B41ADB500FFD05C /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35046C1E1B41ADB500FFD05C /* MainMenu.swift */; };
+		35D060471B4481AF00AD3E99 /* Overloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D060461B4481AF00AD3E99 /* Overloading.swift */; };
 		B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AB1B39E61100187052 /* UIColor+Flat.swift */; };
 		B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91160AD1B3B2C9400187052 /* Images.xcassets */; };
 		B91160B01B3C664000187052 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AF1B3C664000187052 /* Enemy.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		35046C1E1B41ADB500FFD05C /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		35D060461B4481AF00AD3E99 /* Overloading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Overloading.swift; sourceTree = "<group>"; };
 		B91160AB1B39E61100187052 /* UIColor+Flat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Flat.swift"; path = "Extensions/UIColor+Flat.swift"; sourceTree = "<group>"; };
 		B91160AD1B3B2C9400187052 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B91160AF1B3C664000187052 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enemy.swift; path = Classes/Enemy.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35D060451B44818300AD3E99 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				35D060461B4481AF00AD3E99 /* Overloading.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		B91160B51B3C699700187052 /* Enemies */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +178,7 @@
 		B93086221B2103D900822E47 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
+				35D060451B44818300AD3E99 /* Helper */,
 				B9451C5B1B2525EC00B8978C /* Extension */,
 				B9451C581B24E39900B8978C /* Classes */,
 				B930864B1B210BBB00822E47 /* AnalogStick */,
@@ -429,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35D060471B4481AF00AD3E99 /* Overloading.swift in Sources */,
 				B91160C31B3F4F4600187052 /* SKNode+Utils.swift in Sources */,
 				B94B3EB31B43249E00D72FF8 /* DestroyableNode.swift in Sources */,
 				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
