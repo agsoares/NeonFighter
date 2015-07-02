@@ -55,11 +55,11 @@ extension CGPoint {
 
 class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
-    
     let moveAnalogStick: AnalogStick = AnalogStick()
     
     let camera = SKNode();
     let hud = SKNode();
+    
     let world = SKNode();
     var scoreLabel = SKLabelNode(fontNamed: "Icklips")
 
@@ -68,6 +68,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     var gameManager = GameManager.sharedInstance;
     var soundManager = SoundManager.sharedInstance;
     
+    var hudView: UIView!
+    
     var menuView: UIView!
     var retryMenu: UIView!
     var pauseMenu: UIView!
@@ -75,9 +77,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         createPauseMenu()
         createRetryMenu()
+        createHudView()
+        
         
         self.addChild(world);
-
         
         self.addChild(hud)
         hud.zPosition = 1.0;
@@ -114,6 +117,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     func presentRetryMenu() {
         self.view?.paused = true;
         self.view?.addSubview(retryMenu);
+    }
+    
+    func createHudView() {
+        hudView = UIView(frame: self.view!.frame)
+    
     }
     
     func createPauseMenu() {
@@ -331,8 +339,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         enemy.position = CGPoint(x: size.width + enemy.size.width/2, y: actualY)
         
         world.addChild(enemy)
-    
-        //world.shake(1.0)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
