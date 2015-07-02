@@ -15,30 +15,6 @@ import AudioToolbox
     }
 #endif
 
-func + (left: CGPoint, right: CGPoint) -> CGPoint {
-    return CGPoint(x: left.x + right.x, y: left.y + right.y)
-}
-
-func - (left: CGPoint, right: CGPoint) -> CGPoint {
-    return CGPoint(x: left.x - right.x, y: left.y - right.y)
-}
-
-func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
-    return CGPoint(x: point.x * scalar, y: point.y * scalar)
-}
-
-func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
-    return CGPoint(x: point.x / scalar, y: point.y / scalar)
-}
-
-func random() -> CGFloat {
-    return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-}
-
-func random(#min: CGFloat, #max: CGFloat) -> CGFloat {
-    return random() * (max - min) + min
-}
-
 extension CGPoint {
     func length() -> CGFloat {
         return sqrt(x*x + y*y)
@@ -49,15 +25,13 @@ extension CGPoint {
     }
 }
 
-
-
 class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
-    
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
     let camera = SKNode();
     let hud = SKNode();
+    
     let world = SKNode();
     var scoreLabel = SKLabelNode(fontNamed: "Icklips")
 
@@ -66,16 +40,20 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     var gameManager = GameManager.sharedInstance;
     var soundManager = SoundManager.sharedInstance;
     
-    var menuView: UIView!
+    var hudView: UIView!
+    
+    var mainMenu: UIView!
+    var retryMenu: UIView!
+    var pauseMenu: UIView!
     
     override func didMoveToView(view: SKView) {
-        self.menuView = UIView(frame: CGRectMake(self.frame.width*0.20,
-            self.frame.height*0.20,
-            self.frame.width*0.60,
-            self.frame.height*0.60))
+        createPauseMenu()
+        createRetryMenu()
+        createMainMenu()
+        createHudView()
+        
         
         self.addChild(world);
-
         
         self.addChild(hud)
         hud.zPosition = 1.0;
@@ -84,6 +62,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         scoreLabel.verticalAlignmentMode = .Top
         hud.addChild(scoreLabel)
         
+        self.backgroundColor = UIColor.wetAsfaltColor()
         
         setupJoystick();
         
@@ -95,43 +74,147 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         startScene();
 
-        /*
-        self.shader = SKShader(fileNamed: "test")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
-        self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
-        self.shouldEnableEffects = true;
-        */
         if(GameManager.sharedInstance.userDidEnableSound){
-            soundManager.playMusic("TestMP3", looped: true);
+            soundManager.playMusic("loop", looped: true);
         }
         
         //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
         //self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
         //self.shouldEnableEffects = true;
         
-        
-//        soundManager.playMusic("TestMP3", looped: true);
+    }
+    
+    func presentPauseMenu() {
+        self.view?.paused = true;
+        self.view?.addSubview(pauseMenu);
     }
     
     
     func presentRetryMenu() {
         self.view?.paused = true;
-        var retryButton = UIButton(frame: CGRectMake(0 , 0, 50, 50))
+        self.view?.addSubview(retryMenu);
+    }
+    
+    func presentMainMenu() {
+        self.view?.paused = true;
+        pauseMenu.removeFromSuperview()
+        soundManager.stopMusic();
+        hudView.removeFromSuperview()
+        let scene = MainMenu(size: self.view!.frame.size)
+        let skView = self.view as SKView?
+        skView!.presentScene(scene)
+    }
+    
+    func createHudView() {
+        hudView = UIView(frame: self.view!.frame)
+        var pauseImage = UIImage(named: "btPause")!.imageWithColor(UIColor.pomegranateColor())
+        let pauseButton = UIButton(image: pauseImage)
+        
+//        let pauseButton = UIButton(imageNamed: "btPaused")
+        pauseButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside)
+        pauseButton.tag = 0;
+        pauseButton.center.x = CGRectGetMaxX(hudView.frame)-CGRectGetMidX(pauseButton.frame)
+        hudView.addSubview(pauseButton);
+        
+        self.view?.addSubview(hudView);
+    }
+    
+    func createPauseMenu() {
+        let menu = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
+        
+        self.pauseMenu = menu;
+        
+        let retryButton = UIButton(imageNamed: "btPlayAgain")
+        retryButton.tag = 1;
+        retryButton.frame.origin = CGPointMake(menu.frame.width - retryButton.frame.size.width, 0)
         retryButton.addTarget(self,
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside);
-        retryButton.backgroundColor = UIColor.redColor()
-        menuView.addSubview(retryButton);
-        self.view?.addSubview(menuView);
+        
+        let backButton = UIButton(imageNamed: "menu")
+        backButton.tag = 2;
+        backButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        
+        let continueButton = UIButton(imageNamed: "btPause")
+        continueButton.tag = 3;
+        continueButton.frame.origin = CGPointMake(menu.frame.width/2 - continueButton.frame.size.width/2, menu.frame.height/2 - continueButton.frame.size.height/2)
+        continueButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+//        menu.backgroundColor = UIColor.greenSeaColor()
+        menu.addSubview(retryButton);
+        menu.addSubview(backButton);
+        menu.addSubview(continueButton)
+    
     }
     
+    func createRetryMenu() {
+        var menu = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
+        
+        self.retryMenu = menu;
+        
+//        var retryButton = UIButton(frame: CGRectMake(0 , 0, 100, 100))
+        let retryImage = UIImage(named: "btPlayAgain");
+        let retryButton = UIButton(image: retryImage!)
+        
+        
+        retryButton.contentMode = UIViewContentMode.ScaleAspectFit
+        retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
+        retryButton.tag = 1;
+        retryButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        menu.addSubview(retryButton);
+    
+    }
+    
+    func createMainMenu(){
+        self.mainMenu = UIView(frame: CGRectMake(self.frame.width*0.20,
+            self.frame.height*0.20,
+            self.frame.width*0.60,
+            self.frame.height*0.60))
+    }
     
     func touchButton(button : UIButton!) {
-//        restartScene();
+        switch button.tag {
+            case 0:
+                if (self.view!.paused && player.life > 0) {
+                    self.view?.paused = false;
+                    pauseMenu.removeFromSuperview();
+                } else {
+                    presentPauseMenu()
+                }
+            case 1:
+                restartScene();
+            case 2:
+                presentMainMenu()
+            case 3:
+                pauseMenu.removeFromSuperview()
+                view?.paused = false;
+            
+            
+            
+            default:
+                return;
+        }
+        //restartScene();
+        /*
         menuView.removeFromSuperview();
         soundManager.stopMusic();
         let scene = MainMenu(size: self.view!.frame.size)
         let skView = self.view as SKView?
         skView!.presentScene(scene)
+        */
     }
     
     func restartScene() {
@@ -145,15 +228,16 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         view?.paused = false;
         
-        
         startScene();
     }
     
     func startScene() {
         view?.paused = false;
+        gameManager.score = 0;
         player = Player();
         var grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
+        grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
         grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         grid.blendMode = SKBlendMode.MultiplyX2;
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
@@ -207,12 +291,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     }
                 } else if (contact.bodyA.categoryBitMask == PhysicsCategory.Weapon || contact.bodyB.categoryBitMask == PhysicsCategory.Weapon ) {
                     emitter.particleColorBlendFactor = 1
-                    emitter.particleColor = player.ball.color
-                
-                
-                } else {
-                
-                
+                    emitter.particleColor = player.ball.color;
                 }
                 
                 world.addChild(emitter);
@@ -298,8 +377,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         enemy.position = CGPoint(x: size.width + enemy.size.width/2, y: actualY)
         
         world.addChild(enemy)
-    
-        //world.shake(1.0)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -339,7 +416,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        player.physicsBody?.applyForce(CGVectorMake(velocity.x*700, velocity.y*700))
+        if (!self.view!.paused) {
+          player.physicsBody?.applyForce(CGVectorMake(velocity.x*700, velocity.y*700))
+        }
+        
     }
     
     
