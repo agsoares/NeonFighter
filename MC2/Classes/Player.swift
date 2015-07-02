@@ -13,7 +13,7 @@ class Player: DestroyableNode {
     var ball: SKSpriteNode!
     
     init() {
-        let texture = SKTexture(imageNamed: "player")
+        let texture = SKTexture(imageNamed: "player2")
         super.init(texture: texture, color: UIColor.greenSeaColor(),
             size: texture.size())
         self.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
@@ -26,9 +26,9 @@ class Player: DestroyableNode {
     }
 
     func setupPhysics() {
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: (self.size.width/2)*0.6)
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.allowsRotation = true
+        self.physicsBody?.angularDamping = 0.9
         self.physicsBody?.categoryBitMask = PhysicsCategory.Player
         self.physicsBody?.collisionBitMask = PhysicsCategory.All
         self.physicsBody?.contactTestBitMask = PhysicsCategory.All

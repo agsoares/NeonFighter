@@ -46,8 +46,8 @@ class GameViewController: UIViewController {
         let menu = MainMenu(size: self.view.frame.size)
         // Configure the view.
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        //skView.showsFPS = true
+        //skView.showsNodeCount = true
         
         scene.backgroundColor = UIColor.wetAsfaltColor()
         

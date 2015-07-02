@@ -107,10 +107,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func createHudView() {
         hudView = UIView(frame: self.view!.frame)
-        var pauseImage = UIImage(named: "btPause")!.imageWithColor(UIColor.pomegranateColor())
+        var pauseImage = UIImage(named: "btPause")!.imageWithColor(UIColor.wisteriaColor())
         let pauseButton = UIButton(image: pauseImage)
-        
-//        let pauseButton = UIButton(imageNamed: "btPaused")
+        pauseButton.contentMode = .ScaleAspectFit
+        pauseButton.frame.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
         pauseButton.addTarget(self,
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside)
