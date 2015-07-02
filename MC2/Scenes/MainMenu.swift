@@ -42,10 +42,9 @@ class MainMenu: SKScene {
         let viewSize = self.view?.frame.size
         
         let playButton = UIButton(imageNamed: "btPlayGame")
-        
-        let muteFXButton = UIButton(enableImageName: "btSomOn", selectedImageName: "btSomOff")
+        let muteFXButton = UIButton(enableImageName: "btSomFXOn", selectedImageName: "btSomFXOff")
         let muteButton =  UIButton(enableImageName: "btSomOn", selectedImageName: "btSomOff")
-//        let muteButton = createButtonWithImageNamed("btVolume3")
+        let gameCenterButton = UIButton(imageNamed: "btGameCenter")
         
         playButton.addTarget(self,
             action: "buttonPressed:",
@@ -56,11 +55,14 @@ class MainMenu: SKScene {
         muteButton.addTarget(self,
             action: "buttonPressed:",
             forControlEvents: .TouchUpInside)
+        gameCenterButton.addTarget(self,
+            action: "buttonPressed:",
+            forControlEvents: .TouchUpInside)
         
         playButton.tag = 1
         muteButton.tag = 2
         muteFXButton.tag = 3
-//        bt.tag = 4
+        gameCenterButton.tag = 4
         
         
         
@@ -68,7 +70,9 @@ class MainMenu: SKScene {
             (viewSize?.width)!/2 - playButton.frame.size.width/2,
             (viewSize?.height)!/2 - playButton.frame.size.height/2)
         
-        muteFXButton.frame.origin = CGPointMake(muteButton.frame.size.width, 0)
+        muteButton.frame.origin = CGPointMake(0, playButton.frame.origin.y + playButton.frame.size.height)
+        muteFXButton.frame.origin = CGPointMake(muteButton.frame.size.width, muteButton.frame.origin.y)
+        gameCenterButton.frame.origin = CGPointMake(muteFXButton.frame.origin.x + muteFXButton.frame.size.width, muteButton.frame.origin.y)
         
         muteFXButton.selected = !GameManager.sharedInstance.userDidEnableSoundFX
         muteButton.selected = !GameManager.sharedInstance.userDidEnableSound
@@ -76,6 +80,7 @@ class MainMenu: SKScene {
         self.view?.addSubview(playButton);
         self.view?.addSubview(muteButton);
         self.view?.addSubview(muteFXButton);
+        self.view?.addSubview(gameCenterButton);
     }
     
     func buttonPressed(sender: UIButton){
@@ -100,6 +105,8 @@ class MainMenu: SKScene {
         case 3:
             sender.selected = !sender.selected
             GameManager.sharedInstance.userDidEnableSoundFX = !sender.selected
+        case 4:
+            showLeaderBoards()
         default:
             break
         }
@@ -107,7 +114,9 @@ class MainMenu: SKScene {
         NSUserDefaults.standardUserDefaults().setBool(GameManager.sharedInstance.userDidEnableSoundFX , forKey: "userDidEnableSoundFX")
     }
     
-    
+    func showLeaderBoards(){
+        NSNotificationCenter.defaultCenter().postNotificationName("callGameCenterLeaderBoard", object: nil);
+    }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */

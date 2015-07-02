@@ -97,7 +97,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func presentMainMenu() {
         self.view?.paused = true;
-        pauseMenu.removeFromSuperview()
+        if(pauseMenu != nil){
+            pauseMenu.removeFromSuperview()
+        }
+        if(retryMenu != nil){
+            retryMenu.removeFromSuperview()
+        }
         soundManager.stopMusic();
         hudView.removeFromSuperview()
         let scene = MainMenu(size: self.view!.frame.size)
@@ -195,7 +200,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     presentPauseMenu()
                 }
             case 1:
-                restartScene();
+                restartScene()
             case 2:
                 presentMainMenu()
             case 3:
@@ -221,6 +226,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         GameCenterManager.gcManager.reportScore(gameManager.score);
         retryMenu.removeFromSuperview();
         pauseMenu.removeFromSuperview();
+        if(NSUserDefaults.standardUserDefaults().integerForKey("BestScore") > gameManager.score){
+            NSUserDefaults.standardUserDefaults().setInteger(gameManager.score, forKey: "BestScore");
+        }
+        gameManager.score = 0;
         world.removeAllChildren();
         self.physicsWorld.removeAllJoints();
         self.removeAllActions();
@@ -299,7 +308,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             
                 
                 if ((contact.bodyA.categoryBitMask & (PhysicsCategory.Enemy | PhysicsCategory.Player)) != 0b0) {
-                    println("LOL")
+                    //println("LOL")
                     
                 }
             
@@ -345,13 +354,15 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
-            println("eita")
+            //println("eita")
         }
         
         if(contact.bodyA.categoryBitMask == PhysicsCategory.Enemy && contact.bodyB.categoryBitMask == PhysicsCategory.Player) {
             //println(contact.collisionImpulse);
             
         }
+        let f = player.life/160000
+        player.color = UIColor(red: 0.6, green: f, blue: 0.8, alpha: 1.0)
         
     }
     func setupJoystick() {
