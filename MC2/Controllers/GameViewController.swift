@@ -31,7 +31,6 @@ class GameViewController: UIViewController {
     var gameManager = GameManager.sharedInstance;
     
     override func viewDidLoad() {
-        
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
         
         super.viewDidLoad()
