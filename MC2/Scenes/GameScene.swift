@@ -83,7 +83,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
     }
     
-    
+    func presentPauseMenu() {
+        self.view?.paused = true;
+        self.view?.addSubview(pauseMenu);
+    }
     
     
     func presentRetryMenu() {
@@ -93,6 +96,18 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func createHudView() {
         hudView = UIView(frame: self.view!.frame)
+        var pauseButton = UIButton(frame: CGRectMake(0 , 0, 50, 50))
+        var pauseImage = UIImage(named: "btPause")!.imageWithColor(UIColor.pomegranateColor())
+        pauseButton.setBackgroundImage(pauseImage, forState: .Normal)
+        pauseButton.contentMode = .ScaleAspectFit
+        pauseButton.addTarget(self,
+            action: Selector("touchButton:"),
+            forControlEvents: .TouchUpInside);
+        pauseButton.center.x = CGRectGetMaxX(hudView.frame)-CGRectGetMidX(pauseButton.frame)
+        pauseButton.tag = 0;
+        hudView.addSubview(pauseButton);
+        
+        self.view?.addSubview(hudView);
     
     }
     
@@ -108,6 +123,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         var retryImage = UIImage(named: "btPlayAgain");
         retryButton.contentMode = UIViewContentMode.ScaleAspectFit
         retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
+        retryButton.tag = 1;
         retryButton.addTarget(self,
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside);
@@ -128,6 +144,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         var retryImage = UIImage(named: "btPlayAgain");
         retryButton.contentMode = UIViewContentMode.ScaleAspectFit
         retryButton.setBackgroundImage(retryImage?.imageWithColor(UIColor.pomegranateColor()), forState: UIControlState.Normal)
+        retryButton.tag = 1;
         retryButton.addTarget(self,
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside);
@@ -136,7 +153,20 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func touchButton(button : UIButton!) {
-        restartScene();
+        switch button.tag {
+            case 0:
+                if (self.view!.paused && player.life > 0) {
+                    self.view?.paused = false;
+                    pauseMenu.removeFromSuperview();
+                } else {
+                    presentPauseMenu()
+                }
+            case 1:
+                restartScene();
+            default:
+                return;
+        }
+        //restartScene();
         /*
         menuView.removeFromSuperview();
         soundManager.stopMusic();
@@ -220,12 +250,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     }
                 } else if (contact.bodyA.categoryBitMask == PhysicsCategory.Weapon || contact.bodyB.categoryBitMask == PhysicsCategory.Weapon ) {
                     emitter.particleColorBlendFactor = 1
-                    emitter.particleColor = player.ball.color
-                
-                
-                } else {
-                
-                
+                    emitter.particleColor = player.ball.color;
                 }
                 
                 world.addChild(emitter);
@@ -350,7 +375,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        player.physicsBody?.applyForce(CGVectorMake(velocity.x*700, velocity.y*700))
+        if (!self.view!.paused) {
+          player.physicsBody?.applyForce(CGVectorMake(velocity.x*700, velocity.y*700))
+        }
+        
     }
     
     
