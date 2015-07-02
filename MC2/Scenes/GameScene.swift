@@ -149,7 +149,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             action: Selector("touchButton:"),
             forControlEvents: .TouchUpInside);
 //        menu.backgroundColor = UIColor.greenSeaColor()
-        \
         menu.addSubview(retryButton);
         menu.addSubview(backButton);
         menu.addSubview(continueButton)
