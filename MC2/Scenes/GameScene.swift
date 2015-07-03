@@ -146,6 +146,16 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         bgView.frame.size = self.view!.frame.size
         bgView.frame.origin = CGPointMake(-(menu.frame.origin.x),-(menu.frame.origin.y))
         
+
+        
+        //Text
+        var text = UILabel(frame: CGRectMake(0, 20, menu.frame.size.width, menu.frame.size.height*0.4))
+        text.font = UIFont(name: "Icklips", size: 100)
+        text.textColor = UIColor.pomegranateColor()
+        println(text.font.description)
+        text.textAlignment = NSTextAlignment.Center;
+        text.text = "Paused"
+        
         
         /*=======================Buttons=======================*/
         let retryButton = UIButton(imageNamed: "btPlayAgain")
@@ -175,11 +185,13 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             forControlEvents: .TouchUpInside);
         /*====================================================*/
         
+
         menu.addSubview(bgView)
 //        menu.addSubview(continueButton)
         menu.addSubview(containerView)
         menu.addSubview(retryButton)
         menu.addSubview(backButton)
+        menu.addSubview(text)
     }
     
     
@@ -190,6 +202,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             self.frame.height*0.60))
         
         self.retryMenu = menu;
+        
+        //Text
+        
         
         //Container
         let containerImage = UIImage(named: "resizebleButton")?.resizableImageWithCapInsets(UIEdgeInsetsMake(30.0, 30.0, 30.0, 30.0))
@@ -204,10 +219,19 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         bgView.frame.origin = CGPointMake(-(menu.frame.origin.x),-(menu.frame.origin.y))
         
         
+        //Text
+        var text = UILabel(frame: CGRectMake(0, 20, menu.frame.size.width, menu.frame.size.height*0.4))
+        text.font = UIFont(name: "Icklips", size: 100)
+        text.textColor = UIColor.pomegranateColor()
+        println(text.font.description)
+        text.textAlignment = NSTextAlignment.Center;
+        text.text = "Game Over"
+        
         let retryImage = UIImage(named: "btPlayAgain");
-        let retryButton = UIButton(image: (retryImage?.imageWithColor(UIColor.pomegranateColor()))!)
-        retryButton.frame.size = CGSizeMake(80, 85)
-        let pt = (menu.frame.size.width/2 + menu.frame.size.width/4) - retryButton.frame.size.width
+        let retryButton = UIButton(image: (retryImage?.imageWithColor(UIColor.whiteColor()))!)
+        retryButton.frame.size = CGSizeMake(80, 95)
+        retryButton.contentMode = .ScaleAspectFill
+        let pt = menu.frame.size.width*0.75 - retryButton.frame.size.width
         retryButton.frame.origin = CGPointMake(pt, menu.frame.size.height/2)
         retryButton.tag = 1;
         retryButton.addTarget(self,
@@ -216,8 +240,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         menu.addSubview(retryButton);
         
         let backButton = UIButton(imageNamed: "btMenu")
-        backButton.frame.origin = CGPointMake(menu.frame.size.width/4, menu.frame.size.height/2)
-        backButton.frame.size = CGSizeMake(80, 80)
+        backButton.frame.size = CGSizeMake(65,65)
+        backButton.frame.origin = CGPointMake(menu.frame.size.width/4, menu.frame.size.height/2+15)
         backButton.tag = 2;
         backButton.addTarget(self,
             action: Selector("touchButton:"),
@@ -228,6 +252,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         menu.addSubview(containerView)
         menu.addSubview(retryButton)
         menu.addSubview(backButton)
+        menu.addSubview(text)
     
     }
     
