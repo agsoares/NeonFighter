@@ -33,12 +33,16 @@ class MainMenu: SKScene {
     
     
     override func didMoveToView(view: SKView) {
+        var grid = SKSpriteNode(imageNamed: "grid");
+        grid.zPosition = -0.1
+        grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
+        grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        grid.blendMode = SKBlendMode.MultiplyX2;
+        self.addChild(grid);
+        
         GameManager.sharedInstance.userDidEnableSoundFX = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSoundFX")
         GameManager.sharedInstance.userDidEnableSound = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSound")
-        
-        
-        println("\(GameManager.sharedInstance.userDidEnableSoundFX)")
-        println("\(GameManager.sharedInstance.userDidEnableSound)")
+
         let viewSize = self.view?.frame.size
         
         let playButton = UIButton(imageNamed: "btPlayGame")
@@ -58,6 +62,7 @@ class MainMenu: SKScene {
         gameCenterButton.addTarget(self,
             action: "buttonPressed:",
             forControlEvents: .TouchUpInside)
+        
         playButton.tag = 1
         muteButton.tag = 2
         muteFXButton.tag = 3
@@ -70,8 +75,8 @@ class MainMenu: SKScene {
             (viewSize?.width)!/2 - playButton.frame.size.width/2,
             (viewSize?.height)!/2 - playButton.frame.size.height/2)
         
-        muteButton.frame.origin = CGPointMake(0, playButton.frame.origin.y + playButton.frame.size.height)
-        muteFXButton.frame.origin = CGPointMake(muteButton.frame.size.width, muteButton.frame.origin.y)
+        muteFXButton.frame.origin = CGPointMake(playButton.center.x - muteFXButton.frame.size.width/2, playButton.frame.origin.y + playButton.frame.size.height)
+        muteButton.frame.origin = CGPointMake(muteFXButton.frame.origin.x - muteFXButton.frame.size.width, playButton.frame.origin.y + playButton.frame.size.height)
         gameCenterButton.frame.origin = CGPointMake(muteFXButton.frame.origin.x + muteFXButton.frame.size.width, muteButton.frame.origin.y)
         
         muteFXButton.selected = !GameManager.sharedInstance.userDidEnableSoundFX
