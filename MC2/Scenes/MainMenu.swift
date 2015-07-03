@@ -31,6 +31,9 @@ class MainMenu: SKScene {
 //        return button
 //    }
     
+    var logo: UIImageView!
+    
+    var gameManager = GameManager.sharedInstance
     
     override func didMoveToView(view: SKView) {
         var grid = SKSpriteNode(imageNamed: "grid");
@@ -40,8 +43,10 @@ class MainMenu: SKScene {
         grid.blendMode = SKBlendMode.MultiplyX2;
         self.addChild(grid);
         
-        GameManager.sharedInstance.userDidEnableSoundFX = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSoundFX")
-        GameManager.sharedInstance.userDidEnableSound = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSound")
+        
+        
+        gameManager.userDidEnableSoundFX = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSoundFX")
+        gameManager.userDidEnableSound = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSound")
 
         let viewSize = self.view?.frame.size
         
@@ -49,6 +54,12 @@ class MainMenu: SKScene {
         let muteFXButton = UIButton(enableImageName: "btSomFXOn", selectedImageName: "btSomFXOff")
         let muteButton =  UIButton(enableImageName: "btSomOn", selectedImageName: "btSomOff")
         let gameCenterButton = UIButton(imageNamed: "btGameCenter")
+        
+        logo = UIImageView(image: UIImage(named: "logo"))
+        logo.contentMode = UIViewContentMode.ScaleAspectFit;
+        logo.frame.size = CGSizeMake(logo.frame.size.width/gameManager.scaleFactor, logo.frame.size.height/gameManager.scaleFactor)
+        logo.frame.origin = CGPointMake( (viewSize?.width)!/2 - logo.frame.size.width/2, 0)
+        
         
         playButton.addTarget(self,
             action: "buttonPressed:",
@@ -85,6 +96,7 @@ class MainMenu: SKScene {
         self.view?.addSubview(playButton);
         self.view?.addSubview(muteButton);
         self.view?.addSubview(muteFXButton);
+        self.view?.addSubview(logo);
         self.view?.addSubview(gameCenterButton);
     }
     
@@ -101,6 +113,7 @@ class MainMenu: SKScene {
                     button.removeFromSuperview()
                 }
             }
+            logo.removeFromSuperview();
             skView!.presentScene(scene)
             break
         case 2:
