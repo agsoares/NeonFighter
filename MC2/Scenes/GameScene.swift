@@ -150,7 +150,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         //Text
         var text = UILabel(frame: CGRectMake(0, 20, menu.frame.size.width, menu.frame.size.height*0.4))
-        text.font = UIFont(name: "Icklips", size: 100)
+        text.font = UIFont(name: "Icklips", size: 100/gameManager.scaleFactor)
         text.textColor = UIColor.pomegranateColor()
         println(text.font.description)
         text.textAlignment = NSTextAlignment.Center;
@@ -187,7 +187,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
 
         menu.addSubview(bgView)
-//        menu.addSubview(continueButton)
         menu.addSubview(containerView)
         menu.addSubview(retryButton)
         menu.addSubview(backButton)
@@ -221,7 +220,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         //Text
         var text = UILabel(frame: CGRectMake(0, 20, menu.frame.size.width, menu.frame.size.height*0.4))
-        text.font = UIFont(name: "Icklips", size: 100)
+        text.font = UIFont(name: "Icklips", size: 100/gameManager.scaleFactor)
         text.textColor = UIColor.pomegranateColor()
         println(text.font.description)
         text.textAlignment = NSTextAlignment.Center;
