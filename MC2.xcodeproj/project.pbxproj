@@ -92,7 +92,7 @@
 		B91160B81B3C6BEB00187052 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
 		B91160C01B3F407400187052 /* TestMP3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TestMP3.mp3; sourceTree = "<group>"; };
 		B91160C21B3F4F4600187052 /* SKNode+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SKNode+Utils.swift"; path = "Extensions/SKNode+Utils.swift"; sourceTree = "<group>"; };
-		B93086201B2103D900822E47 /* MC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93086201B2103D900822E47 /* Neon Fighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neon Fighter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93086241B2103D900822E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93086251B2103D900822E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B93086291B2103D900822E47 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		B93086211B2103D900822E47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B93086201B2103D900822E47 /* MC2.app */,
+				B93086201B2103D900822E47 /* Neon Fighter.app */,
 				DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */,
 				DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */,
 			);
@@ -321,7 +321,7 @@
 			);
 			name = "Neon Fighter";
 			productName = MC2;
-			productReference = B93086201B2103D900822E47 /* MC2.app */;
+			productReference = B93086201B2103D900822E47 /* Neon Fighter.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */ = {
@@ -610,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
@@ -623,6 +624,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
