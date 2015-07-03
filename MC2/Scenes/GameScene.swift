@@ -433,8 +433,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             //println(contact.collisionImpulse);
             
         }
-        let f = player.life/160000
-        player.color = UIColor(red: 0.6, green: f, blue: 0.8, alpha: 1.0)
+        //let f = player.life/160000
+        //player.color = UIColor(red: 0.6, green: f, blue: 0.8, alpha: 1.0)
         
     }
     func setupJoystick() {
