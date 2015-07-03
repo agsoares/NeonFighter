@@ -305,9 +305,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B930861F1B2103D900822E47 /* Neon Fight */ = {
+		B930861F1B2103D900822E47 /* Neon Fighter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B93086431B2103D900822E47 /* Build configuration list for PBXNativeTarget "Neon Fight" */;
+			buildConfigurationList = B93086431B2103D900822E47 /* Build configuration list for PBXNativeTarget "Neon Fighter" */;
 			buildPhases = (
 				B930861C1B2103D900822E47 /* Sources */,
 				B930861D1B2103D900822E47 /* Frameworks */,
@@ -319,7 +319,7 @@
 			dependencies = (
 				DBF5FEE01B445122003D9391 /* PBXTargetDependency */,
 			);
-			name = "Neon Fight";
+			name = "Neon Fighter";
 			productName = MC2;
 			productReference = B93086201B2103D900822E47 /* MC2.app */;
 			productType = "com.apple.product-type.application";
@@ -396,7 +396,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B930861F1B2103D900822E47 /* Neon Fight */,
+				B930861F1B2103D900822E47 /* Neon Fighter */,
 				DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */,
 				DBF5FED21B445122003D9391 /* MC2 WatchKit App */,
 			);
@@ -712,7 +712,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B93086431B2103D900822E47 /* Build configuration list for PBXNativeTarget "Neon Fight" */ = {
+		B93086431B2103D900822E47 /* Build configuration list for PBXNativeTarget "Neon Fighter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B93086441B2103D900822E47 /* Debug */,
