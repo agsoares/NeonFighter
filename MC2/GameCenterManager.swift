@@ -17,9 +17,11 @@ class GameCenterManager : NSObject, GKGameCenterControllerDelegate{
     var localPlayer = GKLocalPlayer()
     
     func showLeaderBoards(view : UIViewController){
-        var gc = GKGameCenterViewController()
-        gc.gameCenterDelegate = GameCenterManager.gcManager
-        view.presentViewController(gc, animated: true, completion: nil)
+        if (self.gameCenterEnabled){
+            var gc = GKGameCenterViewController()
+            gc.gameCenterDelegate = GameCenterManager.gcManager
+            view.presentViewController(gc, animated: true, completion: nil)
+        }
     }
     
     @objc func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)

@@ -23,10 +23,10 @@ class SoundManager : NSObject, AVAudioPlayerDelegate {
             self.player = AVAudioPlayer(contentsOfURL: fileURL, error: &error)
             if let player = self.player {
                 loop = looped
-                player.prepareToPlay()
+                //player.prepareToPlay()
                 player.volume = musicVolume
                 player.delegate = self
-                player.play()
+                //player.play()
             }
         }
     }
