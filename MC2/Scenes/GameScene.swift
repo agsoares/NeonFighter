@@ -68,19 +68,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -0.1)
         self.physicsWorld.contactDelegate = self;
-        
-
-    
-        
         startScene();
 
         if(GameManager.sharedInstance.userDidEnableSound){
             soundManager.playMusic("loop", looped: true);
         }
-        
-        //self.shader = SKShader(fileNamed: "scanline")//SKShader(source: "test", uniforms: [SKUniform(name: "scale", float: 1.0)])
-        //self.shader?.uniforms = [SKUniform(name: "scale", float: 5.0)]
-        //self.shouldEnableEffects = true;
         
     }
     
@@ -284,14 +276,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             default:
                 return;
         }
-        //restartScene();
-        /*
-        menuView.removeFromSuperview();
-        soundManager.stopMusic();
-        let scene = MainMenu(size: self.view!.frame.size)
-        let skView = self.view as SKView?
-        skView!.presentScene(scene)
-        */
     }
     
     func restartScene() {
@@ -346,65 +330,29 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
 
         if(contact.collisionImpulse >= 2000) {
             world.shake(0.1*Float(contact.collisionImpulse/2000.0), force: Float(contact.collisionImpulse/2000.0));
-            
-            var sparkles = SKTexture(imageNamed: "rope_ring") //reusing the bird texture for now
-            if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
-                var emitter = SKEmitterNode()
-                emitter.particleTexture = sparkles
-                emitter.position = contact.contactPoint
-                emitter.particleBirthRate = 450
-                emitter.numParticlesToEmit = 50
-                emitter.emissionAngleRange = 360
-                emitter.particleLifetime = 1
-                emitter.particleSpeed = 50.0
-                emitter.particleSpeedRange = 50;
-                emitter.xAcceleration = 0
-                emitter.yAcceleration = -40
-                if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy || contact.bodyB.categoryBitMask == PhysicsCategory.Enemy ) {
-                    emitter.particleColorBlendFactor = 1
-
-                    if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
-                        emitter.particleColor = (contact.bodyA.node as! SKSpriteNode).color
-                    } else {
-                        emitter.particleColor = (contact.bodyB.node as! SKSpriteNode).color
-                    }
-                } else if (contact.bodyA.categoryBitMask == PhysicsCategory.Weapon || contact.bodyB.categoryBitMask == PhysicsCategory.Weapon ) {
-                    emitter.particleColorBlendFactor = 1
-                    emitter.particleColor = player.ball.color;
-                }
-                
-                world.addChild(emitter);
-            
-            }
-            
-            
         }
         
         if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
             if (nodeA!.respondsToSelector("applyDamage:")) {
-                (nodeA as! DestroyableNode).applyDamage(contact.collisionImpulse);
+                var node = nodeA as! DestroyableNode
+                node.applyDamage(contact.collisionImpulse);
+                if (contact.collisionImpulse >= 2000) {
+                    node.sparkle(contact.contactPoint)
+                }
             }
             if (nodeB!.respondsToSelector("applyDamage:")) {
-                (nodeB as! DestroyableNode).applyDamage(contact.collisionImpulse);
+                var node = nodeB as! DestroyableNode
+                node.applyDamage(contact.collisionImpulse);
+                if (contact.collisionImpulse >= 2000) {
+                    node.sparkle(contact.contactPoint)
+                }
+                
             }
             if(GameManager.sharedInstance.userDidEnableSoundFX){
                 runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
             }
             
         }
-        
-        
-        if(contact.bodyA.categoryBitMask == PhysicsCategory.Player && contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
-            //println("eita")
-        }
-        
-        if(contact.bodyA.categoryBitMask == PhysicsCategory.Enemy && contact.bodyB.categoryBitMask == PhysicsCategory.Player) {
-            //println(contact.collisionImpulse);
-            
-        }
-        //let f = player.life/160000
-        //player.color = UIColor(red: 0.6, green: f, blue: 0.8, alpha: 1.0)
-        
     }
     func setupJoystick() {
         let bgDiametr: CGFloat = 120
@@ -421,11 +369,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func spawnEnemy() {
         let enemy = TriangleShip()
-        // Determine where to spawn the enemy along the Y axis
         let actualY = random(min: enemy.size.height/2, max: size.height - enemy.size.height/2)
-        
-        // Position the enemy slightly off-screen along the right edge,
-        // and along a random position along the Y axis as calculated above
         enemy.position = CGPoint(x: size.width + enemy.size.width/2, y: actualY)
         
         world.addChild(enemy)
@@ -456,10 +400,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         moveAnalogStick.position = CGPointMake(-100, -100)
         moveAnalogStick.hidden = true
         
-    }
-    
-    override func didSimulatePhysics() {
-        //centerOnNode(player);
     }
     
     func centerOnNode(node: SKNode) {

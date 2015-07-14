@@ -31,13 +31,31 @@ class DestroyableNode: SKSpriteNode {
     
     func applyDamage(impact: CGFloat) {
         life -= impact
-        
-        if(self.life < 0.0) {
+        if (self.life < 0.0) {
             self.removeFromParent();
             if (self.physicsBody?.categoryBitMask == PhysicsCategory.Enemy) {
                 gameManager.score++;
             }
         }
+    }
+    
+    func sparkle (point : CGPoint) {
+        var sparkles = SKTexture(imageNamed: "rope_ring") //reusing the bird texture for now
+        var emitter = SKEmitterNode()
+        emitter.particleTexture = sparkles
+        emitter.position = point
+        emitter.particleBirthRate = 450
+        emitter.numParticlesToEmit = 50
+        emitter.emissionAngleRange = 360
+        emitter.particleLifetime = 1
+        emitter.particleSpeed = 50.0
+        emitter.particleSpeedRange = 50;
+        emitter.xAcceleration = 0
+        emitter.yAcceleration = -40
+        emitter.particleColorBlendFactor = 1
+        emitter.particleColor = self.color
+        
+        self.parent?.addChild(emitter)
     }
     
     func colorLerp(from: UIColor, to: UIColor, t: CGFloat) -> UIColor {
