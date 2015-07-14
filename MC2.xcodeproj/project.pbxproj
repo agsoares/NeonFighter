@@ -48,7 +48,6 @@
 		DBF5FED01B445122003D9391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FECF1B445122003D9391 /* Images.xcassets */; };
 		DBF5FED41B445122003D9391 /* MC2 WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */; };
 		DBF5FEDC1B445122003D9391 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FEDA1B445122003D9391 /* Interface.storyboard */; };
-		DBF5FEDE1B445122003D9391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FEDD1B445122003D9391 /* Images.xcassets */; };
 		DBF5FEE11B445122003D9391 /* MC2 WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -131,7 +130,6 @@
 		DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC2 WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF5FED91B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF5FEDB1B445122003D9391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		DBF5FEDD1B445122003D9391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				DBF5FEDA1B445122003D9391 /* Interface.storyboard */,
-				DBF5FEDD1B445122003D9391 /* Images.xcassets */,
 				DBF5FED81B445122003D9391 /* Supporting Files */,
 			);
 			path = "MC2 WatchKit App";
@@ -319,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				DBF5FED91B445122003D9391 /* Info.plist */,
+				DBF063971B5449100054D1A2 /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -458,7 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBF5FEDC1B445122003D9391 /* Interface.storyboard in Resources */,
-				DBF5FEDE1B445122003D9391 /* Images.xcassets in Resources */,
+				DBF063981B5449100054D1A2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
