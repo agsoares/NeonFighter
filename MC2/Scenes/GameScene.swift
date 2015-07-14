@@ -344,8 +344,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         var nodeA = contact.bodyA.node;
         var nodeB = contact.bodyB.node;
 
-
-
         if(contact.collisionImpulse >= 2000) {
             world.shake(0.1*Float(contact.collisionImpulse/2000.0), force: Float(contact.collisionImpulse/2000.0));
             
@@ -377,13 +375,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                 
                 world.addChild(emitter);
             
-            
-                
-                if ((contact.bodyA.categoryBitMask & (PhysicsCategory.Enemy | PhysicsCategory.Player)) != 0b0) {
-                    //println("LOL")
-                    
-                }
-            
             }
             
             
@@ -398,6 +389,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
                         gameManager.score++;
                     } else {
+                        //UnityAds.sharedInstance().show()
                         presentRetryMenu();
                         return;
                     }
@@ -412,6 +404,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
                         gameManager.score++;
                     } else {
+                        //UnityAds.sharedInstance().show()
                         presentRetryMenu();
                         return;
                     }

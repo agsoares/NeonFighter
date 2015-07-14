@@ -35,6 +35,11 @@
 		B95D81D51B43001100091F87 /* impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = B95D81D41B43001100091F87 /* impact.wav */; };
 		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
 		B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */; };
+		B9DEBDC21B5435B200A201B5 /* UnityAds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */; };
+		B9DEBDC31B5435B200A201B5 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC11B5435B200A201B5 /* UnityAds.framework */; };
+		B9DEBDC91B54372300A201B5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */; };
+		B9DEBDCB1B54373900A201B5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCA1B54373900A201B5 /* AdSupport.framework */; };
+		B9DEBDCD1B54377E00A201B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */; };
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 		DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */; };
 		DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF5FEC11B430FE1003D9391 /* GameKit.framework */; };
@@ -109,6 +114,12 @@
 		B95D81D41B43001100091F87 /* impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = impact.wav; sourceTree = "<group>"; };
 		B98988AD1B38918C007CD469 /* scanline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = scanline.fsh; sourceTree = "<group>"; };
 		B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageColor.swift"; sourceTree = "<group>"; };
+		B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UnityAds.bundle; sourceTree = "<group>"; };
+		B9DEBDC11B5435B200A201B5 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
+		B9DEBDC41B54364700A201B5 /* Neon Fighter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Neon Fighter-Bridging-Header.h"; sourceTree = "<group>"; };
+		B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B9DEBDCA1B54373900A201B5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		DBF5FEC11B430FE1003D9391 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -128,7 +139,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DEBDCD1B54377E00A201B5 /* SystemConfiguration.framework in Frameworks */,
+				B9DEBDCB1B54373900A201B5 /* AdSupport.framework in Frameworks */,
+				B9DEBDC91B54372300A201B5 /* CoreTelephony.framework in Frameworks */,
 				DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */,
+				B9DEBDC31B5435B200A201B5 /* UnityAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +176,9 @@
 		B93086171B2103D900822E47 = {
 			isa = PBXGroup;
 			children = (
+				B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */,
+				B9DEBDCA1B54373900A201B5 /* AdSupport.framework */,
+				B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */,
 				DBF5FEC11B430FE1003D9391 /* GameKit.framework */,
 				B93086221B2103D900822E47 /* MC2 */,
 				DBF5FEC81B445122003D9391 /* MC2 WatchKit Extension */,
@@ -182,6 +200,8 @@
 		B93086221B2103D900822E47 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
+				B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */,
+				B9DEBDC11B5435B200A201B5 /* UnityAds.framework */,
 				35D060451B44818300AD3E99 /* Helper */,
 				B9451C5B1B2525EC00B8978C /* Extension */,
 				B9451C581B24E39900B8978C /* Classes */,
@@ -208,6 +228,7 @@
 				352A505C1B45B86D001DC746 /* loop.mp3 */,
 				B95D81D41B43001100091F87 /* impact.wav */,
 				B95313DE1B41B77800131A53 /* Icklips_.ttf */,
+				B9DEBDC41B54364700A201B5 /* Neon Fighter-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -408,6 +429,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DEBDC21B5435B200A201B5 /* UnityAds.bundle in Resources */,
 				B95D81D51B43001100091F87 /* impact.wav in Resources */,
 				B93086501B210BBB00822E47 /* aSBgImg.png in Resources */,
 				B91160C11B3F407400187052 /* TestMP3.mp3 in Resources */,
@@ -611,12 +633,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MC2",
+				);
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MC2/Supporting Files/Neon Fighter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -625,12 +654,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MC2",
+				);
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MC2/Supporting Files/Neon Fighter-Bridging-Header.h";
 			};
 			name = Release;
 		};

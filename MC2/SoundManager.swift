@@ -26,7 +26,7 @@ class SoundManager : NSObject, AVAudioPlayerDelegate {
                 //player.prepareToPlay()
                 player.volume = musicVolume
                 player.delegate = self
-                //player.play()
+                player.play()
             }
         }
     }

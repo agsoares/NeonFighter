@@ -27,7 +27,7 @@ extension SKNode {
 
 
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, UnityAdsDelegate {
     var gameManager = GameManager.sharedInstance;
     
     func callGameCenter(sender: NSNotification?) {
@@ -36,6 +36,10 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
+        
+        UnityAds.sharedInstance().setViewController(self)
+        UnityAds.sharedInstance().delegate = self
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "callGameCenter:",
@@ -87,5 +91,9 @@ class GameViewController: UIViewController {
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func unityAdsVideoCompleted(rewardItemKey: String!, skipped: Bool) {
+        
     }
 }
