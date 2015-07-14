@@ -10,6 +10,9 @@ import SpriteKit
 
 
 class DestroyableNode: SKSpriteNode {
+    var gameManager = GameManager.sharedInstance
+    
+    
     var maxLife: CGFloat = 40000.0;
     var life: CGFloat = 40000.0;
     var initialColor: UIColor!
@@ -28,7 +31,13 @@ class DestroyableNode: SKSpriteNode {
     
     func applyDamage(impact: CGFloat) {
         life -= impact
-        //self.color = colorLerp(initialColor, to: finalColor, t: life/maxLife)
+        
+        if(self.life < 0.0) {
+            self.removeFromParent();
+            if (self.physicsBody?.categoryBitMask == PhysicsCategory.Enemy) {
+                gameManager.score++;
+            }
+        }
     }
     
     func colorLerp(from: UIColor, to: UIColor, t: CGFloat) -> UIColor {

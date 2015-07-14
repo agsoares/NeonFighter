@@ -9,7 +9,6 @@
 import SpriteKit
 
 class Player: DestroyableNode {
-    var gameManager = GameManager.sharedInstance;
     var ball: SKSpriteNode!
     
     init() {

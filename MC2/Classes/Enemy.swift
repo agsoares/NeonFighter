@@ -9,9 +9,7 @@
 import SpriteKit
 
 
-
 class Enemy: DestroyableNode {
-    var gameManager = GameManager.sharedInstance;
     var ia = IA();
     
     init(imageNamed: String) {

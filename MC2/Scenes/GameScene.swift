@@ -382,38 +382,14 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         
         if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
             if (nodeA!.respondsToSelector("applyDamage:")) {
-                var node = (nodeA as! DestroyableNode);
-                node.applyDamage(contact.collisionImpulse)
-                if(node.life < 0.0) {
-                    node.removeFromParent();
-                    if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) {
-                        gameManager.score++;
-                    } else {
-                        //UnityAds.sharedInstance().show()
-                        presentRetryMenu();
-                        return;
-                    }
-                }
-
+                (nodeA as! DestroyableNode).applyDamage(contact.collisionImpulse);
             }
             if (nodeB!.respondsToSelector("applyDamage:")) {
-                var node = (nodeB as! DestroyableNode);
-                node.applyDamage(contact.collisionImpulse)
-                if(node.life < 0.0) {
-                    node.removeFromParent();
-                    if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) {
-                        gameManager.score++;
-                    } else {
-                        //UnityAds.sharedInstance().show()
-                        presentRetryMenu();
-                        return;
-                    }
-                }
-                if(GameManager.sharedInstance.userDidEnableSoundFX){
-                    runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
-                }
+                (nodeB as! DestroyableNode).applyDamage(contact.collisionImpulse);
             }
-            
+            if(GameManager.sharedInstance.userDidEnableSoundFX){
+                runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
+            }
             
         }
         
@@ -501,6 +477,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     override func update(currentTime: CFTimeInterval) {
         scoreLabel.text = gameManager.score.description;
+        if (player.life <= 0) {
+            presentRetryMenu();
+        }
         /* Called before each frame is rendered */
     }
 }
