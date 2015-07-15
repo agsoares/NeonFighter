@@ -37,6 +37,7 @@
 		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
 		B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */; };
 		B9C7003D1B56E1C3007A5066 /* PauseMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C7003C1B56E1C3007A5066 /* PauseMenu.xib */; };
+		B9C7003F1B56E825007A5066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C7003E1B56E825007A5066 /* MainMenu.xib */; };
 		B9DEBDC21B5435B200A201B5 /* UnityAds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */; };
 		B9DEBDC31B5435B200A201B5 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC11B5435B200A201B5 /* UnityAds.framework */; };
 		B9DEBDC91B54372300A201B5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */; };
@@ -118,6 +119,7 @@
 		B98988AD1B38918C007CD469 /* scanline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = scanline.fsh; sourceTree = "<group>"; };
 		B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageColor.swift"; sourceTree = "<group>"; };
 		B9C7003C1B56E1C3007A5066 /* PauseMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PauseMenu.xib; sourceTree = "<group>"; };
+		B9C7003E1B56E825007A5066 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UnityAds.bundle; sourceTree = "<group>"; };
 		B9DEBDC11B5435B200A201B5 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
 		B9DEBDC41B54364700A201B5 /* Neon Fighter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Neon Fighter-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				B9DEBDC41B54364700A201B5 /* Neon Fighter-Bridging-Header.h */,
 				B932EA321B5583C300EA4E2A /* RetryMenu.xib */,
 				B9C7003C1B56E1C3007A5066 /* PauseMenu.xib */,
+				B9C7003E1B56E825007A5066 /* MainMenu.xib */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				B930862F1B2103D900822E47 /* Main.storyboard in Resources */,
 				352A505D1B45B86D001DC746 /* loop.mp3 in Resources */,
 				B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */,
+				B9C7003F1B56E825007A5066 /* MainMenu.xib in Resources */,
 				B9C7003D1B56E1C3007A5066 /* PauseMenu.xib in Resources */,
 				B932EA331B5583C300EA4E2A /* RetryMenu.xib in Resources */,
 				B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */,

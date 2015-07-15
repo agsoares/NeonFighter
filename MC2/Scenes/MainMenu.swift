@@ -35,19 +35,34 @@ class MainMenu: SKScene {
     
     var gameManager = GameManager.sharedInstance
     
+    var menu: UIView!
+    
     override func didMoveToView(view: SKView) {
         var grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
         grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
         grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        grid.blendMode = SKBlendMode.MultiplyX2;
+        //grid.blendMode = SKBlendMode.MultiplyX2;
         self.addChild(grid);
-        
         
         
         gameManager.userDidEnableSoundFX = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSoundFX")
         gameManager.userDidEnableSound = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSound")
+        
+        var menu = NSBundle.mainBundle().loadNibNamed("MainMenu",
+            owner: self,
+            options:nil).first as! UIView
+        menu.frame = self.view!.frame;
+        
+        AddCallback(menu)
+        
+        self.menu = menu;
+        self.view?.addSubview(self.menu)
+        
+        
 
+
+        /*
         let viewSize = self.view?.frame.size
         
         let playButton = UIButton(imageNamed: "btPlayGame")
@@ -78,7 +93,7 @@ class MainMenu: SKScene {
         muteButton.tag = 2
         muteFXButton.tag = 3
         gameCenterButton.tag = 4
-//        self.view?.addSubview(bgView)
+        //self.view?.addSubview(bgView)
         
         
         
@@ -90,14 +105,39 @@ class MainMenu: SKScene {
         muteButton.frame.origin = CGPointMake(muteFXButton.frame.origin.x - muteFXButton.frame.size.width, playButton.frame.origin.y + playButton.frame.size.height)
         gameCenterButton.frame.origin = CGPointMake(muteFXButton.frame.origin.x + muteFXButton.frame.size.width, muteButton.frame.origin.y)
         
-        muteFXButton.selected = !GameManager.sharedInstance.userDidEnableSoundFX
-        muteButton.selected = !GameManager.sharedInstance.userDidEnableSound
+
         
         self.view?.addSubview(playButton);
         self.view?.addSubview(muteButton);
         self.view?.addSubview(muteFXButton);
         self.view?.addSubview(logo);
         self.view?.addSubview(gameCenterButton);
+        */
+        
+
+    }
+    
+    func AddCallback (view: UIView) {
+        for v in view.subviews {
+            if (v is UIButton) {
+                var button = v as! UIButton
+                button.addTarget(self,
+                    action: Selector("buttonPressed:"),
+                    forControlEvents: .TouchUpInside);
+                if(button.tag == 2) {
+                    print("2")
+                    button.selected = !GameManager.sharedInstance.userDidEnableSound
+                }
+                if(button.tag == 3) {
+                    print("3")
+                    button.selected = !GameManager.sharedInstance.userDidEnableSoundFX
+                }
+            } else {
+                AddCallback(v as! UIView);
+            }
+            
+        }
+        
     }
     
     func buttonPressed(sender: UIButton){
@@ -105,15 +145,9 @@ class MainMenu: SKScene {
         case 1:
             let scene = GameScene(size: self.view!.frame.size)
             let skView = self.view as SKView?
-            scene.scaleMode = .AspectFill
+            menu.removeFromSuperview();
             
-            //Remove all UIBUttons from self.view
-            for subview in self.view?.subviews as! [UIView]{
-                if let button = subview as? UIButton{
-                    button.removeFromSuperview()
-                }
-            }
-            logo.removeFromSuperview();
+            
             skView!.presentScene(scene)
             break
         case 2:

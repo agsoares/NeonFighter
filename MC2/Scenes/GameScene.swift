@@ -82,6 +82,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     func presentPauseMenu() {
         self.view?.paused = true;
         self.view?.addSubview(pauseMenu);
+        self.view?.bringSubviewToFront(hudView);
     }
     
     
@@ -106,7 +107,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func createHudView() {
-        hudView = UIView(frame: self.view!.frame)
+        hudView = UIView(frame: CGRectMake(0, 0,
+            self.view!.frame.size.width, self.view!.frame.size.height/2))
         var pauseImage = UIImage(named: "btPause")
         let pauseButton = UIButton(image: pauseImage!)
         pauseButton.contentMode = .ScaleAspectFit
