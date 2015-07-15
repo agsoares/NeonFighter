@@ -42,6 +42,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     var hudView: UIView!
     
+    var testMenu : UIView!
+    
+    
     var mainMenu: UIView!
     var retryMenu: UIView!
     var pauseMenu: UIView!
@@ -104,8 +107,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     func createHudView() {
         hudView = UIView(frame: self.view!.frame)
-        var pauseImage = UIImage(named: "btPause")!.imageWithColor(UIColor.wisteriaColor())
-        let pauseButton = UIButton(image: pauseImage)
+        var pauseImage = UIImage(named: "btPause")
+        let pauseButton = UIButton(image: pauseImage!)
         pauseButton.contentMode = .ScaleAspectFit
         pauseButton.frame.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
         pauseButton.addTarget(self,
@@ -119,132 +122,26 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func createPauseMenu() {
-        let menu = UIView(frame: CGRectMake(self.frame.width*0.20,
-            self.frame.height*0.20,
-            self.frame.width*0.60,
-            self.frame.height*0.60))
+        var menu = NSBundle.mainBundle().loadNibNamed("PauseMenu",
+            owner: self,
+            options:nil).first as! UIView
+        menu.frame = self.view!.frame;
+        
+        AddCallback(menu)
         
         self.pauseMenu = menu;
-        
-        //Container
-        let containerImage = UIImage(named: "resizebleButton")?.resizableImageWithCapInsets(UIEdgeInsetsMake(30.0, 30.0, 30.0, 30.0))
-        let containerView = UIImageView(image: containerImage!)
-        containerView.frame.origin = CGPointMake(0.0, 0.0)
-        containerView.frame.size = menu.frame.size
-        
-        //Black background
-        let bg = UIImage(named: "fundoSemi")?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
-        let bgView = UIImageView(image: bg!)
-        bgView.frame.size = self.view!.frame.size
-        bgView.frame.origin = CGPointMake(-(menu.frame.origin.x),-(menu.frame.origin.y))
-        
-
-        
-        //Text
-        var text = UILabel(frame: CGRectMake(0, 20, menu.frame.size.width, menu.frame.size.height*0.4))
-        text.font = UIFont(name: "Icklips", size: 100/gameManager.scaleFactor)
-        text.textColor = UIColor.pomegranateColor()
-        println(text.font.description)
-        text.textAlignment = NSTextAlignment.Center;
-        text.text = "Paused"
-        
-        
-        /*=======================Buttons=======================*/
-        let retryButton = UIButton(imageNamed: "btPlayAgain")
-        retryButton.tag = 1;
-        retryButton.frame.size = CGSizeMake(80, 95)
-        retryButton.contentMode = .ScaleAspectFill
-        let pt = menu.frame.size.width*0.75 - retryButton.frame.size.width
-        retryButton.frame.origin = CGPointMake(pt, menu.frame.size.height/2)
-
-        retryButton.addTarget(self,
-            action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside);
-        
-        let backButton = UIButton(imageNamed: "btMenu")
-        backButton.frame.size = CGSizeMake(65,65)
-        backButton.frame.origin = CGPointMake(menu.frame.size.width/4, menu.frame.size.height/2+15)
-        backButton.tag = 2;
-        backButton.addTarget(self,
-            action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside);
-        
-        let continueButton = UIButton(imageNamed: "btPause")
-        continueButton.tag = 3;
-        continueButton.frame.origin = CGPointMake(menu.frame.width/2 - continueButton.frame.size.width/2, menu.frame.height/2 - continueButton.frame.size.height/2)
-        continueButton.addTarget(self,
-            action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside);
-        /*====================================================*/
-        
-
-        menu.addSubview(bgView)
-        menu.addSubview(containerView)
-        menu.addSubview(retryButton)
-        menu.addSubview(backButton)
-        menu.addSubview(text)
     }
     
     
     func createRetryMenu() {
-        var menu = UIView(frame: CGRectMake(self.frame.width*0.20,
-            self.frame.height*0.20,
-            self.frame.width*0.60,
-            self.frame.height*0.60))
+        var menu = NSBundle.mainBundle().loadNibNamed("RetryMenu",
+                    owner: self,
+                    options:nil).first as! UIView
+        menu.frame = self.view!.frame;
+        
+        AddCallback(menu)
         
         self.retryMenu = menu;
-        
-        //Text
-        
-        
-        //Container
-        let containerImage = UIImage(named: "resizebleButton")?.resizableImageWithCapInsets(UIEdgeInsetsMake(30.0, 30.0, 30.0, 30.0))
-        let containerView = UIImageView(image: containerImage!)
-        containerView.frame.origin = CGPointMake(0.0, 0.0)
-        containerView.frame.size = menu.frame.size
-        
-        //Black background
-        let bg = UIImage(named: "fundoSemi")?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
-        let bgView = UIImageView(image: bg!)
-        bgView.frame.size = self.view!.frame.size
-        bgView.frame.origin = CGPointMake(-(menu.frame.origin.x),-(menu.frame.origin.y))
-        
-        
-        //Text
-        var text = UILabel(frame: CGRectMake(0, 20, menu.frame.size.width, menu.frame.size.height*0.4))
-        text.font = UIFont(name: "Icklips", size: 100/gameManager.scaleFactor)
-        text.textColor = UIColor.pomegranateColor()
-        println(text.font.description)
-        text.textAlignment = NSTextAlignment.Center;
-        text.text = "Game Over"
-        
-        let retryImage = UIImage(named: "btPlayAgain");
-        let retryButton = UIButton(image: (retryImage?.imageWithColor(UIColor.whiteColor()))!)
-        retryButton.frame.size = CGSizeMake(80, 95)
-        retryButton.contentMode = .ScaleAspectFill
-        let pt = menu.frame.size.width*0.75 - retryButton.frame.size.width
-        retryButton.frame.origin = CGPointMake(pt, menu.frame.size.height/2)
-        retryButton.tag = 1;
-        retryButton.addTarget(self,
-            action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside);
-        menu.addSubview(retryButton);
-        
-        let backButton = UIButton(imageNamed: "btMenu")
-        backButton.frame.size = CGSizeMake(65,65)
-        backButton.frame.origin = CGPointMake(menu.frame.size.width/4, menu.frame.size.height/2+15)
-        backButton.tag = 2;
-        backButton.addTarget(self,
-            action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside);
-        
-        
-        menu.addSubview(bgView)
-        menu.addSubview(containerView)
-        menu.addSubview(retryButton)
-        menu.addSubview(backButton)
-        menu.addSubview(text)
-    
     }
     
     func createMainMenu(){
@@ -252,6 +149,21 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             self.frame.height*0.20,
             self.frame.width*0.60,
             self.frame.height*0.60))
+    }
+    
+    func AddCallback (view: UIView) {
+        for v in view.subviews {
+            if (v is UIButton) {
+                var button = v as! UIButton
+                button.addTarget(self,
+                    action: Selector("touchButton:"),
+                    forControlEvents: .TouchUpInside);
+            } else {
+                AddCallback(v as! UIView);
+            }
+            
+        }
+    
     }
     
     func touchButton(button : UIButton!) {
@@ -270,9 +182,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             case 3:
                 pauseMenu.removeFromSuperview()
                 view?.paused = false;
-            
-            
-            
             default:
                 return;
         }
@@ -329,10 +238,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         var nodeB = contact.bodyB.node;
 
         if(contact.collisionImpulse >= 2000) {
-            world.shake(0.1*Float(contact.collisionImpulse/2000.0), force: Float(contact.collisionImpulse/2000.0));
+            world.shake(0.1*Float(contact.collisionImpulse/2000.0),
+                force: Float(contact.collisionImpulse/2000.0));
         }
         
-        if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain && contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
+        if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain &&
+            contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
             if (nodeA!.respondsToSelector("applyDamage:")) {
                 var node = nodeA as! DestroyableNode
                 node.applyDamage(contact.collisionImpulse);
