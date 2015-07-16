@@ -248,17 +248,19 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
             if (nodeA!.respondsToSelector("applyDamage:")) {
                 var node = nodeA as! DestroyableNode
-                node.applyDamage(contact.collisionImpulse);
                 if (contact.collisionImpulse >= 2000) {
                     node.sparkle(contact.contactPoint)
                 }
+                node.applyDamage(contact.collisionImpulse);
+
             }
             if (nodeB!.respondsToSelector("applyDamage:")) {
                 var node = nodeB as! DestroyableNode
-                node.applyDamage(contact.collisionImpulse);
                 if (contact.collisionImpulse >= 2000) {
                     node.sparkle(contact.contactPoint)
                 }
+                node.applyDamage(contact.collisionImpulse);
+
                 
             }
             if(GameManager.sharedInstance.userDidEnableSoundFX){
