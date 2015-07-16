@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		35046C1F1B41ADB500FFD05C /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35046C1E1B41ADB500FFD05C /* MainMenu.swift */; };
 		352A505B1B457A6C001DC746 /* UIButton+BothStateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A505A1B457A6C001DC746 /* UIButton+BothStateImage.swift */; };
-		352A505D1B45B86D001DC746 /* loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 352A505C1B45B86D001DC746 /* loop.mp3 */; };
 		35D060471B4481AF00AD3E99 /* Overloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D060461B4481AF00AD3E99 /* Overloading.swift */; };
 		B91160AC1B39E61100187052 /* UIColor+Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91160AB1B39E61100187052 /* UIColor+Flat.swift */; };
 		B91160AE1B3B2C9400187052 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91160AD1B3B2C9400187052 /* Images.xcassets */; };
@@ -36,6 +35,7 @@
 		B95D81D51B43001100091F87 /* impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = B95D81D41B43001100091F87 /* impact.wav */; };
 		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
 		B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */; };
+		B9AEACA61B582793007D7293 /* loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9AEACA51B582793007D7293 /* loop.mp3 */; };
 		B9C7003D1B56E1C3007A5066 /* PauseMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C7003C1B56E1C3007A5066 /* PauseMenu.xib */; };
 		B9C7003F1B56E825007A5066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C7003E1B56E825007A5066 /* MainMenu.xib */; };
 		B9DEBDC21B5435B200A201B5 /* UnityAds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */; };
@@ -89,7 +89,6 @@
 /* Begin PBXFileReference section */
 		35046C1E1B41ADB500FFD05C /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		352A505A1B457A6C001DC746 /* UIButton+BothStateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+BothStateImage.swift"; sourceTree = "<group>"; };
-		352A505C1B45B86D001DC746 /* loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loop.mp3; sourceTree = "<group>"; };
 		35D060461B4481AF00AD3E99 /* Overloading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Overloading.swift; sourceTree = "<group>"; };
 		B91160AB1B39E61100187052 /* UIColor+Flat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Flat.swift"; path = "Extensions/UIColor+Flat.swift"; sourceTree = "<group>"; };
 		B91160AD1B3B2C9400187052 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		B95D81D41B43001100091F87 /* impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = impact.wav; sourceTree = "<group>"; };
 		B98988AD1B38918C007CD469 /* scanline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = scanline.fsh; sourceTree = "<group>"; };
 		B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageColor.swift"; sourceTree = "<group>"; };
+		B9AEACA51B582793007D7293 /* loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loop.mp3; sourceTree = "<group>"; };
 		B9C7003C1B56E1C3007A5066 /* PauseMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PauseMenu.xib; sourceTree = "<group>"; };
 		B9C7003E1B56E825007A5066 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UnityAds.bundle; sourceTree = "<group>"; };
@@ -231,8 +231,8 @@
 				B93086241B2103D900822E47 /* Info.plist */,
 				B91160AD1B3B2C9400187052 /* Images.xcassets */,
 				B91160C01B3F407400187052 /* TestMP3.mp3 */,
-				352A505C1B45B86D001DC746 /* loop.mp3 */,
 				B95D81D41B43001100091F87 /* impact.wav */,
+				B9AEACA51B582793007D7293 /* loop.mp3 */,
 				B95313DE1B41B77800131A53 /* Icklips_.ttf */,
 				B9DEBDC41B54364700A201B5 /* Neon Fighter-Bridging-Header.h */,
 				B932EA321B5583C300EA4E2A /* RetryMenu.xib */,
@@ -447,9 +447,9 @@
 				B98988AE1B38918C007CD469 /* scanline.fsh in Resources */,
 				B93086341B2103D900822E47 /* LaunchScreen.xib in Resources */,
 				B930862F1B2103D900822E47 /* Main.storyboard in Resources */,
-				352A505D1B45B86D001DC746 /* loop.mp3 in Resources */,
 				B95D031F1B28ECA200885F90 /* GameScene.sks in Resources */,
 				B9C7003F1B56E825007A5066 /* MainMenu.xib in Resources */,
+				B9AEACA61B582793007D7293 /* loop.mp3 in Resources */,
 				B9C7003D1B56E1C3007A5066 /* PauseMenu.xib in Resources */,
 				B932EA331B5583C300EA4E2A /* RetryMenu.xib in Resources */,
 				B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */,
