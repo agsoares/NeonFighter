@@ -28,8 +28,12 @@ class GameManager {
     var difficult = 1;
     var userDidEnableSound = true;
     var userDidEnableSoundFX = true;
+
+    var deathCount = 0;
     
     var scaleFactor: CGFloat = 1.0;
     
     static let sharedInstance = GameManager()
+    
+    
 }

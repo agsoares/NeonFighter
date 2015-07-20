@@ -92,18 +92,22 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func presentMainMenu() {
-        self.view?.paused = true;
-        if(pauseMenu != nil){
-            pauseMenu.removeFromSuperview()
+        if let view = self.view {
+            view.paused = false;
+            if(pauseMenu != nil){
+                pauseMenu.removeFromSuperview()
+            }
+            if(retryMenu != nil){
+                retryMenu.removeFromSuperview()
+            }
+            soundManager.stopMusic();
+            hudView.removeFromSuperview()
+            let scene = MainMenu(size: view.frame.size)
+            if let skView = self.view as SKView? {
+                skView.presentScene(scene)
+            }
         }
-        if(retryMenu != nil){
-            retryMenu.removeFromSuperview()
-        }
-        soundManager.stopMusic();
-        hudView.removeFromSuperview()
-        let scene = MainMenu(size: self.view!.frame.size)
-        let skView = self.view as SKView?
-        skView!.presentScene(scene)
+
     }
     
     func createHudView() {
@@ -333,6 +337,16 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     override func update(currentTime: CFTimeInterval) {
         scoreLabel.text = gameManager.score.description;
         if (player.life <= 0) {
+            gameManager.deathCount++;
+            UnityAds.sharedInstance().setZone("defaultZone")
+            
+            if (UnityAds.sharedInstance().canShow() && gameManager.deathCount >= 3) {
+                gameManager.deathCount = 0;
+                UnityAds.sharedInstance().show()
+                if let musicPlayer = soundManager.player {
+                    musicPlayer.volume = 0;
+                }
+            }
             presentRetryMenu();
         }
         /* Called before each frame is rendered */

@@ -29,6 +29,7 @@ extension SKNode {
 
 class GameViewController: UIViewController, UnityAdsDelegate {
     var gameManager = GameManager.sharedInstance;
+    var soundManager = SoundManager.sharedInstance;
     
     func callGameCenter(sender: NSNotification?) {
         GameCenterManager.gcManager.showLeaderBoards(self);
@@ -37,7 +38,6 @@ class GameViewController: UIViewController, UnityAdsDelegate {
     override func viewDidLoad() {
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
         
-        UnityAds.sharedInstance().setViewController(self)
         UnityAds.sharedInstance().delegate = self
         
         
@@ -93,7 +93,13 @@ class GameViewController: UIViewController, UnityAdsDelegate {
         return true
     }
     
+    func unityAdsWillShow() {
+        println("🍺 willShow");
+    }
+    
     func unityAdsVideoCompleted(rewardItemKey: String!, skipped: Bool) {
-        
+        if let musicPlayer = soundManager.player {
+            musicPlayer.volume = 1;
+        }
     }
 }
