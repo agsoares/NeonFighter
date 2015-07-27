@@ -50,6 +50,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     var pauseMenu: UIView!
     
     override func didMoveToView(view: SKView) {
+        super.didMoveToView(view)
         createPauseMenu()
         createRetryMenu()
         createMainMenu()
@@ -76,7 +77,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         if(GameManager.sharedInstance.userDidEnableSound){
             soundManager.playMusic("loop", looped: true);
         }
-        
     }
     
     func presentPauseMenu() {
@@ -117,12 +117,10 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         let pauseButton = UIButton(image: pauseImage!)
         pauseButton.contentMode = .ScaleAspectFit
         pauseButton.frame.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
-        pauseButton.addTarget(self,
-            action: Selector("touchButton:"),
-            forControlEvents: .TouchUpInside)
         pauseButton.tag = 0;
         pauseButton.center.x = CGRectGetMaxX(hudView.frame)-CGRectGetMidX(pauseButton.frame)
         hudView.addSubview(pauseButton);
+        hudView.addCallback(self, callback: Selector("touchButton:"))
         
         self.view?.addSubview(hudView);
     }
@@ -133,7 +131,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             options:nil).first as! UIView
         menu.frame = self.view!.frame;
         
-        AddCallback(menu)
+        menu.addCallback(self, callback: Selector("touchButton:"))
         
         self.pauseMenu = menu;
     }
@@ -145,7 +143,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                     options:nil).first as! UIView
         menu.frame = self.view!.frame;
         
-        AddCallback(menu)
+        menu.addCallback(self, callback: Selector("touchButton:"))
         
         self.retryMenu = menu;
     }
@@ -173,10 +171,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func touchButton(button : UIButton!) {
-        switch button.tag {
+        if let view = self.view {
+            switch button.tag {
             case 0:
-                if (self.view!.paused && player.life > 0) {
-                    self.view?.paused = false;
+                if (view.paused && player.life > 0) {
+                    view.paused = false;
                     pauseMenu.removeFromSuperview();
                 } else {
                     presentPauseMenu()
@@ -187,10 +186,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
                 presentMainMenu()
             case 3:
                 pauseMenu.removeFromSuperview()
-                view?.paused = false;
+                view.paused = false;
             default:
                 return;
+            }
         }
+
     }
     
     func restartScene() {

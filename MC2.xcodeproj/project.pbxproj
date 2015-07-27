@@ -43,6 +43,7 @@
 		B9DEBDC91B54372300A201B5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */; };
 		B9DEBDCB1B54373900A201B5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCA1B54373900A201B5 /* AdSupport.framework */; };
 		B9DEBDCD1B54377E00A201B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */; };
+		B9E890A71B66990D00AA54D7 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E890A61B66990D00AA54D7 /* UIView+Utils.swift */; };
 		DBF063981B5449100054D1A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF063971B5449100054D1A2 /* Images.xcassets */; };
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 		DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */; };
@@ -126,6 +127,7 @@
 		B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B9DEBDCA1B54373900A201B5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B9E890A61B66990D00AA54D7 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Utils.swift"; path = "Extensions/UIView+Utils.swift"; sourceTree = "<group>"; };
 		DBF063971B5449100054D1A2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				352A505A1B457A6C001DC746 /* UIButton+BothStateImage.swift */,
 				B91160AB1B39E61100187052 /* UIColor+Flat.swift */,
 				B91160C21B3F4F4600187052 /* SKNode+Utils.swift */,
+				B9E890A61B66990D00AA54D7 /* UIView+Utils.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 			files = (
 				35D060471B4481AF00AD3E99 /* Overloading.swift in Sources */,
 				B91160C31B3F4F4600187052 /* SKNode+Utils.swift in Sources */,
+				B9E890A71B66990D00AA54D7 /* UIView+Utils.swift in Sources */,
 				B94B3EB31B43249E00D72FF8 /* DestroyableNode.swift in Sources */,
 				B91160B91B3C6BEB00187052 /* Player.swift in Sources */,
 				B91160B01B3C664000187052 /* Enemy.swift in Sources */,

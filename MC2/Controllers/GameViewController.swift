@@ -94,8 +94,8 @@ class GameViewController: UIViewController, UnityAdsDelegate {
     }
     
     func unityAdsWillShow() {
-        println("🍺 willShow");
     }
+    
     
     func unityAdsVideoCompleted(rewardItemKey: String!, skipped: Bool) {
         if let musicPlayer = soundManager.player {
