@@ -19,14 +19,14 @@ class IA {
     }
     
     func getPathToPlayer(enemy : SKNode) -> CGMutablePathRef{
-        var cgpath = CGPathCreateMutable();
+        let cgpath = CGPathCreateMutable();
         
-        var xStart = CGPointMake(enemy.position.x, enemy.position.y);
-        var xEnd = CGPointMake(player.position.x, player.position.y);
+        let xStart = CGPointMake(enemy.position.x, enemy.position.y);
+        let xEnd = CGPointMake(player.position.x, player.position.y);
         
         //ControlPoints
-        var cp1 = CGPointMake(xEnd.x/4, xEnd.y/4);
-        var cp2 = CGPointMake(3*xEnd.x/4, 3*xEnd.y/4);
+        let cp1 = CGPointMake(xEnd.x/4, xEnd.y/4);
+        let cp2 = CGPointMake(3*xEnd.x/4, 3*xEnd.y/4);
         
         CGPathMoveToPoint(cgpath, nil, xStart.x, xStart.y);
         CGPathAddCurveToPoint(cgpath, nil, cp1.x, cp1.y, cp2.x, cp2.y, xEnd.x, xEnd.y)
@@ -43,19 +43,19 @@ class IA {
     }
     
     func getVectorNormal(vector : CGVector) -> CGFloat{
-        var a = pow(vector.dx, 2.0);
-        var b = pow(vector.dy, 2.0);
+        let a = pow(vector.dx, 2.0);
+        let b = pow(vector.dy, 2.0);
         return sqrt(a + b);
     }
     
     func getNormalizedVector(vector : CGVector) -> CGVector{
-        var normal = getVectorNormal(vector);
+        let normal = getVectorNormal(vector);
         return CGVector(dx: vector.dx/normal, dy: vector.dy/normal);
     }
     
     func getAngleToPlayer(enemy : SKNode) -> CGFloat{
-        var radians = atan2(enemy.position.x, enemy.position.y);
-        var degrees = radians * CGFloat(180.0 / M_PI)
+        let radians = atan2(enemy.position.x, enemy.position.y);
+        let degrees = radians * CGFloat(180.0 / M_PI)
         //println(degrees);
         return degrees%360;
     }

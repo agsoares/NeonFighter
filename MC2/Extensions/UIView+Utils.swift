@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 extension UIView {
     func addCallback(target: AnyObject, callback: Selector) {
         if (self is UIButton) {

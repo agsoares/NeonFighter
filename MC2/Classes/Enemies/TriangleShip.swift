@@ -42,8 +42,8 @@ class TriangleShip: Enemy {
     
     override func update() {
         super.update();
-        var direction = ia.getNormalizedVectorToPlayer(self);
-        var angle = ia.getAngleToPlayer(self)-self.zRotation;
+        let direction = ia.getNormalizedVectorToPlayer(self);
+        _ = ia.getAngleToPlayer(self)-self.zRotation;
         physicsBody?.applyAngularImpulse(100)
         //var direction = CGVector(dx: (gameManager.player!.position.x - self.position.x)*100  , dy: (gameManager.player!.position.y - self.position.y)*100);
         physicsBody?.applyForce(CGVector(dx:direction.dx*10000, dy:direction.dy*10000));

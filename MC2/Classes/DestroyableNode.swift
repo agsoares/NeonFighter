@@ -18,7 +18,7 @@ class DestroyableNode: SKSpriteNode {
     var initialColor: UIColor!
     var finalColor: UIColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
 
-    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size);
         self.colorBlendFactor = 1;
         initialColor = color;
@@ -40,8 +40,8 @@ class DestroyableNode: SKSpriteNode {
     }
     
     func sparkle (point : CGPoint) {
-        var sparkles = SKTexture(imageNamed: "rope_ring") //reusing the bird texture for now
-        var emitter = SKEmitterNode()
+        let sparkles = SKTexture(imageNamed: "rope_ring") //reusing the bird texture for now
+        let emitter = SKEmitterNode()
         emitter.particleTexture = sparkles
         emitter.position = point
         emitter.particleBirthRate = 450
@@ -63,15 +63,15 @@ class DestroyableNode: SKSpriteNode {
         if(t < 0.0) { time = 0.0; }
         if(t > 1.0) { time = 1.0; }
         
-        var fromComponent = CGColorGetComponents(from.CGColor)
-        var toComponent = CGColorGetComponents(to.CGColor)
-        var fromAlpha = CGColorGetAlpha(from.CGColor)
-        var toAlpha = CGColorGetAlpha(to.CGColor)
+        let fromComponent = CGColorGetComponents(from.CGColor)
+        let toComponent = CGColorGetComponents(to.CGColor)
+        let fromAlpha = CGColorGetAlpha(from.CGColor)
+        let toAlpha = CGColorGetAlpha(to.CGColor)
         
-        var r = (1.0 - time) * fromComponent[0] + (toComponent[0] * time);
-        var g = (1.0 - time) * fromComponent[1] + (toComponent[1] * time);
-        var b = (1.0 - time) * fromComponent[2] + (toComponent[2] * time);
-        var a = (1.0 - time) * fromAlpha + (toAlpha * time);
+        let r = (1.0 - time) * fromComponent[0] + (toComponent[0] * time);
+        let g = (1.0 - time) * fromComponent[1] + (toComponent[1] * time);
+        let b = (1.0 - time) * fromComponent[2] + (toComponent[2] * time);
+        let a = (1.0 - time) * fromAlpha + (toAlpha * time);
         return UIColor(red: r, green: g, blue: b, alpha: a);
     }
 }

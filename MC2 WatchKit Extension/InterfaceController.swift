@@ -23,8 +23,8 @@ class InterfaceController: WKInterfaceController {
 
     override func willActivate() {
         super.willActivate()
-        var dict = NSDictionary(dictionary: ["action" : "getBestScores"])
-        WKInterfaceController.openParentApplication(["action" : "getBestScores"], reply: { (obj: [NSObject : AnyObject]!, error: NSError!) -> Void in
+        _ = NSDictionary(dictionary: ["action" : "getBestScores"])
+        WKInterfaceController.openParentApplication(["action" : "getBestScores"], reply: { (obj: [NSObject : AnyObject], error: NSError?) -> Void in
             if let dic = obj as NSDictionary!{
                 self.score = (dic.valueForKey("bestScore")) as! Int;
                 self.lblBestScore.setText("Your Best Score is \(self.score)")

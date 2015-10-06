@@ -38,7 +38,7 @@ class Player: DestroyableNode {
         ball.color = UIColor.redColor();
         ball.colorBlendFactor = 1
         
-        var rope = Rope()
+        let rope = Rope()
         rope.zPosition = 0.1;
         //rope.physicsWorld = self.physicsWorld
         self.addChild(rope)

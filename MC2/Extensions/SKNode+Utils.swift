@@ -14,7 +14,7 @@ extension SKNode {
         let amplitudeY:Float = 1*force;
         let numberOfShakes = duration / 0.04;
         var actionsArray:[SKAction] = [];
-        for index in 1...Int(numberOfShakes) {
+        for _ in 1...Int(numberOfShakes) {
             // build a new random shake and add it to the list
             let moveX = CGFloat(Float(arc4random_uniform(UInt32(amplitudeX))) - amplitudeX / 2)
             let moveY = CGFloat(Float(arc4random_uniform(UInt32(amplitudeY))) - amplitudeY / 2);

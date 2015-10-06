@@ -18,13 +18,13 @@ class GameCenterManager : NSObject, GKGameCenterControllerDelegate{
     
     func showLeaderBoards(view : UIViewController){
         if (self.gameCenterEnabled){
-            var gc = GKGameCenterViewController()
+            let gc = GKGameCenterViewController()
             gc.gameCenterDelegate = GameCenterManager.gcManager
             view.presentViewController(gc, animated: true, completion: nil)
         }
     }
     
-    @objc func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!)
+    @objc func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController)
     {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -32,18 +32,18 @@ class GameCenterManager : NSObject, GKGameCenterControllerDelegate{
     func authenticateLocalPlayer(view : UIViewController){
         self.localPlayer = GKLocalPlayer.localPlayer();
         
-        self.localPlayer.authenticateHandler = { (controler : UIViewController!, error : NSError!) -> Void  in
+        self.localPlayer.authenticateHandler = { (controler : UIViewController?, error : NSError?) -> Void  in
             if(controler != nil){
-                view.presentViewController(controler, animated: true, completion: nil)
+                view.presentViewController(controler!, animated: true, completion: nil)
             }else{
                 if (GKLocalPlayer.localPlayer().authenticated){
                     self.gameCenterEnabled = true;
                     
                 GKLocalPlayer.localPlayer().loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier, error) -> Void in
                         if(error != nil){
-                            println(error);
+                            print(error);
                         }else{
-                            self.leaderBoardIdentifier = leaderboardIdentifier;
+                            self.leaderBoardIdentifier = leaderboardIdentifier!;
                         }
                 });
                     
@@ -55,9 +55,14 @@ class GameCenterManager : NSObject, GKGameCenterControllerDelegate{
     
     func reportScore(score : Int){
         if(self.gameCenterEnabled){
-            var scoreToReport = GKScore(leaderboardIdentifier: "com.bepid.MC2.NeonFighterLeaderBoard", player: self.localPlayer)
-            scoreToReport.value = Int64(score)
-            GKScore.reportScores([scoreToReport], withCompletionHandler: nil)
+            if #available(iOS 8.0, *) {
+                let scoreToReport = GKScore(leaderboardIdentifier: "com.bepid.MC2.NeonFighterLeaderBoard", player: self.localPlayer)
+                scoreToReport.value = Int64(score)
+                GKScore.reportScores([scoreToReport], withCompletionHandler: nil)
+            } else {
+                // Fallback on earlier versions
+            }
+
         }
     }
     

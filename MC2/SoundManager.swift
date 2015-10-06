@@ -19,11 +19,16 @@ class SoundManager : NSObject, AVAudioPlayerDelegate {
         var error: NSError?
         let fileURL:NSURL? = NSBundle.mainBundle().URLForResource(fileNamed, withExtension: "mp3")
         if fileURL != nil {
-            // the player must be a field. Otherwise it will be released before playing starts.
-            self.player = AVAudioPlayer(contentsOfURL: fileURL, error: &error)
+            do {
+                // the player must be a field. Otherwise it will be released before playing starts.
+                self.player = try AVAudioPlayer(contentsOfURL: fileURL!)
+            } catch let error1 as NSError {
+                error = error1
+                self.player = nil
+            }
             if let player = self.player {
                 loop = looped
-                //player.prepareToPlay()
+                player.prepareToPlay()
                 player.volume = musicVolume
                 player.delegate = self
                 player.play()
@@ -38,13 +43,13 @@ class SoundManager : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         if loop == true {
             player.play()
         }
         
     }
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
-        println("\(error.localizedDescription)")
+    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+        print("\(error!.localizedDescription)")
     }
 }

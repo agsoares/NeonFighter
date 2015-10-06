@@ -9,25 +9,7 @@
 import UIKit
 import SpriteKit
 
-extension SKNode {
-    class func unarchiveFromFile(file : String) -> SKNode? {
-        if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-            var sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
-            var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
-            
-            archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
-            archiver.finishDecoding()
-            return scene
-        } else {
-            return nil
-        }
-    }
-}
-
-
-
-class GameViewController: UIViewController, UnityAdsDelegate {
+class GameViewController: UIViewController /*, UnityAdsDelegate */ {
     var gameManager = GameManager.sharedInstance;
     var soundManager = SoundManager.sharedInstance;
     
@@ -38,7 +20,7 @@ class GameViewController: UIViewController, UnityAdsDelegate {
     override func viewDidLoad() {
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
         
-        UnityAds.sharedInstance().delegate = self
+        //UnityAds.sharedInstance().delegate = self
         
         
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -47,8 +29,8 @@ class GameViewController: UIViewController, UnityAdsDelegate {
             object: nil);
         
         super.viewDidLoad()
-        var xScaleFactor = 1024.0/self.view.frame.size.width
-        var yScaleFactor = 768.0/self.view.frame.size.height
+        let xScaleFactor = 1024.0/self.view.frame.size.width
+        let yScaleFactor = 768.0/self.view.frame.size.height
         gameManager.scaleFactor = (xScaleFactor <= yScaleFactor) ? xScaleFactor : yScaleFactor;
         
         let scene = GameScene(size: self.view.frame.size)
@@ -76,11 +58,11 @@ class GameViewController: UIViewController, UnityAdsDelegate {
         return true
     }
 
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
+            return UIInterfaceOrientationMask.AllButUpsideDown
         } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
+            return UIInterfaceOrientationMask.All
         }
     }
 
@@ -94,6 +76,10 @@ class GameViewController: UIViewController, UnityAdsDelegate {
     }
     
     func unityAdsWillShow() {
+    }
+    
+    func unityAdsWillLeaveApplication() {
+        
     }
     
     

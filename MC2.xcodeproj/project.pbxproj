@@ -35,11 +35,12 @@
 		B95D81D51B43001100091F87 /* impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = B95D81D41B43001100091F87 /* impact.wav */; };
 		B98988AE1B38918C007CD469 /* scanline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B98988AD1B38918C007CD469 /* scanline.fsh */; };
 		B98C0A0F1B4456C300394C09 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98C0A0E1B4456C300394C09 /* UIImage+ImageColor.swift */; };
+		B9913C7E1BBD98350046BD75 /* UnityAds.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */; };
+		B9913C7F1BBD98350046BD75 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC11B5435B200A201B5 /* UnityAds.framework */; };
 		B9AEACA61B582793007D7293 /* loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9AEACA51B582793007D7293 /* loop.mp3 */; };
 		B9C7003D1B56E1C3007A5066 /* PauseMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C7003C1B56E1C3007A5066 /* PauseMenu.xib */; };
 		B9C7003F1B56E825007A5066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C7003E1B56E825007A5066 /* MainMenu.xib */; };
 		B9DEBDC21B5435B200A201B5 /* UnityAds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */; };
-		B9DEBDC31B5435B200A201B5 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC11B5435B200A201B5 /* UnityAds.framework */; };
 		B9DEBDC91B54372300A201B5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */; };
 		B9DEBDCB1B54373900A201B5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCA1B54373900A201B5 /* AdSupport.framework */; };
 		B9DEBDCD1B54377E00A201B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */; };
@@ -151,7 +152,8 @@
 				B9DEBDCB1B54373900A201B5 /* AdSupport.framework in Frameworks */,
 				B9DEBDC91B54372300A201B5 /* CoreTelephony.framework in Frameworks */,
 				DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */,
-				B9DEBDC31B5435B200A201B5 /* UnityAds.framework in Frameworks */,
+				B9913C7E1BBD98350046BD75 /* UnityAds.bundle in Frameworks */,
+				B9913C7F1BBD98350046BD75 /* UnityAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +398,8 @@
 		B93086181B2103D900822E47 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				TargetAttributes = {
 					B930861F1B2103D900822E47 = {

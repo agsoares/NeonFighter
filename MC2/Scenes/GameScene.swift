@@ -29,7 +29,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
-    let camera = SKNode();
+    //let camera = SKNode();
     let hud = SKNode();
     
     let world = SKNode();
@@ -44,7 +44,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     var testMenu : UIView!
     
-    
     var mainMenu: UIView!
     var retryMenu: UIView!
     var pauseMenu: UIView!
@@ -53,7 +52,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         super.didMoveToView(view)
         createPauseMenu()
         createRetryMenu()
-        createMainMenu()
         createHudView()
         
         
@@ -94,16 +92,13 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     func presentMainMenu() {
         if let view = self.view {
             view.paused = false;
-            if(pauseMenu != nil){
-                pauseMenu.removeFromSuperview()
-            }
-            if(retryMenu != nil){
-                retryMenu.removeFromSuperview()
-            }
+            pauseMenu.removeFromSuperview()
+            retryMenu.removeFromSuperview()
             soundManager.stopMusic();
             hudView.removeFromSuperview()
             let scene = MainMenu(size: view.frame.size)
             if let skView = self.view as SKView? {
+                //UnityAds.sharedInstance().hide()
                 skView.presentScene(scene)
             }
         }
@@ -113,7 +108,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     func createHudView() {
         hudView = UIView(frame: CGRectMake(0, 0,
             self.view!.frame.size.width, self.view!.frame.size.height/2))
-        var pauseImage = UIImage(named: "btPause")
+        let pauseImage = UIImage(named: "btPause")
         let pauseButton = UIButton(image: pauseImage!)
         pauseButton.contentMode = .ScaleAspectFit
         pauseButton.frame.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
@@ -126,7 +121,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func createPauseMenu() {
-        var menu = NSBundle.mainBundle().loadNibNamed("PauseMenu",
+        let menu = NSBundle.mainBundle().loadNibNamed("PauseMenu",
             owner: self,
             options:nil).first as! UIView
         menu.frame = self.view!.frame;
@@ -138,7 +133,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     
     
     func createRetryMenu() {
-        var menu = NSBundle.mainBundle().loadNibNamed("RetryMenu",
+        let menu = NSBundle.mainBundle().loadNibNamed("RetryMenu",
                     owner: self,
                     options:nil).first as! UIView
         menu.frame = self.view!.frame;
@@ -148,22 +143,15 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         self.retryMenu = menu;
     }
     
-    func createMainMenu(){
-        self.mainMenu = UIView(frame: CGRectMake(self.frame.width*0.20,
-            self.frame.height*0.20,
-            self.frame.width*0.60,
-            self.frame.height*0.60))
-    }
-    
     func AddCallback (view: UIView) {
         for v in view.subviews {
             if (v is UIButton) {
-                var button = v as! UIButton
+                let button = v as! UIButton
                 button.addTarget(self,
                     action: Selector("touchButton:"),
                     forControlEvents: .TouchUpInside);
             } else {
-                AddCallback(v as! UIView);
+                AddCallback(v );
             }
             
         }
@@ -216,16 +204,16 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         view?.paused = false;
         gameManager.score = 0;
         player = Player();
-        var grid = SKSpriteNode(imageNamed: "grid");
+        let grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
         grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
         grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         grid.blendMode = SKBlendMode.MultiplyX2;
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        world.position = CGPoint(x: 0, y: 0);
+        world.position = CGPoint(x: 0.5, y: 0.5);
         world.addChild(player)
         player.setupPhysics()
-        var worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
+        let worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
         worldBorder.categoryBitMask = PhysicsCategory.Wall;
 
         world.physicsBody = worldBorder;
@@ -241,8 +229,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        var nodeA = contact.bodyA.node;
-        var nodeB = contact.bodyB.node;
+        let nodeA = contact.bodyA.node;
+        let nodeB = contact.bodyB.node;
 
         if(contact.collisionImpulse >= 2000) {
             world.shake(0.1*Float(contact.collisionImpulse/2000.0),
@@ -252,7 +240,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain &&
             contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
             if (nodeA!.respondsToSelector("applyDamage:")) {
-                var node = nodeA as! DestroyableNode
+                let node = nodeA as! DestroyableNode
                 if (contact.collisionImpulse >= 2000) {
                     node.sparkle(contact.contactPoint)
                 }
@@ -260,7 +248,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
 
             }
             if (nodeB!.respondsToSelector("applyDamage:")) {
-                var node = nodeB as! DestroyableNode
+                let node = nodeB as! DestroyableNode
                 if (contact.collisionImpulse >= 2000) {
                     node.sparkle(contact.contactPoint)
                 }
@@ -295,11 +283,11 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         world.addChild(enemy)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         super.touchesBegan(touches, withEvent: event)
 
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches ) {
             let location = touch.locationInNode(self)
             moveAnalogStick.position = location
             moveAnalogStick.hidden = false
@@ -309,12 +297,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
 
     }
    
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         moveAnalogStick.touchesMoved(touches, withEvent: event)
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
         moveAnalogStick.touchesEnded(touches, withEvent: event)
         moveAnalogStick.position = CGPointMake(-100, -100)
@@ -339,15 +327,17 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         scoreLabel.text = gameManager.score.description;
         if (player.life <= 0) {
             gameManager.deathCount++;
-            UnityAds.sharedInstance().setZone("defaultZone")
-            
-            if (UnityAds.sharedInstance().canShow() && gameManager.deathCount >= 3) {
+            //UnityAds.sharedInstance().setZone("defaultZone")
+            /*
+            if (UnityAds.sharedInstance().isDebugMode() ||
+                    (UnityAds.sharedInstance().canShow() && gameManager.deathCount <= 0)) {
                 gameManager.deathCount = 0;
                 UnityAds.sharedInstance().show()
                 if let musicPlayer = soundManager.player {
                     musicPlayer.volume = 0;
                 }
             }
+            */
             presentRetryMenu();
         }
         /* Called before each frame is rendered */

@@ -32,7 +32,7 @@ class Rope: SKNode {
         ropeImage = imageNamed
         ropeParts.removeAll(keepCapacity: false)
         
-        var firstPart = SKSpriteNode(imageNamed: ropeImage)
+        let firstPart = SKSpriteNode(imageNamed: ropeImage)
         firstPart.position = positionOnStartNode;
         firstPart.physicsBody = SKPhysicsBody(circleOfRadius: firstPart.size.width)
         firstPart.physicsBody?.allowsRotation = true
@@ -47,8 +47,8 @@ class Rope: SKNode {
         startNode.parent?.addChild(firstPart)
         
         for i in 1..<lenght {
-            var ropePart = SKSpriteNode(imageNamed: ropeImage)
-            var ropeHeight = firstPart.position.y-CGFloat(i-1)*ropePart.size.height
+            let ropePart = SKSpriteNode(imageNamed: ropeImage)
+            let ropeHeight = firstPart.position.y-CGFloat(i-1)*ropePart.size.height
             
             ropePart.position = CGPointMake(firstPart.position.x, ropeHeight);
             ropePart.physicsBody = SKPhysicsBody(circleOfRadius: ropePart.size.height*0.75)
@@ -66,7 +66,7 @@ class Rope: SKNode {
         }
         
         if let attachedObject = self.attachedObject {
-            var ropeEnding:SKNode = ropeParts.last!
+            let ropeEnding:SKNode = ropeParts.last!
             attachedObject.position = CGPointMake(ropeEnding.position.x, CGRectGetMaxY(ropeEnding.frame))
             attachedObject.physicsBody = SKPhysicsBody(circleOfRadius: attachedObject.size.height/2)
 
@@ -83,10 +83,10 @@ class Rope: SKNode {
     
     func ropePhysics () {
 
-        var nodeA = startNode
-        var nodeB = ropeParts.first!
+        let nodeA = startNode
+        let nodeB = ropeParts.first!
         
-        var joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody, bodyB:nodeB.physicsBody,
+        let joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody!, bodyB:nodeB.physicsBody!,
             anchor:positionOnStartNode)
         joint.upperAngleLimit = CGFloat(M_PI/4);
         joint.shouldEnableLimits = true;
@@ -94,18 +94,18 @@ class Rope: SKNode {
         
         
         for i in 1..<ropeLength() {
-            var nodeA = ropeParts[i-1]
-            var nodeB = ropeParts[i]
+            let nodeA = ropeParts[i-1]
+            let nodeB = ropeParts[i]
         
-            var joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody, bodyB:nodeB.physicsBody,
+            let joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody!, bodyB:nodeB.physicsBody!,
                 anchor:CGPointMake(CGRectGetMidX(nodeA.frame), CGRectGetMinY(nodeA.frame)))
             joint.upperAngleLimit = CGFloat(M_PI/4);
             joint.shouldEnableLimits = true;
             startNode.scene?.physicsWorld.addJoint(joint)
         }
         
-        var anchorB = ropeParts.last!.position
-        var limit = SKPhysicsJointLimit.jointWithBodyA(startNode.physicsBody, bodyB: ropeParts.last!.physicsBody, anchorA: positionOnStartNode, anchorB: anchorB);
+        let anchorB = ropeParts.last!.position
+        let limit = SKPhysicsJointLimit.jointWithBodyA(startNode.physicsBody!, bodyB: (ropeParts.last!.physicsBody)!, anchorA: positionOnStartNode, anchorB: anchorB);
         limit.maxLength = startNode.frame.maxY - ropeParts.last!.frame.minY - 10
         startNode.scene?.physicsWorld.addJoint(limit)
     }
