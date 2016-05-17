@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController /*, UnityAdsDelegate */ {
+class GameViewController: UIViewController {
     var gameManager = GameManager.sharedInstance;
     var soundManager = SoundManager.sharedInstance;
     
@@ -19,8 +19,6 @@ class GameViewController: UIViewController /*, UnityAdsDelegate */ {
     
     override func viewDidLoad() {
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
-        
-        //UnityAds.sharedInstance().delegate = self
         
         
         NSNotificationCenter.defaultCenter().addObserver(self,

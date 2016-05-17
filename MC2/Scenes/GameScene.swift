@@ -25,7 +25,7 @@ extension CGPoint {
     }
 }
 
-class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
+class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAdsDelegate {
     
     let moveAnalogStick: AnalogStick = AnalogStick()
     
@@ -75,6 +75,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
         if(GameManager.sharedInstance.userDidEnableSound){
             soundManager.playMusic("loop", looped: true);
         }
+        
+        UnityAds.sharedInstance().delegate = self
     }
     
     func presentPauseMenu() {
@@ -87,6 +89,13 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     func presentRetryMenu() {
         self.view?.paused = true;
         self.view?.addSubview(retryMenu);
+        if UnityAds.sharedInstance().canShow() {
+            UnityAds.sharedInstance().show()
+        }
+    }
+    
+    func unityAdsVideoCompleted(rewardItemKey : String, skipped : Bool) {
+        UnityAds.sharedInstance().hide()
     }
     
     func presentMainMenu() {
@@ -98,7 +107,6 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
             hudView.removeFromSuperview()
             let scene = MainMenu(size: view.frame.size)
             if let skView = self.view as SKView? {
-                //UnityAds.sharedInstance().hide()
                 skView.presentScene(scene)
             }
         }
@@ -326,18 +334,18 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate {
     override func update(currentTime: CFTimeInterval) {
         scoreLabel.text = gameManager.score.description;
         if (player.life <= 0) {
-            gameManager.deathCount++;
-            //UnityAds.sharedInstance().setZone("defaultZone")
-            /*
-            if (UnityAds.sharedInstance().isDebugMode() ||
-                    (UnityAds.sharedInstance().canShow() && gameManager.deathCount <= 0)) {
-                gameManager.deathCount = 0;
-                UnityAds.sharedInstance().show()
-                if let musicPlayer = soundManager.player {
-                    musicPlayer.volume = 0;
-                }
-            }
-            */
+            gameManager.deathCount+1;
+//            UnityAds.sharedInstance().setZone("defaultZone")
+//            
+//            if (UnityAds.sharedInstance().isDebugMode() ||
+//                    (UnityAds.sharedInstance().canShow() && gameManager.deathCount <= 0)) {
+//                gameManager.deathCount = 0;
+//                UnityAds.sharedInstance().show()
+//                if let musicPlayer = soundManager.player {
+//                    musicPlayer.volume = 0;
+//                }
+//            }
+            
             presentRetryMenu();
         }
         /* Called before each frame is rendered */

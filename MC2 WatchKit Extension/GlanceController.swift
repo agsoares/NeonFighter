@@ -26,7 +26,11 @@ class GlanceController: WKInterfaceController {
         var dict = NSDictionary(dictionary: ["action" : "getBestScores"])
         WKInterfaceController.openParentApplication(["action" : "getBestScores"], reply: { (obj: [NSObject : AnyObject], error: NSError?) -> Void in
             if let dic = obj as NSDictionary!{
-                self.score = (dic.valueForKey("bestScore")) as! Int;
+                var aux = 0;
+                if (dic.valueForKey("bestScore")) as? Int != nil {
+                    aux = (dic.valueForKey("bestScore")) as! Int
+                }
+                self.score = aux;
                 self.lblBestScore.setText("Your Best Score is \(self.score)")
             }
         })

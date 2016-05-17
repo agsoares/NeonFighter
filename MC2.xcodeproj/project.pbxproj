@@ -45,34 +45,10 @@
 		B9DEBDCB1B54373900A201B5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCA1B54373900A201B5 /* AdSupport.framework */; };
 		B9DEBDCD1B54377E00A201B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */; };
 		B9E890A71B66990D00AA54D7 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E890A61B66990D00AA54D7 /* UIView+Utils.swift */; };
-		DBF063981B5449100054D1A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF063971B5449100054D1A2 /* Images.xcassets */; };
 		DBF0A1C81B3C6EC5002C2D76 /* IA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF0A1C71B3C6EC5002C2D76 /* IA.swift */; };
 		DBF5FEC01B41BB3B003D9391 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */; };
 		DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF5FEC11B430FE1003D9391 /* GameKit.framework */; };
-		DBF5FECC1B445122003D9391 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FECB1B445122003D9391 /* InterfaceController.swift */; };
-		DBF5FECE1B445122003D9391 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF5FECD1B445122003D9391 /* GlanceController.swift */; };
-		DBF5FED01B445122003D9391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FECF1B445122003D9391 /* Images.xcassets */; };
-		DBF5FED41B445122003D9391 /* MC2 WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */; };
-		DBF5FEDC1B445122003D9391 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF5FEDA1B445122003D9391 /* Interface.storyboard */; };
-		DBF5FEE11B445122003D9391 /* MC2 WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DBF5FED51B445122003D9391 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B93086181B2103D900822E47 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DBF5FED21B445122003D9391;
-			remoteInfo = "MC2 WatchKit App";
-		};
-		DBF5FEDF1B445122003D9391 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B93086181B2103D900822E47 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DBF5FEC61B445122003D9391;
-			remoteInfo = "MC2 WatchKit Extension";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		DBF5FEE81B445122003D9391 /* Embed App Extensions */ = {
@@ -81,7 +57,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DBF5FEE11B445122003D9391 /* MC2 WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,12 +108,10 @@
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		DBF5FEC11B430FE1003D9391 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MC2 WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF5FECA1B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF5FECB1B445122003D9391 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		DBF5FECD1B445122003D9391 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		DBF5FECF1B445122003D9391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC2 WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF5FED91B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF5FEDB1B445122003D9391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,13 +127,6 @@
 				DBF5FEC21B430FE1003D9391 /* GameKit.framework in Frameworks */,
 				B9913C7E1BBD98350046BD75 /* UnityAds.bundle in Frameworks */,
 				B9913C7F1BBD98350046BD75 /* UnityAds.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBF5FEC41B445122003D9391 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				B93086201B2103D900822E47 /* Neon Fighter.app */,
-				DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */,
-				DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,8 +174,8 @@
 		B93086221B2103D900822E47 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
-				B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */,
 				B9DEBDC11B5435B200A201B5 /* UnityAds.framework */,
+				B9DEBDC01B5435B200A201B5 /* UnityAds.bundle */,
 				35D060451B44818300AD3E99 /* Helper */,
 				B9451C5B1B2525EC00B8978C /* Extension */,
 				B9451C581B24E39900B8978C /* Classes */,
@@ -352,45 +316,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				DBF5FEE01B445122003D9391 /* PBXTargetDependency */,
 			);
 			name = "Neon Fighter";
 			productName = MC2;
 			productReference = B93086201B2103D900822E47 /* Neon Fighter.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBF5FEE71B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit Extension" */;
-			buildPhases = (
-				DBF5FEC31B445122003D9391 /* Sources */,
-				DBF5FEC41B445122003D9391 /* Frameworks */,
-				DBF5FEC51B445122003D9391 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DBF5FED61B445122003D9391 /* PBXTargetDependency */,
-			);
-			name = "MC2 WatchKit Extension";
-			productName = "MC2 WatchKit Extension";
-			productReference = DBF5FEC71B445122003D9391 /* MC2 WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
-		};
-		DBF5FED21B445122003D9391 /* MC2 WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBF5FEE61B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit App" */;
-			buildPhases = (
-				DBF5FED11B445122003D9391 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "MC2 WatchKit App";
-			productName = "MC2 WatchKit App";
-			productReference = DBF5FED31B445122003D9391 /* MC2 WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
 		};
 /* End PBXNativeTarget section */
 
@@ -411,13 +341,6 @@
 							};
 						};
 					};
-					DBF5FEC61B445122003D9391 = {
-						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = DVXNNDG4U4;
-					};
-					DBF5FED21B445122003D9391 = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
 				};
 			};
 			buildConfigurationList = B930861B1B2103D900822E47 /* Build configuration list for PBXProject "MC2" */;
@@ -434,8 +357,6 @@
 			projectRoot = "";
 			targets = (
 				B930861F1B2103D900822E47 /* Neon Fighter */,
-				DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */,
-				DBF5FED21B445122003D9391 /* MC2 WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -460,24 +381,6 @@
 				B9C7003D1B56E1C3007A5066 /* PauseMenu.xib in Resources */,
 				B932EA331B5583C300EA4E2A /* RetryMenu.xib in Resources */,
 				B93086511B210BBB00822E47 /* aSThumbImg.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBF5FEC51B445122003D9391 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DBF5FED01B445122003D9391 /* Images.xcassets in Resources */,
-				DBF5FED41B445122003D9391 /* MC2 WatchKit App.app in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBF5FED11B445122003D9391 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DBF5FEDC1B445122003D9391 /* Interface.storyboard in Resources */,
-				DBF063981B5449100054D1A2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,29 +414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBF5FEC31B445122003D9391 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DBF5FECC1B445122003D9391 /* InterfaceController.swift in Sources */,
-				DBF5FECE1B445122003D9391 /* GlanceController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DBF5FED61B445122003D9391 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DBF5FED21B445122003D9391 /* MC2 WatchKit App */;
-			targetProxy = DBF5FED51B445122003D9391 /* PBXContainerItemProxy */;
-		};
-		DBF5FEE01B445122003D9391 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DBF5FEC61B445122003D9391 /* MC2 WatchKit Extension */;
-			targetProxy = DBF5FEDF1B445122003D9391 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B930862D1B2103D900822E47 /* Main.storyboard */ = {
@@ -656,16 +537,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MC2",
 				);
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MC2/Supporting Files/Neon Fighter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -677,83 +561,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MC2",
 				);
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MC2/Supporting Files/Neon Fighter-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		DBF5FEE21B445122003D9391 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MC2 WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		DBF5FEE31B445122003D9391 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "MC2 WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		DBF5FEE41B445122003D9391 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				IBSC_MODULE = MC2_WatchKit_Extension;
-				INFOPLIST_FILE = "MC2 WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Debug;
-		};
-		DBF5FEE51B445122003D9391 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				IBSC_MODULE = MC2_WatchKit_Extension;
-				INFOPLIST_FILE = "MC2 WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -774,24 +593,6 @@
 			buildConfigurations = (
 				B93086441B2103D900822E47 /* Debug */,
 				B93086451B2103D900822E47 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DBF5FEE61B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBF5FEE41B445122003D9391 /* Debug */,
-				DBF5FEE51B445122003D9391 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DBF5FEE71B445122003D9391 /* Build configuration list for PBXNativeTarget "MC2 WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBF5FEE21B445122003D9391 /* Debug */,
-				DBF5FEE31B445122003D9391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

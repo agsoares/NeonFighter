@@ -14,13 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if let _ = self.window?.rootViewController {
-            //UnityAds.sharedInstance().startWithGameId("54670", andViewController: viewController)
-        }
-        //UnityAds.sharedInstance().setDebugMode(false)
-        // Override point for customization after application launch.
-        //GameCenterManager.gcManager.authenticateLocalPlayer();
-        
+        UnityAds.sharedInstance().setTestMode(true)        
+        UnityAds.sharedInstance().startWithGameId("1069581", andViewController: self.window?.rootViewController)
         return true
     }
 
