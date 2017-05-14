@@ -48,8 +48,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
     var retryMenu: UIView!
     var pauseMenu: UIView!
     
-    override func didMoveToView(view: SKView) {
-        super.didMoveToView(view)
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
         createPauseMenu()
         createRetryMenu()
         createHudView()
@@ -60,8 +60,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         self.addChild(hud)
         hud.zPosition = 1.0;
         scoreLabel.text = gameManager.score.description
-        scoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMaxY(self.frame)-10);
-        scoreLabel.verticalAlignmentMode = .Top
+        scoreLabel.position = CGPoint(x:self.frame.midX, y:self.frame.maxY-10);
+        scoreLabel.verticalAlignmentMode = .top
         hud.addChild(scoreLabel)
         
         self.backgroundColor = UIColor.wetAsfaltColor()
@@ -80,27 +80,25 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
     }
     
     func presentPauseMenu() {
-        self.view?.paused = true;
+        self.view?.isPaused = true;
         self.view?.addSubview(pauseMenu);
-        self.view?.bringSubviewToFront(hudView);
+        self.view?.bringSubview(toFront: hudView);
     }
     
     
     func presentRetryMenu() {
-        self.view?.paused = true;
+        self.view?.isPaused = true;
         self.view?.addSubview(retryMenu);
-        if UnityAds.sharedInstance().canShow() {
-            UnityAds.sharedInstance().show()
-        }
+        
     }
     
-    func unityAdsVideoCompleted(rewardItemKey : String, skipped : Bool) {
+    func unityAdsVideoCompleted(_ rewardItemKey : String, skipped : Bool) {
         UnityAds.sharedInstance().hide()
     }
     
     func presentMainMenu() {
         if let view = self.view {
-            view.paused = false;
+            view.isPaused = false;
             pauseMenu.removeFromSuperview()
             retryMenu.removeFromSuperview()
             soundManager.stopMusic();
@@ -114,14 +112,14 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
     }
     
     func createHudView() {
-        hudView = UIView(frame: CGRectMake(0, 0,
-            self.view!.frame.size.width, self.view!.frame.size.height/2))
+        hudView = UIView(frame: CGRect(x: 0, y: 0,
+            width: self.view!.frame.size.width, height: self.view!.frame.size.height/2))
         let pauseImage = UIImage(named: "btPause")
         let pauseButton = UIButton(image: pauseImage!)
-        pauseButton.contentMode = .ScaleAspectFit
-        pauseButton.frame.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
+        pauseButton.contentMode = .scaleAspectFit
+        pauseButton.frame.size = CGSize(width: 50/gameManager.scaleFactor, height: 50/gameManager.scaleFactor)
         pauseButton.tag = 0;
-        pauseButton.center.x = CGRectGetMaxX(hudView.frame)-CGRectGetMidX(pauseButton.frame)
+        pauseButton.center.x = hudView.frame.maxX-pauseButton.frame.midX
         hudView.addSubview(pauseButton);
         hudView.addCallback(self, callback: Selector("touchButton:"))
         
@@ -129,9 +127,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
     }
     
     func createPauseMenu() {
-        let menu = NSBundle.mainBundle().loadNibNamed("PauseMenu",
+        let menu = Bundle.main.loadNibNamed("PauseMenu",
             owner: self,
-            options:nil).first as! UIView
+            options:nil)?.first as! UIView
         menu.frame = self.view!.frame;
         
         menu.addCallback(self, callback: Selector("touchButton:"))
@@ -141,9 +139,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
     
     
     func createRetryMenu() {
-        let menu = NSBundle.mainBundle().loadNibNamed("RetryMenu",
+        let menu = Bundle.main.loadNibNamed("RetryMenu",
                     owner: self,
-                    options:nil).first as! UIView
+                    options:nil)?.first as! UIView
         menu.frame = self.view!.frame;
         
         menu.addCallback(self, callback: Selector("touchButton:"))
@@ -151,13 +149,13 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         self.retryMenu = menu;
     }
     
-    func AddCallback (view: UIView) {
+    func AddCallback (_ view: UIView) {
         for v in view.subviews {
             if (v is UIButton) {
                 let button = v as! UIButton
                 button.addTarget(self,
-                    action: Selector("touchButton:"),
-                    forControlEvents: .TouchUpInside);
+                    action: #selector(GameScene.touchButton(_:)),
+                    for: .touchUpInside);
             } else {
                 AddCallback(v );
             }
@@ -166,12 +164,12 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
     
     }
     
-    func touchButton(button : UIButton!) {
+    func touchButton(_ button : UIButton!) {
         if let view = self.view {
             switch button.tag {
             case 0:
-                if (view.paused && player.life > 0) {
-                    view.paused = false;
+                if (view.isPaused && player.life > 0) {
+                    view.isPaused = false;
                     pauseMenu.removeFromSuperview();
                 } else {
                     presentPauseMenu()
@@ -182,7 +180,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
                 presentMainMenu()
             case 3:
                 pauseMenu.removeFromSuperview()
-                view.paused = false;
+                view.isPaused = false;
             default:
                 return;
             }
@@ -194,8 +192,8 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         GameCenterManager.gcManager.reportScore(gameManager.score);
         retryMenu.removeFromSuperview();
         pauseMenu.removeFromSuperview();
-        if(NSUserDefaults.standardUserDefaults().integerForKey("BestScore") > gameManager.score){
-            NSUserDefaults.standardUserDefaults().setInteger(gameManager.score, forKey: "BestScore");
+        if(UserDefaults.standard.integer(forKey: "BestScore") > gameManager.score){
+            UserDefaults.standard.set(gameManager.score, forKey: "BestScore");
         }
         gameManager.score = 0;
         world.removeAllChildren();
@@ -203,40 +201,40 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         self.removeAllActions();
         world.removeAllActions();
         
-        view?.paused = false;
+        view?.isPaused = false;
         
         startScene();
     }
     
     func startScene() {
-        view?.paused = false;
+        view?.isPaused = false;
         gameManager.score = 0;
         player = Player();
         let grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
-        grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
-        grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        grid.blendMode = SKBlendMode.MultiplyX2;
-        player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        grid.size = CGSize(width: grid.size.width*1.2, height: grid.size.height*1.2)
+        grid.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
+        grid.blendMode = SKBlendMode.multiplyX2;
+        player.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
         world.position = CGPoint(x: 0.5, y: 0.5);
         world.addChild(player)
         player.setupPhysics()
-        let worldBorder = SKPhysicsBody(edgeLoopFromRect: frame)
+        let worldBorder = SKPhysicsBody(edgeLoopFrom: frame)
         worldBorder.categoryBitMask = PhysicsCategory.Wall;
 
         world.physicsBody = worldBorder;
         
         world.addChild(grid);
         
-        runAction(SKAction.repeatActionForever(
+        run(SKAction.repeatForever(
             SKAction.sequence([
-                SKAction.waitForDuration(5.0),
-                SKAction.runBlock(spawnEnemy)
+                SKAction.wait(forDuration: 5.0),
+                SKAction.run(spawnEnemy)
                 ])
             ))
     }
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         let nodeA = contact.bodyA.node;
         let nodeB = contact.bodyB.node;
 
@@ -247,7 +245,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         
         if (contact.bodyA.categoryBitMask != PhysicsCategory.Chain &&
             contact.bodyB.categoryBitMask != PhysicsCategory.Chain) {
-            if (nodeA!.respondsToSelector("applyDamage:")) {
+            if (nodeA!.responds(to: "applyDamage:")) {
                 let node = nodeA as! DestroyableNode
                 if (contact.collisionImpulse >= 2000) {
                     node.sparkle(contact.contactPoint)
@@ -255,7 +253,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
                 node.applyDamage(contact.collisionImpulse);
 
             }
-            if (nodeB!.respondsToSelector("applyDamage:")) {
+            if (nodeB!.responds(to: "applyDamage:")) {
                 let node = nodeB as! DestroyableNode
                 if (contact.collisionImpulse >= 2000) {
                     node.sparkle(contact.contactPoint)
@@ -265,7 +263,7 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
                 
             }
             if(GameManager.sharedInstance.userDidEnableSoundFX){
-                runAction(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
+                run(SKAction.playSoundFileNamed("impact.wav", waitForCompletion: false))
             }
             
         }
@@ -276,9 +274,9 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         moveAnalogStick.bgNodeDiametr = bgDiametr
         moveAnalogStick.thumbNodeDiametr = thumbDiametr
         moveAnalogStick.delegate = self
-        moveAnalogStick.hidden = true
+        moveAnalogStick.isHidden = true
         moveAnalogStick.alpha = 0.25
-        moveAnalogStick.position = CGPointMake(-100, -100)
+        moveAnalogStick.position = CGPoint(x: -100, y: -100)
         hud.addChild(moveAnalogStick)
     
     }
@@ -291,47 +289,47 @@ class GameScene: SKScene, AnalogStickProtocol, SKPhysicsContactDelegate, UnityAd
         world.addChild(enemy)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
 
         for touch in (touches ) {
-            let location = touch.locationInNode(self)
+            let location = touch.location(in: self)
             moveAnalogStick.position = location
-            moveAnalogStick.hidden = false
+            moveAnalogStick.isHidden = false
         }
-        moveAnalogStick.touchesBegan(touches, withEvent: event)
-        moveAnalogStick.touchesMoved(touches, withEvent: event)
+        moveAnalogStick.touchesBegan(touches, with: event)
+        moveAnalogStick.touchesMoved(touches, with: event)
 
     }
    
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesMoved(touches, withEvent: event)
-        moveAnalogStick.touchesMoved(touches, withEvent: event)
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        moveAnalogStick.touchesMoved(touches, with: event)
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
-        moveAnalogStick.touchesEnded(touches, withEvent: event)
-        moveAnalogStick.position = CGPointMake(-100, -100)
-        moveAnalogStick.hidden = true
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        moveAnalogStick.touchesEnded(touches, with: event)
+        moveAnalogStick.position = CGPoint(x: -100, y: -100)
+        moveAnalogStick.isHidden = true
         
     }
     
-    func centerOnNode(node: SKNode) {
-        let cameraPositionInScene: CGPoint = node.scene!.convertPoint(node.position, fromNode: node.parent!)
+    func centerOnNode(_ node: SKNode) {
+        let cameraPositionInScene: CGPoint = node.scene!.convert(node.position, from: node.parent!)
         node.parent!.position = CGPoint(x:node.parent!.position.x - cameraPositionInScene.x, y: node.parent!.position.y - cameraPositionInScene.y)
     }
     
-    func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
-        if (!self.view!.paused) {
-          player.physicsBody?.applyForce(CGVectorMake(velocity.x*700, velocity.y*700))
+    func moveAnalogStick(_ analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
+        if (!self.view!.isPaused) {
+          player.physicsBody?.applyForce(CGVector(dx: velocity.x*700, dy: velocity.y*700))
         }
         
     }
     
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         scoreLabel.text = gameManager.score.description;
         if (player.life <= 0) {
             gameManager.deathCount+1;

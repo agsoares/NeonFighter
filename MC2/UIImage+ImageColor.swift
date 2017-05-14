@@ -8,19 +8,19 @@
 import UIKit
 
 extension UIImage {
-    func imageWithColor(color: UIColor) -> UIImage {
+    func imageWithColor(_ color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         let context = UIGraphicsGetCurrentContext()
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CGContextSetBlendMode(context, CGBlendMode.Normal)
+        context?.translateBy(x: 0, y: self.size.height)
+        context?.scaleBy(x: 1.0, y: -1.0);
+        context?.setBlendMode(CGBlendMode.normal)
         
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
-        CGContextClipToMask(context, rect, self.CGImage)
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height) as CGRect
+        context?.clip(to: rect, mask: self.cgImage!)
         color.setFill()
-        CGContextFillRect(context, rect)
+        context?.fill(rect)
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+        let newImage = UIGraphicsGetImageFromCurrentImageContext() as! UIImage
         UIGraphicsEndImageContext()
         
         return newImage

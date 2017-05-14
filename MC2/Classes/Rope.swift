@@ -9,28 +9,28 @@
 import SpriteKit
 
 class Rope: SKNode {
-    private var ropeImage = ""
-    private var ropeParts = Array<SKSpriteNode>()
-    private var attachedObject: SKSpriteNode!
-    private var startNode: SKNode!
-    private var positionOnStartNode: CGPoint!
+    fileprivate var ropeImage = ""
+    fileprivate var ropeParts = Array<SKSpriteNode>()
+    fileprivate var attachedObject: SKSpriteNode!
+    fileprivate var startNode: SKNode!
+    fileprivate var positionOnStartNode: CGPoint!
     
     var physicsWorld: SKPhysicsWorld?
 
     var gameManager = GameManager.sharedInstance
     
-    func setAttachmentPoint(point: CGPoint, toNode node: SKNode) {
+    func setAttachmentPoint(_ point: CGPoint, toNode node: SKNode) {
         startNode = node
         positionOnStartNode = point
     }
     
-    func attachObject(object: SKSpriteNode) {
+    func attachObject(_ object: SKSpriteNode) {
         attachedObject = object
     }
     
-    func setRopeLenght(lenght: Int, withImageNamed imageNamed: String) {
+    func setRopeLenght(_ lenght: Int, withImageNamed imageNamed: String) {
         ropeImage = imageNamed
-        ropeParts.removeAll(keepCapacity: false)
+        ropeParts.removeAll(keepingCapacity: false)
         
         let firstPart = SKSpriteNode(imageNamed: ropeImage)
         firstPart.position = positionOnStartNode;
@@ -50,7 +50,7 @@ class Rope: SKNode {
             let ropePart = SKSpriteNode(imageNamed: ropeImage)
             let ropeHeight = firstPart.position.y-CGFloat(i-1)*ropePart.size.height
             
-            ropePart.position = CGPointMake(firstPart.position.x, ropeHeight);
+            ropePart.position = CGPoint(x: firstPart.position.x, y: ropeHeight);
             ropePart.physicsBody = SKPhysicsBody(circleOfRadius: ropePart.size.height*0.75)
             ropePart.physicsBody?.allowsRotation = true;
             ropePart.physicsBody?.mass = CGFloat(0.005);
@@ -67,7 +67,7 @@ class Rope: SKNode {
         
         if let attachedObject = self.attachedObject {
             let ropeEnding:SKNode = ropeParts.last!
-            attachedObject.position = CGPointMake(ropeEnding.position.x, CGRectGetMaxY(ropeEnding.frame))
+            attachedObject.position = CGPoint(x: ropeEnding.position.x, y: ropeEnding.frame.maxY)
             attachedObject.physicsBody = SKPhysicsBody(circleOfRadius: attachedObject.size.height/2)
 
             ropeParts.append(attachedObject)
@@ -86,27 +86,27 @@ class Rope: SKNode {
         let nodeA = startNode
         let nodeB = ropeParts.first!
         
-        let joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody!, bodyB:nodeB.physicsBody!,
+        let joint = SKPhysicsJointPin.joint(withBodyA: (nodeA?.physicsBody!)!, bodyB:nodeB.physicsBody!,
             anchor:positionOnStartNode)
         joint.upperAngleLimit = CGFloat(M_PI/4);
         joint.shouldEnableLimits = true;
-        startNode.scene?.physicsWorld.addJoint(joint)
+        startNode.scene?.physicsWorld.add(joint)
         
         
         for i in 1..<ropeLength() {
             let nodeA = ropeParts[i-1]
             let nodeB = ropeParts[i]
         
-            let joint = SKPhysicsJointPin.jointWithBodyA(nodeA.physicsBody!, bodyB:nodeB.physicsBody!,
-                anchor:CGPointMake(CGRectGetMidX(nodeA.frame), CGRectGetMinY(nodeA.frame)))
+            let joint = SKPhysicsJointPin.joint(withBodyA: nodeA.physicsBody!, bodyB:nodeB.physicsBody!,
+                anchor:CGPoint(x: nodeA.frame.midX, y: nodeA.frame.minY))
             joint.upperAngleLimit = CGFloat(M_PI/4);
             joint.shouldEnableLimits = true;
-            startNode.scene?.physicsWorld.addJoint(joint)
+            startNode.scene?.physicsWorld.add(joint)
         }
         
         let anchorB = ropeParts.last!.position
-        let limit = SKPhysicsJointLimit.jointWithBodyA(startNode.physicsBody!, bodyB: (ropeParts.last!.physicsBody)!, anchorA: positionOnStartNode, anchorB: anchorB);
+        let limit = SKPhysicsJointLimit.joint(withBodyA: startNode.physicsBody!, bodyB: (ropeParts.last!.physicsBody)!, anchorA: positionOnStartNode, anchorB: anchorB);
         limit.maxLength = startNode.frame.maxY - ropeParts.last!.frame.minY - 10
-        startNode.scene?.physicsWorld.addJoint(limit)
+        startNode.scene?.physicsWorld.add(limit)
     }
 }

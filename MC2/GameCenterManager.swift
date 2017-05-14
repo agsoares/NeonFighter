@@ -16,49 +16,52 @@ class GameCenterManager : NSObject, GKGameCenterControllerDelegate{
     var leaderBoardIdentifier = "com.bepid.MC2.NeonFighterLeaderBoard"
     var localPlayer = GKLocalPlayer()
     
-    func showLeaderBoards(view : UIViewController){
+    func showLeaderBoards(_ view : UIViewController){
         if (self.gameCenterEnabled){
             let gc = GKGameCenterViewController()
             gc.gameCenterDelegate = GameCenterManager.gcManager
-            view.presentViewController(gc, animated: true, completion: nil)
+            view.present(gc, animated: true, completion: nil)
         }
     }
     
-    @objc func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController)
-    {
-        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    @objc func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
     
-    func authenticateLocalPlayer(view : UIViewController){
+    func authenticateLocalPlayer(_ view : UIViewController){
         self.localPlayer = GKLocalPlayer.localPlayer();
-        
+
+        /*
         self.localPlayer.authenticateHandler = { (controler : UIViewController?, error : NSError?) -> Void  in
             if(controler != nil){
-                view.presentViewController(controler!, animated: true, completion: nil)
-            }else{
-                if (GKLocalPlayer.localPlayer().authenticated){
+                view.present(controler!, animated: true, completion: nil)
+            } else {
+                
+                if (GKLocalPlayer.localPlayer().isAuthenticated) {
                     self.gameCenterEnabled = true;
                     
-                GKLocalPlayer.localPlayer().loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier, error) -> Void in
+                    GKLocalPlayer.localPlayer().loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifier, error) -> Void in
                         if(error != nil){
                             print(error);
-                        }else{
+                        } else {
                             self.leaderBoardIdentifier = leaderboardIdentifier!;
                         }
-                });
+                    });
                     
                 }
             
             }
         }
+        */
+
     }
     
-    func reportScore(score : Int){
+    func reportScore(_ score : Int){
         if(self.gameCenterEnabled){
             if #available(iOS 8.0, *) {
                 let scoreToReport = GKScore(leaderboardIdentifier: "com.bepid.MC2.NeonFighterLeaderBoard", player: self.localPlayer)
                 scoreToReport.value = Int64(score)
-                GKScore.reportScores([scoreToReport], withCompletionHandler: nil)
+                GKScore.report([scoreToReport], withCompletionHandler: nil)
             } else {
                 // Fallback on earlier versions
             }

@@ -12,21 +12,21 @@ var gameManager = GameManager.sharedInstance
 
     var menu: UIView!
 
-    override func didMoveToView(view: SKView) {
-        super.didMoveToView(view)
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
 
         let grid = SKSpriteNode(imageNamed: "grid");
         grid.zPosition = -0.1
-        grid.size = CGSizeMake(grid.size.width*1.2, grid.size.height*1.2)
-        grid.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        grid.size = CGSize(width: grid.size.width*1.2, height: grid.size.height*1.2)
+        grid.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
         self.addChild(grid);
         
-        gameManager.userDidEnableSoundFX = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSoundFX")
-        gameManager.userDidEnableSound = NSUserDefaults.standardUserDefaults().boolForKey("userDidEnableSound")
+        gameManager.userDidEnableSoundFX = UserDefaults.standard.bool(forKey: "userDidEnableSoundFX")
+        gameManager.userDidEnableSound = UserDefaults.standard.bool(forKey: "userDidEnableSound")
 
-        let menu = NSBundle.mainBundle().loadNibNamed("MainMenu",
+        let menu = Bundle.main.loadNibNamed("MainMenu",
             owner: self,
-            options:nil).first as! UIView
+            options:nil)?.first as! UIView
 
         
         menu.addCallback(self, callback: Selector("buttonPressed:"));
@@ -40,15 +40,15 @@ var gameManager = GameManager.sharedInstance
 
     }
 
-    func AddState (view: UIView) {
+    func AddState (_ view: UIView) {
         for v in view.subviews {
             if (v is UIButton) {
                 if let button = v as? UIButton {
                     if(button.tag == 2) {
-                        button.selected = !GameManager.sharedInstance.userDidEnableSound
+                        button.isSelected = !GameManager.sharedInstance.userDidEnableSound
                     }
                     if(button.tag == 3) {
-                        button.selected = !GameManager.sharedInstance.userDidEnableSoundFX
+                        button.isSelected = !GameManager.sharedInstance.userDidEnableSoundFX
                     }
                 }
             } else {
@@ -60,7 +60,7 @@ var gameManager = GameManager.sharedInstance
         }
     }
 
-    func buttonPressed(sender: UIButton){
+    func buttonPressed(_ sender: UIButton){
         if let view = self.view {
             switch sender.tag{
             case 1:
@@ -69,36 +69,36 @@ var gameManager = GameManager.sharedInstance
                 view.presentScene(scene)
                 break
             case 2:
-                sender.selected = !sender.selected
-                GameManager.sharedInstance.userDidEnableSound = !sender.selected
+                sender.isSelected = !sender.isSelected
+                GameManager.sharedInstance.userDidEnableSound = !sender.isSelected
                 break
             case 3:
-                sender.selected = !sender.selected
-                GameManager.sharedInstance.userDidEnableSoundFX = !sender.selected
+                sender.isSelected = !sender.isSelected
+                GameManager.sharedInstance.userDidEnableSoundFX = !sender.isSelected
             case 4:
                 showLeaderBoards()
             default:
                 break
             }
-            NSUserDefaults.standardUserDefaults().setBool(GameManager.sharedInstance.userDidEnableSound , forKey: "userDidEnableSound")
-            NSUserDefaults.standardUserDefaults().setBool(GameManager.sharedInstance.userDidEnableSoundFX , forKey: "userDidEnableSoundFX")
+            UserDefaults.standard.set(GameManager.sharedInstance.userDidEnableSound , forKey: "userDidEnableSound")
+            UserDefaults.standard.set(GameManager.sharedInstance.userDidEnableSoundFX , forKey: "userDidEnableSoundFX")
         }
 
     }
 
     func showLeaderBoards(){
-        NSNotificationCenter.defaultCenter().postNotificationName("callGameCenterLeaderBoard", object: nil);
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "callGameCenterLeaderBoard"), object: nil);
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
     }
 
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 
     }
 
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
     }
 }

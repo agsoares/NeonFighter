@@ -9,12 +9,12 @@
 import UIKit
 
 extension UIView {
-    func addCallback(target: AnyObject, callback: Selector) {
+    func addCallback(_ target: AnyObject, callback: Selector) {
         if (self is UIButton) {
             if let button = self as? UIButton {
                 button.addTarget(target,
                        action: callback,
-                       forControlEvents: .TouchUpInside);
+                       for: .touchUpInside);
             
             }
         } else {

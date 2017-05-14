@@ -12,11 +12,11 @@ class TriangleShip: Enemy {
     init() {
         super.init(imageNamed: "triangle_ship")
         
-        self.size = CGSizeMake(50/gameManager.scaleFactor , 50/gameManager.scaleFactor )
+        self.size = CGSize(width: 50/gameManager.scaleFactor , height: 50/gameManager.scaleFactor )
         //self.color = UIColor.randColor();
         self.colorBlendFactor = 1
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width*0.45) //(rectangleOfSize: self.size)
-        self.physicsBody?.dynamic = true
+        self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         self.physicsBody?.collisionBitMask = PhysicsCategory.None
@@ -27,10 +27,10 @@ class TriangleShip: Enemy {
         self.physicsBody?.angularDamping = 10;
 
         
-        runAction(SKAction.repeatActionForever(
+        run(SKAction.repeatForever(
             SKAction.sequence([
-                SKAction.runBlock(update),
-                SKAction.waitForDuration(0.01)
+                SKAction.run(update),
+                SKAction.wait(forDuration: 0.01)
                 ])
             ))
         

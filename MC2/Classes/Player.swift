@@ -15,7 +15,7 @@ class Player: DestroyableNode {
         let texture = SKTexture(imageNamed: "player2")
         super.init(texture: texture, color: UIColor.greenSeaColor(),
             size: texture.size())
-        self.size = CGSizeMake(50/gameManager.scaleFactor, 50/gameManager.scaleFactor)
+        self.size = CGSize(width: 50/gameManager.scaleFactor, height: 50/gameManager.scaleFactor)
         maxLife *= 4;
         life *= 4;
         self.zPosition = 0.5
@@ -34,8 +34,8 @@ class Player: DestroyableNode {
 
         
         ball = SKSpriteNode(imageNamed: "ball")
-        ball.size = CGSizeMake(50/gameManager.scaleFactor , 50/gameManager.scaleFactor )
-        ball.color = UIColor.redColor();
+        ball.size = CGSize(width: 50/gameManager.scaleFactor , height: 50/gameManager.scaleFactor )
+        ball.color = UIColor.red;
         ball.colorBlendFactor = 1
         
         let rope = Rope()
@@ -43,7 +43,7 @@ class Player: DestroyableNode {
         //rope.physicsWorld = self.physicsWorld
         self.addChild(rope)
         
-        rope.setAttachmentPoint(CGPointMake(self.position.x, self.frame.midY), toNode: self)
+        rope.setAttachmentPoint(CGPoint(x: self.position.x, y: self.frame.midY), toNode: self)
         rope.attachObject(ball)
         rope.setRopeLenght(Int(floor(20/gameManager.scaleFactor)), withImageNamed: "rope_ring")
         

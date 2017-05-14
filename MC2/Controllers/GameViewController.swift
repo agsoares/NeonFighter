@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
     var gameManager = GameManager.sharedInstance;
     var soundManager = SoundManager.sharedInstance;
     
-    func callGameCenter(sender: NSNotification?) {
+    func callGameCenter(_ sender: Notification?) {
         GameCenterManager.gcManager.showLeaderBoards(self);
     }
     
@@ -21,9 +21,9 @@ class GameViewController: UIViewController {
         GameCenterManager.gcManager.authenticateLocalPlayer(self);
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "callGameCenter:",
-            name: "callGameCenterLeaderBoard",
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(GameViewController.callGameCenter(_:)),
+            name: NSNotification.Name(rawValue: "callGameCenterLeaderBoard"),
             object: nil);
         
         super.viewDidLoad()
@@ -47,20 +47,20 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         
         /* Set the scale mode to scale to fit the window */
-        scene.scaleMode = .AspectFill
+        scene.scaleMode = .aspectFill
         
         skView.presentScene(menu)
     }
 
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return UIInterfaceOrientationMask.AllButUpsideDown
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return UIInterfaceOrientationMask.allButUpsideDown
         } else {
-            return UIInterfaceOrientationMask.All
+            return UIInterfaceOrientationMask.all
         }
     }
 
@@ -69,7 +69,7 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
     }
     
     
-    func unityAdsVideoCompleted(rewardItemKey: String!, skipped: Bool) {
+    func unityAdsVideoCompleted(_ rewardItemKey: String!, skipped: Bool) {
         if let musicPlayer = soundManager.player {
             musicPlayer.volume = 1;
         }

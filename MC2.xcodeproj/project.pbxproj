@@ -104,16 +104,9 @@
 		B9DEBDCA1B54373900A201B5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B9DEBDCC1B54377E00A201B5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B9E890A61B66990D00AA54D7 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Utils.swift"; path = "Extensions/UIView+Utils.swift"; sourceTree = "<group>"; };
-		DBF063971B5449100054D1A2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DBF0A1C71B3C6EC5002C2D76 /* IA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IA.swift; sourceTree = "<group>"; };
 		DBF5FEBF1B41BB3B003D9391 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		DBF5FEC11B430FE1003D9391 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		DBF5FECA1B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBF5FECB1B445122003D9391 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		DBF5FECD1B445122003D9391 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
-		DBF5FECF1B445122003D9391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DBF5FED91B445122003D9391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBF5FEDB1B445122003D9391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +150,6 @@
 				B9DEBDC81B54372300A201B5 /* CoreTelephony.framework */,
 				DBF5FEC11B430FE1003D9391 /* GameKit.framework */,
 				B93086221B2103D900822E47 /* MC2 */,
-				DBF5FEC81B445122003D9391 /* MC2 WatchKit Extension */,
-				DBF5FED71B445122003D9391 /* MC2 WatchKit App */,
 				B93086211B2103D900822E47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -264,43 +255,6 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
-		DBF5FEC81B445122003D9391 /* MC2 WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				DBF5FECB1B445122003D9391 /* InterfaceController.swift */,
-				DBF5FECD1B445122003D9391 /* GlanceController.swift */,
-				DBF5FECF1B445122003D9391 /* Images.xcassets */,
-				DBF5FEC91B445122003D9391 /* Supporting Files */,
-			);
-			path = "MC2 WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		DBF5FEC91B445122003D9391 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DBF5FECA1B445122003D9391 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DBF5FED71B445122003D9391 /* MC2 WatchKit App */ = {
-			isa = PBXGroup;
-			children = (
-				DBF5FEDA1B445122003D9391 /* Interface.storyboard */,
-				DBF5FED81B445122003D9391 /* Supporting Files */,
-			);
-			path = "MC2 WatchKit App";
-			sourceTree = "<group>";
-		};
-		DBF5FED81B445122003D9391 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DBF5FED91B445122003D9391 /* Info.plist */,
-				DBF063971B5449100054D1A2 /* Images.xcassets */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -334,7 +288,8 @@
 				TargetAttributes = {
 					B930861F1B2103D900822E47 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = DVXNNDG4U4;
+						DevelopmentTeam = M7SM6673Q8;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
@@ -435,14 +390,6 @@
 			path = .;
 			sourceTree = "<group>";
 		};
-		DBF5FEDA1B445122003D9391 /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DBF5FEDB1B445122003D9391 /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -537,6 +484,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = M7SM6673Q8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -545,10 +493,12 @@
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.agsoares.NeonFighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MC2/Supporting Files/Neon Fighter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -561,6 +511,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = M7SM6673Q8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -569,9 +520,11 @@
 				INFOPLIST_FILE = "MC2/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.agsoares.NeonFighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MC2/Supporting Files/Neon Fighter-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

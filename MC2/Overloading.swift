@@ -9,10 +9,10 @@ import CoreGraphics
 
 
 func * (left: CGSize, right: CGFloat) -> CGSize {
-    return CGSizeMake(left.width * right, left.height * right)
+    return CGSize(width: left.width * right, height: left.height * right)
 }
 func / (left: CGSize, right: CGFloat) -> CGSize {
-    return CGSizeMake(left.width / right, left.height / right)
+    return CGSize(width: left.width / right, height: left.height / right)
 }
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
@@ -35,6 +35,6 @@ func random() -> CGFloat {
     return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
 }
 
-func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+func random(min: CGFloat, max: CGFloat) -> CGFloat {
     return random() * (max - min) + min
 }
